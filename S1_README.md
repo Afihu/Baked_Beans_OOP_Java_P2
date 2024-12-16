@@ -9,8 +9,8 @@ The primary goal of Sprint 1 is to establish the foundational elements of the Ub
 
 ### 1. **Development Environment Setup**
 - **Tasks:**
-  - Install necessary tools: Java Development Kit (JDK), JavaFX libraries, and an Integrated Development Environment (IDE) such as IntelliJ IDEA or Eclipse.
-  - Set up a Git repository for version control and collaboration.
+  - Install necessary tools: Java Development Kit (JDK), JavaFX libraries, VS Code, Draw.io Extension
+  - Set up a [Git repository](https://github.com/Afihu/Baked_Beans_OOP_Java_P2) for version control and collaboration. 
   - Create an initial project structure with placeholders for main components (e.g., `src`, `resources`, and `tests`).
 - **Milestone:**
   - A fully configured development environment with a basic project structure committed to the repository.

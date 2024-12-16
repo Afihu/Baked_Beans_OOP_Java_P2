@@ -18,9 +18,9 @@ The project will be divided into 2-week sprints, with incremental deliverables r
 
 ### Sprint 1 (Weeks 1-2): Project Setup and Core Gameplay Logic
 - **Goals:**
-  - Set up the development environment (Java, JavaFX, IDE).
+  - Set up the development environment (Java, JavaFX, VS Code, Draw.io Integration extension on VS Code and Java Virtual Machine).
   - Define project structure and classes (e.g., `Game`, `Board`, `Tile`, `Player`).
-  - Implement basic game rules, including task card generation and tile placement logic.
+  - Implement basic game rules, including board generation and tile placement logic.
   - Develop initial timer mechanism.
 - **Deliverables:**
   - Initialized project repository.
