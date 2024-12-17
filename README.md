@@ -52,3 +52,4 @@ The project will be divided into 2-week sprints, with incremental deliverables r
 - Sprint reviews will occur at the end of each sprint to assess progress and adapt plans as needed.
 - Testing will be ongoing throughout development to ensure stability and usability.
 - Additional features (e.g., online multiplayer, customizable boards) may be considered in future iterations, beyond the current 6-week scope.
+- Require: Draw.io Intergration extension, Scene builder app, JDK, Java FX.
