@@ -2,6 +2,7 @@ package application;
 
 //import java.awt.Event;
 import java.io.IOException;
+import java.security.PublicKey;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -42,6 +43,16 @@ public class Controller {
 		stage.setScene(scene);
 		stage.show();
 		System.out.println("Settings Page Opened");
+	}
+	
+	public void MultiConfigScreen(ActionEvent e) throws IOException{
+		Parent root = FXMLLoader.load(getClass().getResource("MultiConfig.fxml"));
+		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		scene.getStylesheets().add(cssString);
+		stage.setScene(scene);
+		stage.show();
+		System.out.println("Multiplayer Configurations Opened");
 	}
 	
 }

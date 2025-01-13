@@ -15,6 +15,6 @@
       </ImageView>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="42.0" text="&lt;&lt;" />
       <Button layoutX="223.0" layoutY="200.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="153.0" text="Singleplayer" />
-      <Button layoutX="223.0" layoutY="264.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="153.0" text="Multiplayer" />
+      <Button layoutX="223.0" layoutY="264.0" mnemonicParsing="false" onAction="#MultiConfigScreen" prefHeight="39.0" prefWidth="153.0" text="Multiplayer" />
    </children>
 </AnchorPane>
