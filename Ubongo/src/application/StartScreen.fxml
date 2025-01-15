@@ -4,16 +4,20 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="339.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="717.0" prefWidth="1274.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
-      <ImageView fx:id="myImageView" fitHeight="339.0" fitWidth="600.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="myImageView" fitHeight="720.0" fitWidth="1280.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../res/images/Ubongo-Title.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="72.0" layoutY="279.0" mnemonicParsing="false" onAction="#QuitGame" prefHeight="25.0" prefWidth="109.0" text="Quit Game" />
-      <Button layoutX="241.0" layoutY="279.0" mnemonicParsing="false" onAction="#StartGame" prefHeight="25.0" prefWidth="117.0" text="Start Game" />
-      <Button layoutX="428.0" layoutY="279.0" mnemonicParsing="false" onAction="#SettingsPage" prefHeight="25.0" prefWidth="103.0" text="Settings" />
+      <Button layoutX="145.0" layoutY="547.0" mnemonicParsing="false" onAction="#QuitGame" prefHeight="69.0" prefWidth="247.0" text="Quit Game" />
+      <Button layoutX="529.0" layoutY="550.0" mnemonicParsing="false" onAction="#StartGame" prefHeight="69.0" prefWidth="247.0" text="Start Game">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="898.0" layoutY="549.0" mnemonicParsing="false" onAction="#SettingsPage" prefHeight="69.0" prefWidth="247.0" text="Settings" />
    </children>
 </AnchorPane>

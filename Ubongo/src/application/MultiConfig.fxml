@@ -7,19 +7,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="600.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="720.0" fitWidth="1280.0" layoutX="144.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../../res/images/AppBackground.jpg" />
+            <Image url="@../../res/images/SettingsForest.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="254.0" layoutY="163.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="91.0" text="2 Players" />
-      <Button layoutX="254.0" layoutY="214.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="91.0" text="3 Players" />
-      <Button layoutX="254.0" layoutY="265.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="91.0" text="4 Players" />
-      <Button layoutX="254.0" layoutY="315.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="91.0" text="5 Players" />
-      <Label layoutX="179.0" layoutY="82.0" text="HOW MANY PLAYERS?" textFill="#2200fc">
+      <Button layoutX="515.0" layoutY="279.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="2 Players" />
+      <Button layoutX="519.0" layoutY="371.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="3 Players" />
+      <Button layoutX="520.0" layoutY="466.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="4 Players" />
+      <Button layoutX="519.0" layoutY="570.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="5 Players" />
+      <Label layoutX="505.0" layoutY="184.0" prefWidth="269.0" text="HOW MANY PLAYERS?" textFill="#00fa63">
          <font>
             <Font name="Bell MT" size="24.0" />
          </font>

@@ -1,5 +1,7 @@
 package application;
 	
+import java.awt.*;
+
 //import javafx.scene.image.*;
 
 import javafx.application.Application;
@@ -14,12 +16,9 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			primaryStage.setTitle("Ubongo");
-//			Image image = new Image("../../res/images/Ubongo-icon.jpg");
-//			primaryStage.getIcons().add(image);
-//			System.out.println(getClass().getResource("/images/Ubongo-icon.jpg"));
 			
 			Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));
-			Scene scene = new Scene(root, 600, 339);
+			Scene scene = new Scene(root, 1280, 720);
 			String cssString = this.getClass().getResource("application.css").toExternalForm();
 			scene.getStylesheets().add(cssString);
 			primaryStage.setScene(scene);
