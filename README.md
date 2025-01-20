@@ -1,6 +1,8 @@
 # How to run GUI
 ## Setup:
 - Import the files from this branch into your local machine and open it in any IDE to your liking (I use Eclipse btw).
+
+*Note: Currently, on VS Code, the project can only be run with JDK 23. Backward compatibility with JDK 21 was unsuccessful upon testing.*
 ## Run:
 - If you successfully installed the files and opened it, navigate to src>application>Main.java, then run the file.
 ## Details:
