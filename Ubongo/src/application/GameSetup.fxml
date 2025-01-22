@@ -12,7 +12,7 @@
             <Image url="@../../res/images/SetupBackground.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="109.0" text="&lt;&lt;" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="109.0" text="&lt;&lt;" onAction ="#goBack" />
       <Button alignment="CENTER" layoutX="513.0" layoutY="381.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="Singleplayer" />
       <Button layoutX="511.0" layoutY="504.0" mnemonicParsing="false" onAction="#MultiConfigScreen" prefHeight="70.0" prefWidth="250.0" text="Multiplayer" />
    </children>
