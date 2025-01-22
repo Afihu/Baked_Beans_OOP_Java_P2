@@ -1,3 +1,5 @@
+/*author: Le Binh Thanh
+ * */
 package application;
 
 //import java.awt.Event;
@@ -19,6 +21,7 @@ public class Controller {
 	private String cssString = this.getClass().getResource("application.css").toExternalForm();
 //	private Parent root;
 	
+	
 	public void QuitGame(ActionEvent e) {
 		Platform.exit();
 		System.exit(0);
@@ -31,6 +34,7 @@ public class Controller {
 		scene = new Scene(root);
 		scene.getStylesheets().add(cssString);
 		stage.setScene(scene);
+		stage.setResizable(false);
 		stage.show();
 		System.out.println("Commenced Gamesetup");
 	}
@@ -41,6 +45,7 @@ public class Controller {
 		scene = new Scene(root);
 		scene.getStylesheets().add(cssString);
 		stage.setScene(scene);
+		stage.setResizable(false);
 		stage.show();
 		System.out.println("Settings Page Opened");
 	}
@@ -51,6 +56,7 @@ public class Controller {
 		scene = new Scene(root);
 		scene.getStylesheets().add(cssString);
 		stage.setScene(scene);
+		stage.setResizable(false);
 		stage.show();
 		System.out.println("Multiplayer Configurations Opened");
 	}

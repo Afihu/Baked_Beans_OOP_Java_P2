@@ -14,13 +14,25 @@
             <Image url="@../../res/images/SettingsForest.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="515.0" layoutY="279.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="2 Players" />
-      <Button layoutX="519.0" layoutY="371.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="3 Players" />
-      <Button layoutX="520.0" layoutY="466.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="4 Players" />
-      <Button layoutX="519.0" layoutY="570.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="5 Players" />
-      <Label layoutX="505.0" layoutY="184.0" prefWidth="269.0" text="HOW MANY PLAYERS?" textFill="#00fa63">
+      <Button layoutX="515.0" layoutY="279.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="2 Players">
          <font>
-            <Font name="Bell MT" size="24.0" />
+            <Font size="18.0" />
+         </font></Button>
+      <Button layoutX="519.0" layoutY="371.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="3 Players">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button layoutX="520.0" layoutY="466.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="4 Players">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button layoutX="519.0" layoutY="570.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="5 Players">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Label layoutX="444.0" layoutY="170.0" prefHeight="43.0" prefWidth="401.0" text="HOW MANY PLAYERS?" textFill="#00fa63">
+         <font>
+            <Font name="Bell MT" size="36.0" />
          </font>
       </Label>
    </children>
