@@ -1,6 +1,8 @@
 # How to run GUI
 ## Setup:
 - Import the files from this branch into your local machine and open it in any IDE to your liking (I use Eclipse btw).
+
+*Note: Currently, on VS Code, the project can only be run with JDK 23. Backward compatibility with JDK 21 was unsuccessful upon testing.*
 ## Run:
 - If you successfully installed the files and opened it, navigate to src>application>Main.java, then run the file.
 ## Details:
@@ -8,10 +10,12 @@
 - The gameplay experience will execute starting from this class, it includes the application setups such as game title, screensize, etc.
 ### Controller Class:
 - Handles events and scene switching
+- Return capability now available
 ### application.css:
 - Creates a few tweaks for the UI designs that can't be done in SceneBuilder
 #### Creator note: 
-- More features will be added later to improve user experience, such as backround music and return button.
+- A bug was detected where the screen was not saved upon returning into, causing navigation error, will be rectified later
+- Screens should be henceforth named "scene" in the sourcecode, for IDE consistency 
 - There will be more consistency to the screen background image and button dimensions, the current screen size is 1280x720 and will be standardized
 - Transition between scenes will be worked upon  
 
