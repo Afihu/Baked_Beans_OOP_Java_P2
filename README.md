@@ -9,13 +9,15 @@
 ### Main Class:
 - The gameplay experience will execute starting from this class, it includes the application setups such as game title, screensize, etc.
 ### Controller Class:
-- Handles events and scene switching
+- Handles events, scene switching, and background music
 - Return capability now available
 ### application.css:
 - Creates a few tweaks for the UI designs that can't be done in SceneBuilder
 #### Creator note: 
-- A bug was detected where the screen was not saved upon returning into, causing navigation error, will be rectified later
+- There are still issues with setting the application icon
+- A bug was detected where the screen was not saved upon returning into, causing navigation error, needs rectification
+- Background music had a few bugs that is fixed temporarily, there may be some additional problems, additional testing needed
 - Screens should be henceforth named "scene" in the sourcecode, for IDE consistency 
-- There will be more consistency to the screen background image and button dimensions, the current screen size is 1280x720 and will be standardized
-- Transition between scenes will be worked upon  
+- There will be more consistency to the screen background image and button dimensions, the current screen size is 1280x720, button dimensions are presumably 43x27. These will be standardized
+- Transition animation between scenes will be worked upon  
 
