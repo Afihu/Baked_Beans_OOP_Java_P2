@@ -10,13 +10,13 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			primaryStage.setTitle("Ubongo");
 			
+            Controller.currentScreen = "StartScreen.fxml";
 			Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));
 			Scene scene = new Scene(root, 1280, 720);
 			String cssString = this.getClass().getResource("application.css").toExternalForm();
