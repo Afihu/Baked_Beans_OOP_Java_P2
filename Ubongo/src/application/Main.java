@@ -1,3 +1,5 @@
+/* author: Le Binh Thanh
+ * code purpose: initialize app*/
 package application;
 	
 import java.awt.*;
@@ -9,12 +11,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+//import javafx.scene.image.Image;
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			primaryStage.setTitle("Ubongo");
+//			primaryStage.setTitle("Ubongo");
+//			Image iconImage = new Image(Controller.class.getResource("Ubongo-icon.jpg").toExternalForm(), false);
+//			primaryStage.getIcons().add(iconImage);
 			
             Controller.currentScreen = "StartScreen.fxml";
 			Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));
@@ -24,6 +29,8 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.show();
+			Controller.playMedia();
+			System.out.println("StartScreen opened");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
