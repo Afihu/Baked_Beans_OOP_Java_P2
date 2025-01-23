@@ -13,11 +13,17 @@
             <Image url="@../../res/images/Ubongo-Title.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="145.0" layoutY="547.0" mnemonicParsing="false" onAction="#QuitGame" prefHeight="69.0" prefWidth="247.0" text="Quit Game" />
+      <Button layoutX="145.0" layoutY="547.0" mnemonicParsing="false" onAction="#QuitGame" prefHeight="69.0" prefWidth="247.0" text="Quit Game">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
       <Button layoutX="529.0" layoutY="550.0" mnemonicParsing="false" onAction="#StartGame" prefHeight="69.0" prefWidth="247.0" text="Start Game">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="898.0" layoutY="549.0" mnemonicParsing="false" onAction="#SettingsPage" prefHeight="69.0" prefWidth="247.0" text="Settings" />
+      <Button layoutX="898.0" layoutY="549.0" mnemonicParsing="false" onAction="#SettingsPage" prefHeight="69.0" prefWidth="247.0" text="Settings">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
    </children>
 </AnchorPane>

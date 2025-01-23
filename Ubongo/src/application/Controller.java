@@ -4,6 +4,7 @@
 
 package application;
 
+import java.awt.Button;
 import java.awt.MediaTracker;
 import java.io.File;
 //import java.awt.Event;
@@ -14,13 +15,18 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
@@ -34,18 +40,23 @@ public class Controller implements Initializable{
 	private String cssString = this.getClass().getResource("/application/application.css").toExternalForm();
 //	private Parent root;
 	
+	//Setup button clicking sounds
+	private Media buttonClickSound;
+	private MediaPlayer buttonMediaPlayer;
+	
+	
 	//Initialize background music
 	private File directory;
 	private File[] files;
 	private Media media;
 	public static MediaPlayer mediaplayer;
 	private ArrayList<File> songs;
-	private int songNumber;
-	private boolean running;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		buttonClickSound = new Media(new File("res/sounds/button-click-sound.mp3").toURI().toString());
+		buttonMediaPlayer = new MediaPlayer(buttonClickSound);
 		
 		if(!isPlaying(mediaplayer)) {
 			songs = new ArrayList<File>();
@@ -62,6 +73,11 @@ public class Controller implements Initializable{
 		}
 	}
 	
+//	public void playTest() {
+//		buttonMediaPlayer.setVolume(1.0);
+//		buttonMediaPlayer.play();
+//	}
+//	
 	public static boolean isPlaying(MediaPlayer mediaPlayer) {
         if (mediaPlayer != null) {
             return mediaPlayer.getStatus() == Status.PLAYING; 
