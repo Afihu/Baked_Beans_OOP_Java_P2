@@ -94,12 +94,19 @@ public class Controller implements Initializable{
 	
 	public static void storeCurrentScreen(String currentScreen) {
         screenHistory.push(currentScreen);
-		System.out.println("Stored current screen: " + currentScreen);
+		// System.out.println("Stored current screen: " + currentScreen);
+		// System.out.println("Current History: " + screenHistory);
+		
 	}
 
 	public void goBack(ActionEvent e) throws IOException {
 		if (!screenHistory.isEmpty()) {
-			String previousScreen = screenHistory.pop();
+			screenHistory.pop();
+			String previousScreen = screenHistory.peek(); 
+			if (previousScreen == "StartScreen.fxml"){
+				screenHistory.pop();
+				storeCurrentScreen(previousScreen);
+			}
 			System.out.println("Attempting to go back to: " + previousScreen);
 			Parent root = FXMLLoader.load(getClass().getResource("/application/" + previousScreen));
 			stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -121,8 +128,8 @@ public class Controller implements Initializable{
 	}
 	
 	public void StartGame(ActionEvent e) throws IOException {
-		storeCurrentScreen(currentScreen);
 		currentScreen = "GameSetup.fxml";
+		storeCurrentScreen(currentScreen);
 		Parent root = FXMLLoader.load(getClass().getResource("/application/GameSetup.fxml"));
 		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -136,8 +143,8 @@ public class Controller implements Initializable{
 
 
 	public void SettingsPage(ActionEvent e) throws IOException {
-		storeCurrentScreen(currentScreen);
 		currentScreen = "Settings.fxml";
+		storeCurrentScreen(currentScreen);
 		System.out.println("Navigating to Settings.fxml");
 		Parent root = FXMLLoader.load(getClass().getResource("/application/Settings.fxml"));
 		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -150,8 +157,8 @@ public class Controller implements Initializable{
 	}
 	
 	public void MultiConfigScreen(ActionEvent e) throws IOException{
-		storeCurrentScreen(currentScreen);
 		currentScreen = "MultiConfig.fxml";
+		storeCurrentScreen(currentScreen);
 		System.out.println("Navigating to MultiConfig.fxml");
 		Parent root = FXMLLoader.load(getClass().getResource("/application/MultiConfig.fxml"));
 		stage = (Stage)((Node)e.getSource()).getScene().getWindow();

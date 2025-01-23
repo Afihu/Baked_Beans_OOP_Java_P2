@@ -20,8 +20,8 @@ public class Main extends Application {
 //			primaryStage.setTitle("Ubongo");
 //			Image iconImage = new Image(Controller.class.getResource("Ubongo-icon.jpg").toExternalForm(), false);
 //			primaryStage.getIcons().add(iconImage);
-			
-            Controller.currentScreen = "StartScreen.fxml";
+			Controller.currentScreen = "StartScreen.fxml";
+			Controller.storeCurrentScreen(Controller.currentScreen);
 			Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));
 			Scene scene = new Scene(root, 1280, 720);
 			String cssString = this.getClass().getResource("application.css").toExternalForm();
