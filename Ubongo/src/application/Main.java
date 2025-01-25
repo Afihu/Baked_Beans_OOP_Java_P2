@@ -3,6 +3,7 @@
 package application;
 	
 import java.awt.*;
+import java.io.File;
 
 //import javafx.scene.image.*;
 
@@ -11,15 +12,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-//import javafx.scene.image.Image;
+import javafx.scene.image.Image;
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-//			primaryStage.setTitle("Ubongo");
-//			Image iconImage = new Image(Controller.class.getResource("Ubongo-icon.jpg").toExternalForm(), false);
-//			primaryStage.getIcons().add(iconImage);
+			primaryStage.setTitle("Ubongo");
+			Image iconImage = new Image(new File("res/images/Ubongo-icon.jpg").toURI().toString());
+			primaryStage.getIcons().add(iconImage);
 			Controller.currentScreen = "StartScreen.fxml";
 			Controller.storeCurrentScreen(Controller.currentScreen);
 			Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));

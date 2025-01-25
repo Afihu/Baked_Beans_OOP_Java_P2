@@ -5,11 +5,13 @@
 package application;
 
 import java.awt.Button;
+import java.awt.Event;
 import java.awt.MediaTracker;
 import java.io.File;
 //import java.awt.Event;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.attribute.PosixFileAttributes;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -22,15 +24,26 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Controller implements Initializable{
 	
@@ -52,11 +65,39 @@ public class Controller implements Initializable{
 	public static MediaPlayer mediaplayer;
 	private ArrayList<File> songs;
 	
+	//Initialize Card information
+	private Image cardImage;
+	private ImageView cardbackGroundImageView;
+	private GridPane cardGridPane;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		buttonClickSound = new Media(new File("res/sounds/button-click-sound.mp3").toURI().toString());
 		buttonMediaPlayer = new MediaPlayer(buttonClickSound);
+		
+//		//Initialize card image
+//		cardImage = new Image(new File("res/images/AppBackground.jpg").toURI().toString());
+//		if(cardImage != null) {
+//			GridPane cardGridPane = new GridPane();
+//			cardGridPane.setPrefSize(cardImage.getWidth() / 3, cardImage.getHeight() / 3);
+//			cardbackGroundImageView = new ImageView(cardImage);
+//			
+//			// Define grid size (example: 5x5)
+//	        int rows = 5;
+//	        int cols = 5;
+//
+//	        // Create and add grid cells (example: using Rectangles)
+//	        for (int row = 0; row < rows; row++) {
+//	            for (int col = 0; col < cols; col++) {
+//	                Rectangle cell = new Rectangle(cardImage.getWidth() / cols, cardImage.getHeight() / rows);
+//	                cell.setFill(Color.TRANSPARENT); 
+//	                cell.setStroke(Color.LIGHTGRAY); 
+//	                // Add event handlers to the cell here
+//	                cardGridPane.add(cell, row, col);
+//	            }
+//	        }
+//		} else System.out.println("invalid");
 		
 		if(!isPlaying(mediaplayer)) {
 			songs = new ArrayList<File>();
@@ -141,7 +182,6 @@ public class Controller implements Initializable{
 	}
 	
 
-
 	public void SettingsPage(ActionEvent e) throws IOException {
 		currentScreen = "Settings.fxml";
 		storeCurrentScreen(currentScreen);
@@ -170,4 +210,80 @@ public class Controller implements Initializable{
 		System.out.println("Multiplayer Configurations Opened");
 	}
 	
+	public void DifficultySetting(ActionEvent e) throws IOException{
+		currentScreen = "DifficultyScene.fxml";
+		storeCurrentScreen(currentScreen);
+		System.out.println("Navigating to DifficultyScene.fxml");
+		Parent root = FXMLLoader.load(getClass().getResource("/application/DifficultyScene.fxml"));
+		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		scene.getStylesheets().add(cssString);
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
+		System.out.println("Choose Difficulty");
+	}
+
+
+	@FXML
+	public AnchorPane ogPane;
+	
+	
+	@FXML
+	public void SinglePlayer(ActionEvent e) throws IOException{
+		
+		//Since gameplay has already started, there will not be a return button readily available
+		System.out.println("Game Started");
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/GameScreen.fxml"));
+		loader.setController(this);		//Must be done so that the current instance of FXMLLoader can be used, the varible under the @FXML tag won't be recognized
+		Parent root = loader.load();
+		
+		cardImage = new Image(new File("res/images/Background.png").toURI().toString());
+		cardbackGroundImageView = new ImageView(cardImage);
+		cardbackGroundImageView.setPreserveRatio(true);
+
+		
+		Group testCard = new Group();
+		testCard.getChildren().add(cardbackGroundImageView);
+		testCard.setScaleX(0.5);
+		testCard.setScaleY(0.5);
+		testCard.setLayoutX(800);
+		
+		ogPane.getChildren().add(testCard);
+
+		
+		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		scene.getStylesheets().add(cssString);
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
+		System.out.println("Singleplayer mode initiated");
+	}
+	
 }
+
+
+
+//StackPane StackPaneroot = new StackPane();
+
+//cardbackGroundImageView.setFitWidth(200); 
+//cardbackGroundImageView.setFitHeight(150);
+
+//StackPaneroot.setPadding(new Insets(0, 0, 0, 0));
+//StackPaneroot.setAlignment(Pos.CENTER_RIGHT);
+//StackPaneroot.getChildren().add(cardbackGroundImageView);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
