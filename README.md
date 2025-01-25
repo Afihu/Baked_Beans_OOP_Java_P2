@@ -20,4 +20,5 @@
 - Screens should be henceforth named "scene" in the sourcecode, for IDE consistency 
 - There will be more consistency to the screen background image and button dimensions, the current screen size is 1280x720, button dimensions are presumably 43x27. These will be standardized
 - Transition animation between scenes will be worked upon  
+- [NEW] Images for cards and pieces is blurry. Therefore, an upscale of them is needed. Current solution: Topaz Gigapixel AI (paid), Let’s Enhance (free trial), Waifu2x (free)
 
