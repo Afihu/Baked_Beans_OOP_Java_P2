@@ -20,5 +20,10 @@
 - Screens should be henceforth named "scene" in the sourcecode, for IDE consistency 
 - There will be more consistency to the screen background image and button dimensions, the current screen size is 1280x720, button dimensions are presumably 43x27. These will be standardized
 - Transition animation between scenes will be worked upon  
-- [NEW] Images for cards and pieces is blurry. Therefore, an upscale of them is needed. Current solution: Topaz Gigapixel AI (paid), Let’s Enhance (free trial), Waifu2x (free)
+- Images for cards and pieces is blurry. Therefore, an upscale of them is needed. Current solution: Topaz Gigapixel AI (paid), Let’s Enhance (free trial), Waifu2x (free) =>Solution: Thanh draws them himself
+- Function naming convention issue: goBack(ActionEvent e) and QuitGame(ActionEvent e)
+- Return button's size is not standardized: The return button in DifficultyScene.fxml is bigger then the rest
+- Pikachu card in SinglePlayer() is magically disappeared
+- [In production] Making a difficulty selections window for single player (GameScreen.fxml), adding return button (someone says it does not need one but I do not know who)
+- Petition to change name from GameScreen.fxml to SingleConfig.fxml (same naming convention as MultiConfig.fxml)
 

@@ -228,17 +228,21 @@ public class Controller implements Initializable{
 	@FXML
 	public AnchorPane ogPane;
 	
-	
+	//author:??? - modified by Huynh Thien Bao
 	@FXML
 	public void SinglePlayer(ActionEvent e) throws IOException{
+		//Add current screen to stack
+		currentScreen = "GameScreen.fxml";
+		storeCurrentScreen(currentScreen);
 		
 		//Since gameplay has already started, there will not be a return button readily available
+		//Man i do not know how i can make a window of difficulty selection for singleplayer but no return button and already start the game
 		System.out.println("Game Started");
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/GameScreen.fxml"));
 		loader.setController(this);		//Must be done so that the current instance of FXMLLoader can be used, the varible under the @FXML tag won't be recognized
 		Parent root = loader.load();
 		
-		cardImage = new Image(new File("res/images/Background.png").toURI().toString());
+		cardImage = new Image(new File("res/images/Background.jpg").toURI().toString());
 		cardbackGroundImageView = new ImageView(cardImage);
 		cardbackGroundImageView.setPreserveRatio(true);
 

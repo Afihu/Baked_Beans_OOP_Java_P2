@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="ogPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="showImage" layoutX="251.0" layoutY="285.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="222.0" text="Button" />
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../res/images/test_rainforest.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="148.0" layoutY="192.0" prefHeight="132.0" prefWidth="446.0" text="Choose your difficulty">
+         <font>
+            <Font size="44.0" />
+         </font>
+      </Label>
+      <Button fx:id="showImage" layoutX="260.0" layoutY="324.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="222.0" text="Ez" />
+      <Button layoutX="260.0" layoutY="450.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="222.0" text="Hard" />
+      <Label layoutX="640.0" layoutY="192.0" prefHeight="132.0" prefWidth="446.0" text="Choose your color">
+         <font>
+            <Font size="44.0" />
+         </font>
+      </Label>
+      <Button fx:id="showImage1" layoutX="892.0" layoutY="450.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="222.0" text="Pink" />
+      <Button fx:id="showImage2" layoutX="640.0" layoutY="450.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="222.0" text="Blue" />
+      <Button fx:id="showImage3" layoutX="640.0" layoutY="334.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="222.0" text="Yellow" />
+      <Button fx:id="showImage4" layoutX="892.0" layoutY="334.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="222.0" text="Green" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="27.0" prefWidth="43.0" text="&lt;&lt;" />
    </children>
 </AnchorPane>
