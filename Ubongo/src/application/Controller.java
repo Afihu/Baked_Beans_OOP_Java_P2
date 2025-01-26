@@ -30,6 +30,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -44,6 +45,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.control.Label;
 
 public class Controller implements Initializable{
 	
@@ -56,6 +58,11 @@ public class Controller implements Initializable{
 	//Setup button clicking sounds
 	private Media buttonClickSound;
 	private MediaPlayer buttonMediaPlayer;
+
+	@FXML
+	private Slider volumeSlider;
+    @FXML
+    private Label volumeLabel;
 	
 	
 	//Initialize background music
@@ -112,13 +119,51 @@ public class Controller implements Initializable{
 			media = new Media(songs.get(0).toURI().toString());
 			mediaplayer = new MediaPlayer(media);
 		}
+		if (volumeSlider != null) {
+            volumeSlider.setValue(mediaplayer.getVolume() * 100); // Set initial value in percentage
+            volumeLabel.setText(String.format("%.0f%%", volumeSlider.getValue())); // Set initial label text
+            volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+                handleVolumeChange();
+            });
+        }
 	}
 	
 //	public void playTest() {
 //		buttonMediaPlayer.setVolume(1.0);
 //		buttonMediaPlayer.play();
 //	}
-//	
+
+	public static void setVolume(double volume) {
+		if (mediaplayer != null) {
+			mediaplayer.setVolume(volume);
+			// System.out.println("Volume set to: " + volume);
+		} else {
+			System.out.println("MediaPlayer is not initialized.");
+		}
+	}
+
+	@FXML
+	public void handleVolumeChange() {
+		double volume = Math.round(volumeSlider.getValue());
+		volumeSlider.setValue(volume); // Set the slider to the rounded value
+		setVolume(volume / 100); // Set volume in MediaPlayer (0.0 to 1.0)
+		volumeLabel.setText(String.format("%.0f%%", volume)); // Update the label text
+	}
+
+    public void AudioSettingsPage(ActionEvent e) throws IOException {
+        currentScreen = "AudioSettings.fxml";
+        storeCurrentScreen(currentScreen);
+        System.out.println("Navigating to AudioSettings.fxml");
+        Parent root = FXMLLoader.load(getClass().getResource("/application/AudioSettings.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        scene.getStylesheets().add(cssString);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+        System.out.println("Audio Settings Page Opened");
+    }
+
 	public static boolean isPlaying(MediaPlayer mediaPlayer) {
         if (mediaPlayer != null) {
             return mediaPlayer.getStatus() == Status.PLAYING; 
