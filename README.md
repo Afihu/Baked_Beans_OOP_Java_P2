@@ -24,5 +24,7 @@
 - Function naming convention issue: goBack(ActionEvent e) and QuitGame(ActionEvent e)
 - Return button's size is not standardized: The return button in DifficultyScene.fxml is bigger then the rest
 - Pikachu card in SinglePlayer() is magically disappeared
-- [In production] Making a difficulty selections window for single player (SingleConfig.fxml)
+- Add new difficulty selection window for singleplaying: SingleConfig.fxml (via Start ->SingleConfig -> GameScreen)
+- Remove return button in GameScreen.fxml as requested
+- Recover GameScreen.fxml to original state. However, the pikachu card is gone.
 

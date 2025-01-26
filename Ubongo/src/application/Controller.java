@@ -255,6 +255,20 @@ public class Controller implements Initializable{
 		System.out.println("Multiplayer Configurations Opened");
 	}
 	
+	public void SingleConfigScreen(ActionEvent e) throws IOException{
+		currentScreen = "SingleConfig.fxml";
+		storeCurrentScreen(currentScreen);
+		System.out.println("Navigating to SingleConfig.fxml");
+		Parent root = FXMLLoader.load(getClass().getResource("/application/SingleConfig.fxml"));
+		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		scene.getStylesheets().add(cssString);
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
+		System.out.println("Singleplayer Configurations Opened");
+	}
+
 	public void DifficultySetting(ActionEvent e) throws IOException{
 		currentScreen = "DifficultyScene.fxml";
 		storeCurrentScreen(currentScreen);
@@ -269,19 +283,12 @@ public class Controller implements Initializable{
 		System.out.println("Choose Difficulty");
 	}
 
-
 	@FXML
 	public AnchorPane ogPane;
 	
-	//author:??? - modified by Huynh Thien Bao
 	@FXML
 	public void SinglePlayer(ActionEvent e) throws IOException{
-		//Add current screen to stack
-		currentScreen = "GameScreen.fxml";
-		storeCurrentScreen(currentScreen);
-		
 		//Since gameplay has already started, there will not be a return button readily available
-		//Man i do not know how i can make a window of difficulty selection for singleplayer but no return button and already start the game
 		System.out.println("Game Started");
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/GameScreen.fxml"));
 		loader.setController(this);		//Must be done so that the current instance of FXMLLoader can be used, the varible under the @FXML tag won't be recognized
