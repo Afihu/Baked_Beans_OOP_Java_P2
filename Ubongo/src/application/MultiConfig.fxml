@@ -7,34 +7,29 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GameController">
    <children>
-      <ImageView fitHeight="720.0" fitWidth="1280.0" layoutX="144.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <image>
-            <Image url="@../../res/images/SettingsForest.jpg" />
-         </image>
-      </ImageView>
-      <Button layoutX="515.0" layoutY="279.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="2 Players">
-         <font>
-            <Font size="18.0" />
-         </font></Button>
-      <Button layoutX="519.0" layoutY="371.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="3 Players">
-         <font>
-            <Font size="18.0" />
-         </font></Button>
-      <Button layoutX="520.0" layoutY="466.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="4 Players">
-         <font>
-            <Font size="18.0" />
-         </font></Button>
-      <Button layoutX="519.0" layoutY="570.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="5 Players">
-         <font>
-            <Font size="18.0" />
-         </font></Button>
-      <Label layoutX="444.0" layoutY="170.0" prefHeight="43.0" prefWidth="401.0" text="HOW MANY PLAYERS?" textFill="#00fa63">
-         <font>
-            <Font name="Bell MT" size="36.0" />
-         </font>
-      </Label>
+      <AnchorPane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../res/images/SettingsForest.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="buttonPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <Button layoutX="515.0" layoutY="279.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="2 Players" onAction="#handlePlayerCount"/>
+            <Button layoutX="519.0" layoutY="371.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="3 Players" onAction="#handlePlayerCount"/>
+            <Button layoutX="520.0" layoutY="466.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="4 Players" onAction="#handlePlayerCount"/>
+            <Label layoutX="444.0" layoutY="170.0" prefHeight="43.0" prefWidth="401.0" text="HOW MANY PLAYERS?" textFill="#00fa63">
+               <font>
+                  <Font name="Bell MT" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
       <Button layoutX="24.0" layoutY="21.0" mnemonicParsing="false" onAction="#goBack" prefHeight="40.0" prefWidth="68.0" text="&lt;&lt;" />
    </children>
 </AnchorPane>
