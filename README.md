@@ -13,6 +13,22 @@
 - Return capability now available
 ### application.css:
 - Creates a few tweaks for the UI designs that can't be done in SceneBuilder
+
+## Development Plan for Ubongo Junior App - By Baked Beans
+
+### Objectives
+This document outlines the development plan for creating a Windows-based Ubongo Junior board game application. The project will be developed using Java with JavaFX for GUI, with iterative delivery over 6 weeks.
+
+#### Primary Objectives:
+1. **Core Game Functionality:** Implement the rules of the game, including board setup, tile placement, and timer-based gameplay.
+2. **Graphical User Interface (GUI):** Design an intuitive and visually appealing user interface using JavaFX.
+3. **User Interactivity:** Ensure smooth drag-and-drop functionality for placing tiles on the game board.
+4. **Multiplayer Mode:** Implement both single-player (against a timer) and local multiplayer modes.
+5. **Score Tracking:** Include a scoring mechanism to track player performance across multiple rounds.
+6. **Instructions and Tutorial:** Provide an in-app tutorial to help new players understand the game.
+7. **Testing and Debugging:** Ensure the app runs smoothly with no critical bugs.
+8. **Packaging and Deployment:** Create an executable JAR file for easy installation and use on Windows.
+
 #### Creator note: 
 - There are still issues with setting the application icon
 - A bug was detected where the screen was not saved upon returning into, causing navigation error, needs rectification
@@ -27,4 +43,3 @@
 - Add new difficulty selection window for singleplaying: SingleConfig.fxml (via Start ->SingleConfig -> GameScreen)
 - Remove return button in GameScreen.fxml as requested
 - Recover GameScreen.fxml to original state. However, the pikachu card is gone.
-
