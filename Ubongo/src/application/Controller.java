@@ -176,7 +176,7 @@ public class Controller implements Initializable{
 	}
 	
 	// Stack to store the previous pages
-	private static Stack<String> screenHistory = new Stack<>();
+	public static Stack<String> screenHistory = new Stack<>();
 	
 	public static void storeCurrentScreen(String currentScreen) {
         screenHistory.push(currentScreen);

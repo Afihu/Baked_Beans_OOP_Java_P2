@@ -26,3 +26,61 @@
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
     -fx-text-fill: #395306;
 }
+
+.color-button {
+    -fx-background-radius: 6;
+    -fx-background-insets: 0;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-opacity: 1.0;
+}
+
+.green-button {
+    -fx-background-color: 
+        linear-gradient(#4CAF50, #45a049),
+        radial-gradient(center 50% -40%, radius 200%, #4CAF50 45%, #45a049 50%);
+    -fx-text-fill: white;
+}
+
+.blue-button {
+    -fx-background-color:
+        linear-gradient(#1E90FF, #0000FF),
+        radial-gradient(center 50% -40%, radius 200%, #1E90FF 45%, #0000FF 50%);
+    -fx-text-fill: white;
+}
+
+.yellow-button {
+    -fx-background-color:
+        linear-gradient(#FFD700, #FFA500),
+        radial-gradient(center 50% -40%, radius 200%, #FFD700 45%, #FFA500 50%);
+    -fx-text-fill: black;
+}
+
+.pink-button {
+    -fx-background-color:
+        linear-gradient(#FF69B4, #FF1493),
+        radial-gradient(center 50% -40%, radius 200%, #FF69B4 45%, #FF1493 50%);
+    -fx-text-fill: white;
+}
+
+.difficulty-button {
+    -fx-background-radius: 6;
+    -fx-background-insets: 0;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-opacity: 1.0;
+}
+
+.easy-button {
+    -fx-background-color:
+        linear-gradient(#f0f0f0, #d0d0d0),
+        radial-gradient(center 50% -40%, radius 200%, #f0f0f0 45%, #d0d0d0 50%);
+    -fx-text-fill: black;
+}
+
+.hard-button {
+    -fx-background-color:
+        linear-gradient(#404040, #202020),
+        radial-gradient(center 50% -40%, radius 200%, #404040 45%, #202020 50%);
+    -fx-text-fill: white;
+}
