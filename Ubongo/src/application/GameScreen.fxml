@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="ogPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="showImage" layoutX="260.0" layoutY="324.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="222.0" text="Ez" />
-      <Button layoutX="260.0" layoutY="450.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="222.0" text="Hard" />
+      <Button fx:id="showImage" layoutX="307.0" layoutY="146.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="222.0" text="Ez" />
+      <Button layoutX="306.0" layoutY="259.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="222.0" text="Hard" />
+      <ImageView fitHeight="661.0" fitWidth="452.0" layoutX="769.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../res/cards/A/A21c.png" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="890.0" layoutY="185.0" prefHeight="257.0" prefWidth="195.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="71.77779642740886" minHeight="10.0" prefHeight="62.111083984375" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="88.33333333333331" minHeight="10.0" prefHeight="67.22224934895834" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="100.2222442626953" minHeight="7.22222900390625" prefHeight="65.4444580078125" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="199.33334350585938" minHeight="10.0" prefHeight="64.44443766276041" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <ImageView fx:id="testPiece" fitHeight="150.0" fitWidth="200.0" layoutX="404.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../res/pieces/green/G_Firefly.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.attribute.PosixFileAttributes;
+import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -56,8 +57,8 @@ public class Controller implements Initializable{
 //	private Parent root;
 	
 	//Setup button clicking sounds
-	private Media buttonClickSound;
-	private MediaPlayer buttonMediaPlayer;
+//	private Media buttonClickSound;
+//	private MediaPlayer buttonMediaPlayer;
 
 	@FXML
 	private Slider volumeSlider;
@@ -73,38 +74,16 @@ public class Controller implements Initializable{
 	private ArrayList<File> songs;
 	
 	//Initialize Card information
-	private Image cardImage;
-	private ImageView cardbackGroundImageView;
-	private GridPane cardGridPane;
+//	private Image cardImage;
+//	private ImageView cardbackGroundImageView;
+//	private GridPane cardGridPane;
+	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		buttonClickSound = new Media(new File("res/sounds/button-click-sound.mp3").toURI().toString());
-		buttonMediaPlayer = new MediaPlayer(buttonClickSound);
-		
-//		//Initialize card image
-//		cardImage = new Image(new File("res/images/AppBackground.jpg").toURI().toString());
-//		if(cardImage != null) {
-//			GridPane cardGridPane = new GridPane();
-//			cardGridPane.setPrefSize(cardImage.getWidth() / 3, cardImage.getHeight() / 3);
-//			cardbackGroundImageView = new ImageView(cardImage);
-//			
-//			// Define grid size (example: 5x5)
-//	        int rows = 5;
-//	        int cols = 5;
-//
-//	        // Create and add grid cells (example: using Rectangles)
-//	        for (int row = 0; row < rows; row++) {
-//	            for (int col = 0; col < cols; col++) {
-//	                Rectangle cell = new Rectangle(cardImage.getWidth() / cols, cardImage.getHeight() / rows);
-//	                cell.setFill(Color.TRANSPARENT); 
-//	                cell.setStroke(Color.LIGHTGRAY); 
-//	                // Add event handlers to the cell here
-//	                cardGridPane.add(cell, row, col);
-//	            }
-//	        }
-//		} else System.out.println("invalid");
+//		buttonClickSound = new Media(new File("res/sounds/button-click-sound.mp3").toURI().toString());
+//		buttonMediaPlayer = new MediaPlayer(buttonClickSound);
 		
 		if(!isPlaying(mediaplayer)) {
 			songs = new ArrayList<File>();
@@ -282,31 +261,19 @@ public class Controller implements Initializable{
 		stage.show();
 		System.out.println("Choose Difficulty");
 	}
-
-	@FXML
-	public AnchorPane ogPane;
 	
-	@FXML
+	@FXML private ImageView testPiece;
+	DraggableMaker draggableMaker = new DraggableMaker();
+	
 	public void SinglePlayer(ActionEvent e) throws IOException{
 		//Since gameplay has already started, there will not be a return button readily available
+		
 		System.out.println("Game Started");
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/GameScreen.fxml"));
-		loader.setController(this);		//Must be done so that the current instance of FXMLLoader can be used, the varible under the @FXML tag won't be recognized
-		Parent root = loader.load();
-		
-		cardImage = new Image(new File("res/images/Background.jpg").toURI().toString());
-		cardbackGroundImageView = new ImageView(cardImage);
-		cardbackGroundImageView.setPreserveRatio(true);
-
-		
-		Group testCard = new Group();
-		testCard.getChildren().add(cardbackGroundImageView);
-		testCard.setScaleX(0.5);
-		testCard.setScaleY(0.5);
-		testCard.setLayoutX(800);
-		
-		ogPane.getChildren().add(testCard);
-
+		loader.setController(this);		//Must be done so that the current instance of FXMLLoader can be used, otherwise the varible under the @FXML tag won't be recognized
+		Parent root = loader.load();	//**Extremely important** Everything related to @FXML injected fields must be written below this line
+		System.out.println("testPiece: " + testPiece);
+		draggableMaker.makeDraggable(testPiece);
 		
 		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -329,6 +296,29 @@ public class Controller implements Initializable{
 //StackPaneroot.setPadding(new Insets(0, 0, 0, 0));
 //StackPaneroot.setAlignment(Pos.CENTER_RIGHT);
 //StackPaneroot.getChildren().add(cardbackGroundImageView);
+
+////Initialize card image
+//cardImage = new Image(new File("res/images/AppBackground.jpg").toURI().toString());
+//if(cardImage != null) {
+//	GridPane cardGridPane = new GridPane();
+//	cardGridPane.setPrefSize(cardImage.getWidth() / 3, cardImage.getHeight() / 3);
+//	cardbackGroundImageView = new ImageView(cardImage);
+//	
+//	// Define grid size (example: 5x5)
+//    int rows = 5;
+//    int cols = 5;
+//
+//    // Create and add grid cells (example: using Rectangles)
+//    for (int row = 0; row < rows; row++) {
+//        for (int col = 0; col < cols; col++) {
+//            Rectangle cell = new Rectangle(cardImage.getWidth() / cols, cardImage.getHeight() / rows);
+//            cell.setFill(Color.TRANSPARENT); 
+//            cell.setStroke(Color.LIGHTGRAY); 
+//            // Add event handlers to the cell here
+//            cardGridPane.add(cell, row, col);
+//        }
+//    }
+//} else System.out.println("invalid");
 
 
 
