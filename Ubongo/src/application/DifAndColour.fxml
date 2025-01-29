@@ -19,6 +19,8 @@
       </ImageView>
       <AnchorPane fx:id="buttonPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
          <children>
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="27.0" prefWidth="43.0" text="&lt;&lt;" />
+            
             <Button layoutX="42.0" layoutY="165.0" mnemonicParsing="false" onAction="#handleColourChoice" prefHeight="70.0" prefWidth="200.0" styleClass="color-button, green-button" text="Green" />
             
             <Button layoutX="42.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleColourChoice" prefHeight="70.0" prefWidth="200.0" styleClass="color-button, blue-button" text="Blue" />
