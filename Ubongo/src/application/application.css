@@ -84,3 +84,54 @@
         radial-gradient(center 50% -40%, radius 200%, #404040 45%, #202020 50%);
     -fx-text-fill: white;
 }
+
+.combo-box { /* General styles for the ComboBox */
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-prompt-text-fill: gray;
+}
+
+.combo-box .list-cell { /* General list cell styles */
+    -fx-font-family: "Verdana";
+    -fx-font-size: 12px;
+    -fx-text-fill: black; /* Default text color */
+    -fx-background-color: lightgray; /* Default background color */
+}
+
+/* Styles for specific color values */
+.combo-box .list-cell:contains("blue") {
+    -fx-text-fill: white;
+    -fx-background-color: blue;
+}
+
+.combo-box .list-cell:contains("green") {
+    -fx-text-fill: white;
+    -fx-background-color: green;
+}
+
+.combo-box .list-cell:contains("yellow") {
+    -fx-text-fill: black;
+    -fx-background-color: yellow;
+}
+
+.combo-box .list-cell:contains("pink") {
+    -fx-text-fill: white;
+    -fx-background-color: pink;
+}
+
+/* Styles for specific difficulty values */
+.combo-box .list-cell:contains("easy") {
+    -fx-text-fill: white;
+    -fx-background-color: purple;
+}
+
+.combo-box .list-cell:contains("hard") {
+    -fx-text-fill: white;
+    -fx-background-color: magenta;
+}
+
+.combo-box:hover { /* styles for the combo box when the mouse hovers over it */
+    -fx-background-color: #ADD8E6;
+}

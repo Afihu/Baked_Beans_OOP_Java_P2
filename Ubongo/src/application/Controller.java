@@ -71,7 +71,7 @@ public class Controller implements Initializable{
 	private Media media;
 	public static MediaPlayer mediaplayer;
 	private ArrayList<File> songs;
-	
+    
 	//Initialize Card information
 	private Image cardImage;
 	private ImageView cardbackGroundImageView;
@@ -255,19 +255,34 @@ public class Controller implements Initializable{
 		System.out.println("Multiplayer Configurations Opened");
 	}
 	
+//	public void SingleConfigScreen(ActionEvent e) throws IOException{
+//		currentScreen = "SingleConfig.fxml";
+//		storeCurrentScreen(currentScreen);
+//		System.out.println("Navigating to SingleConfig.fxml");
+//		Parent root = FXMLLoader.load(getClass().getResource("/application/SingleConfig.fxml"));
+//		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+//		scene = new Scene(root);
+//		scene.getStylesheets().add(cssString);
+//		stage.setScene(scene);
+//		stage.setResizable(false);
+//		stage.show();
+//		System.out.println("Singleplayer Configurations Opened");
+//	}
+	
 	public void SingleConfigScreen(ActionEvent e) throws IOException{
-		currentScreen = "SingleConfig.fxml";
-		storeCurrentScreen(currentScreen);
-		System.out.println("Navigating to SingleConfig.fxml");
-		Parent root = FXMLLoader.load(getClass().getResource("/application/SingleConfig.fxml"));
-		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		scene.getStylesheets().add(cssString);
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.show();
-		System.out.println("Singleplayer Configurations Opened");
-	}
+	currentScreen = "TestSingleConfig.fxml";
+	storeCurrentScreen(currentScreen);
+	System.out.println("Navigating to TestSingleConfig.fxml");
+	Parent root = FXMLLoader.load(getClass().getResource("/application/TestSingleConfig.fxml"));
+	stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+	scene = new Scene(root);
+	scene.getStylesheets().add(cssString);
+	stage.setScene(scene);
+	stage.setResizable(false);
+	stage.show();
+	System.out.println("TestSingleplayer Configurations Opened");
+}
+
 
 	public void DifficultySetting(ActionEvent e) throws IOException{
 		currentScreen = "DifficultyScene.fxml";
@@ -286,7 +301,7 @@ public class Controller implements Initializable{
 	@FXML
 	public AnchorPane ogPane;
 	
-	@FXML
+	@FXML  //mmight not be used!
 	public void SinglePlayer(ActionEvent e) throws IOException{
 		//Since gameplay has already started, there will not be a return button readily available
 		System.out.println("Game Started");
