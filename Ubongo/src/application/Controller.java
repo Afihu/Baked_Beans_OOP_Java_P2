@@ -12,7 +12,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.attribute.PosixFileAttributes;
-import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,10 +75,9 @@ public class Controller implements Initializable{
 	private ArrayList<File> songs;
 	
 	//Initialize Card information
-//	private Image cardImage;
-//	private ImageView cardbackGroundImageView;
-//	private GridPane cardGridPane;
-	
+	private Image cardImage;
+	private ImageView cardbackGroundImageView;
+	private GridPane cardGridPane;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -237,18 +235,19 @@ public class Controller implements Initializable{
 	}
 	
 	public void SingleConfigScreen(ActionEvent e) throws IOException{
-		currentScreen = "SingleConfig.fxml";
-		storeCurrentScreen(currentScreen);
-		System.out.println("Navigating to SingleConfig.fxml");
-		Parent root = FXMLLoader.load(getClass().getResource("/application/SingleConfig.fxml"));
-		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		scene.getStylesheets().add(cssString);
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.show();
-		System.out.println("Singleplayer Configurations Opened");
-	}
+	currentScreen = "TestSingleConfig.fxml";
+	storeCurrentScreen(currentScreen);
+	System.out.println("Navigating to TestSingleConfig.fxml");
+	Parent root = FXMLLoader.load(getClass().getResource("/application/TestSingleConfig.fxml"));
+	stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+	scene = new Scene(root);
+	scene.getStylesheets().add(cssString);
+	stage.setScene(scene);
+	stage.setResizable(false);
+	stage.show();
+	System.out.println("TestSingleplayer Configurations Opened");
+}
+
 
 	public void DifficultySetting(ActionEvent e) throws IOException{
 		currentScreen = "DifficultyScene.fxml";
@@ -262,46 +261,6 @@ public class Controller implements Initializable{
 		stage.setResizable(false);
 		stage.show();
 		System.out.println("Choose Difficulty");
-	}
-	
-	@FXML private ImageView testPiece;
-	@FXML private Rectangle testCell;
-	@FXML private GridPane cardGrid;
-	DraggableMaker draggableMaker = new DraggableMaker();
-	private boolean[][] pieceMask;
-	private int[][] gridMask;
-	
-	private Image pieceImage = new Image(new File("res/pieces/green/G_FireFly.png").toURI().toString()); //Loading image to create mask before attaching to imageView
-	
-	public void SinglePlayer(ActionEvent e) throws IOException{
-		//Since gameplay has already started, there will not be a return button readily available
-		
-		System.out.println("Game Started");
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/GameScreen.fxml"));
-		loader.setController(this);		//Must be done so that the current instance of FXMLLoader can be used, otherwise the varible under the @FXML tag won't be recognized
-		Parent root = loader.load();	//**Extremely important** Everything related to @FXML injected fields must be written below this line
-		
-		if(pieceImage != null && testCell != null && cardGrid != null) {
-			
-			//Generate piece mask and grid mask
-			pieceMask = InitCoreMechanics.generatePieceHitBox(pieceImage, testCell);
-			gridMask = InitCoreMechanics.generateCardHitbox(cardGrid); //beta
-			
-			testPiece.setImage(pieceImage);
-			
-			//apply hover effect (incomplete)
-			draggableMaker.makeHoverable(testPiece, pieceImage, cardGrid, gridMask);
-			
-		} else System.out.println("Error: pieceImage, gridpane or Cell can't load");
-		
-		
-		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		scene.getStylesheets().add(cssString);
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.show();
-		System.out.println("Singleplayer mode initiated");
 	}
 	
 }

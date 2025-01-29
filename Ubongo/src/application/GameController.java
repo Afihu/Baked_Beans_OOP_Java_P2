@@ -1,5 +1,6 @@
 package application;
 
+import javafx.scene.control.Label;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -78,16 +79,16 @@ public class GameController {
             SpinnerValueFactory<Integer> valueFactory = 
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 600, 10);
             timeSpinner.setValueFactory(valueFactory);
+            timeSpinner.setEditable(true);
             
-            timeSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
-                if (newValue != null) {
-                    gameDuration = newValue;
-                    System.out.println("Timer set to: " + gameDuration + " seconds");
-                    
-                    if (currentPlayer > totalPlayers && gameDuration != 0) {
-                        removeAllGameButtons();
-                        showContinueButton();
-                    }
+            timeSpinner.getEditor().setOnAction(event -> {
+                try {
+                    timeSpinner.increment(0); // Commit value
+                    gameDuration = timeSpinner.getValue();
+                    System.out.println("Timer confirmed: " + gameDuration + " seconds");
+                    checkGameCompletion();
+                } catch (Exception e) {
+                    System.err.println("Invalid timer input");
                 }
             });
         }
@@ -123,7 +124,7 @@ public class GameController {
         playerColors.put(currentPlayer, color);
         System.out.println("Player " + currentPlayer + " selected color: " + color);
         buttonPane.getChildren().remove(clickedButton);
-        setButtonsState(ButtonType.COLOR, true);
+        setButtonsState(ButtonType.COLOR, true); // Disable remaining color buttons
         updateTableChoice();
     }
 
@@ -136,53 +137,26 @@ public class GameController {
         updateTableChoice();
 
         if (currentPlayer > totalPlayers) {
-            setButtonsState(ButtonType.ALL, true);
+            removeUIElement(UIElementType.BUTTONS);
             if (gameDuration != 0) {
-                removeAllGameButtons();
                 showContinueButton();
             }
         } else {
-            setButtonsState(ButtonType.COLOR, false);
+            setButtonsState(ButtonType.COLOR, false); // Enable color buttons for next player
         }
     }
 
     private void setButtonsState(ButtonType type, boolean disabled) {
-        switch (type) {
-            case COLOR:
-                buttonPane.getChildren().stream()
-                    .filter(node -> node instanceof Button)
-                    .map(node -> (Button) node)
-                    .filter(button -> 
-                        button.getText().equals("Green") ||
-                        button.getText().equals("Blue") ||
-                        button.getText().equals("Yellow") ||
-                        button.getText().equals("Pink")
-                    )
-                    .forEach(button -> button.setDisable(disabled));
-                break;
-                
-            case DIFFICULTY:
-                buttonPane.getChildren().stream()
-                    .filter(node -> node instanceof Button)
-                    .map(node -> (Button) node)
-                    .filter(button -> 
-                        button.getText().equals("Easy") ||
-                        button.getText().equals("Hard")
-                    )
-                    .forEach(button -> button.setDisable(disabled));
-                break;
-                
-            case ALL:
-                buttonPane.getChildren().stream()
-                    .filter(node -> node instanceof Button)
-                    .map(node -> (Button) node)
-                    .forEach(button -> button.setDisable(disabled));
-                
-                if (timeSpinner != null) {
-                    timeSpinner.setDisable(!disabled);
-                }
-                break;
-        }
+        buttonPane.getChildren().stream()
+            .filter(node -> node instanceof Button)
+            .map(node -> (Button) node)
+            .filter(button -> 
+                button.getText().equals("Green") ||
+                button.getText().equals("Blue") ||
+                button.getText().equals("Yellow") ||
+                button.getText().equals("Pink")
+            )
+            .forEach(button -> button.setDisable(disabled));
     }
 
     private void updateTableChoice() {
@@ -195,11 +169,8 @@ public class GameController {
             playerChoicesList.add(choice);
             
             if (currentPlayer >= totalPlayers) {
-                setButtonsState(ButtonType.ALL, true);
-                if (gameDuration != 0) {
-                    removeAllGameButtons();
-                    showContinueButton();
-                }
+                removeUIElement(UIElementType.BUTTONS);
+                checkGameCompletion();
             } else {
                 currentPlayer++;
                 setButtonsState(ButtonType.COLOR, false);
@@ -207,17 +178,53 @@ public class GameController {
         }
     }
 
-    private void removeAllGameButtons() {
-        buttonPane.getChildren().removeIf(node -> 
-            (node instanceof Button && (
-                ((Button) node).getText().equals("Easy") || 
-                ((Button) node).getText().equals("Hard") ||
-                ((Button) node).getText().equals("Green") ||
-                ((Button) node).getText().equals("Blue") ||
-                ((Button) node).getText().equals("Yellow") ||
-                ((Button) node).getText().equals("Pink")
-            )) || node instanceof Spinner<?>
-        );
+    private void removeUIElement(UIElementType type) {
+        switch(type) {
+            case BUTTONS:
+                buttonPane.getChildren().removeIf(node -> 
+                    node instanceof Button && (
+                        ((Button) node).getText().equals("Easy") || 
+                        ((Button) node).getText().equals("Hard") ||
+                        ((Button) node).getText().equals("Green") ||
+                        ((Button) node).getText().equals("Blue") ||
+                        ((Button) node).getText().equals("Yellow") ||
+                        ((Button) node).getText().equals("Pink")
+                    )
+                );
+                break;
+                
+            case ALL:
+                buttonPane.getChildren().removeIf(node -> 
+                    (node instanceof Button && (
+                        ((Button) node).getText().equals("Easy") || 
+                        ((Button) node).getText().equals("Hard") ||
+                        ((Button) node).getText().equals("Green") ||
+                        ((Button) node).getText().equals("Blue") ||
+                        ((Button) node).getText().equals("Yellow") ||
+                        ((Button) node).getText().equals("Pink")
+                    )) || 
+                    (node instanceof Label && (
+                        ((Label) node).getText().equals("Choose Your Colour") ||
+                        ((Label) node).getText().equals("Choose Your Difficulty") ||
+                        ((Label) node).getText().equals("Set Timer (10 - 600 Seconds)")
+                    )) ||
+                    node instanceof Spinner<?>
+                );
+                break;
+        }
+    }
+    
+    private enum UIElementType {
+        BUTTONS,
+        ALL
+    }
+    
+    private void checkGameCompletion() {
+        boolean allPlayersChosen = playerChoicesList.size() >= totalPlayers;
+        if (allPlayersChosen && gameDuration != 0) {
+            removeUIElement(UIElementType.ALL);
+            showContinueButton();
+        }
     }
 
     private void showContinueButton() {
@@ -232,7 +239,10 @@ public class GameController {
 
     private void handleContinue(ActionEvent event) {
         try {
+            Controller.screenHistory.push("DifAndColour.fxml");
+            
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/MPGameScreen.fxml"));
+            loader.setController(this);
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -267,5 +277,28 @@ public class GameController {
             stage.show();
             System.out.println("Navigated back to: " + previousScreen);
         }
+    }
+    @FXML
+    public void goBacktoMainMenu(ActionEvent event) throws IOException {
+        // Clear all data
+        playerColors.clear();
+        playerDifficulties.clear();
+        playerChoicesList.clear();
+        currentPlayer = 1;
+        totalPlayers = 0;
+        gameDuration = 0;
+        
+        // Clear screen history
+        Controller.screenHistory.clear();
+        
+        // Load StartScreen
+        Parent root = FXMLLoader.load(getClass().getResource("/application/StartScreen.fxml"));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+        System.out.println("Returned to Main Menu");
     }
 }
