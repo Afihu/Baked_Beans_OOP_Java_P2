@@ -15,6 +15,7 @@ import java.nio.file.attribute.PosixFileAttributes;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
@@ -25,6 +26,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -263,7 +265,13 @@ public class Controller implements Initializable{
 	}
 	
 	@FXML private ImageView testPiece;
+	@FXML private Rectangle testCell;
+	@FXML private GridPane cardGrid;
 	DraggableMaker draggableMaker = new DraggableMaker();
+	private boolean[][] pieceMask;
+	private int[][] gridMask;
+	
+	private Image pieceImage = new Image(new File("res/pieces/green/G_FireFly.png").toURI().toString()); //Loading image to create mask before attaching to imageView
 	
 	public void SinglePlayer(ActionEvent e) throws IOException{
 		//Since gameplay has already started, there will not be a return button readily available
@@ -272,8 +280,20 @@ public class Controller implements Initializable{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/GameScreen.fxml"));
 		loader.setController(this);		//Must be done so that the current instance of FXMLLoader can be used, otherwise the varible under the @FXML tag won't be recognized
 		Parent root = loader.load();	//**Extremely important** Everything related to @FXML injected fields must be written below this line
-		System.out.println("testPiece: " + testPiece);
-		draggableMaker.makeDraggable(testPiece);
+		
+		if(pieceImage != null && testCell != null && cardGrid != null) {
+			
+			//Generate piece mask and grid mask
+			pieceMask = InitCoreMechanics.generatePieceHitBox(pieceImage, testCell);
+			gridMask = InitCoreMechanics.generateCardHitbox(cardGrid); //beta
+			
+			testPiece.setImage(pieceImage);
+			
+			//apply hover effect (incomplete)
+			draggableMaker.makeHoverable(testPiece, pieceImage, cardGrid, gridMask);
+			
+		} else System.out.println("Error: pieceImage, gridpane or Cell can't load");
+		
 		
 		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
