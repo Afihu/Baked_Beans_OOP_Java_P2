@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GameScreenController">
     <children>
@@ -28,13 +29,20 @@
             <RowConstraints />
             <RowConstraints />
             <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
          </rowConstraints>
          <children>
-            <Button fx:id="startStopButton" mnemonicParsing="false" onAction="#handleStartStopButtonAction" prefHeight="46.0" prefWidth="104.0" text="Press me!" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label fx:id="colorLabel" text="Color:" GridPane.rowIndex="3" />
-            <Label fx:id="difficultyLabel" text="Difficulty: " GridPane.rowIndex="2" />
-            <Label fx:id="roundDurationLabel" text="Round Duration:" GridPane.rowIndex="1" />
-            <Label fx:id="scoreLabel" text="Score:" />
+            <Label fx:id="finalResultLabel" text="Game over" textFill="#06e715" GridPane.rowIndex="1">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Button fx:id="startStopButton" mnemonicParsing="false" onAction="#handleStartStopButtonAction" prefHeight="46.0" prefWidth="104.0" text="Press me!" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label fx:id="colorLabel" text="Color:" GridPane.rowIndex="5" />
+            <Label fx:id="difficultyLabel" text="Difficulty: " GridPane.rowIndex="4" />
+            <Label fx:id="roundDurationLabel" text="Round Duration:" GridPane.rowIndex="3" />
+            <Label fx:id="scoreLabel" text="Score:" GridPane.rowIndex="2" />
          </children></GridPane>
     </children>
 </AnchorPane>

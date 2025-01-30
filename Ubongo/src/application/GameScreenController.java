@@ -17,6 +17,8 @@ public class GameScreenController implements Initializable {
 
     @FXML
     private GridPane cardGridPane; // Assuming you have a GridPane in GameScreen.fxml
+    
+    //for testing scoring system
     @FXML
     private Button startStopButton;
     @FXML
@@ -27,15 +29,24 @@ public class GameScreenController implements Initializable {
     private Label roundDurationLabel;
     @FXML
     private Label scoreLabel;
+    @FXML
+    private Label finalResultLabel;
     
+    private long startTime;
+    private boolean roundStarted = false;
+    
+    //for the system
     private String receivedColor;
     private String receivedDifficulty;
     private int receivedRoundDuration;
-    private long startTime;
-    private boolean roundStarted = false;
+    private double totalScore = 0.0;
+    private int roundsPlayed = 0;
+    private final int totalRounds = 8;		//Interchangeable for MP
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	finalResultLabel.setVisible(false);	// Hide the final result label initially
         // Initialization logic if needed (e.g., setting up the gridPane)
     }
 
@@ -54,31 +65,61 @@ public class GameScreenController implements Initializable {
         //loadCards();
     }
     
+    //for testing scoring system
     @FXML
     private void handleStartStopButtonAction() {
-        if (!this.roundStarted) {
+        if (!this.roundStarted) {		//if decide to keep the button, add conditions (ex: !this.roundStarted & cardSolved == True)
             // Start the round
             startTime = System.currentTimeMillis();
             this.roundStarted = true;
             startStopButton.setText("Stop");
+            
+            //print out to the system for debugging
             System.out.println("Round starts!");
         } else {
             // Stop the round and calculate score
             long endTime = System.currentTimeMillis();
             double usedTime = (endTime - startTime) / 1000.0; // Convert to seconds
             double score = calculateScore(usedTime);
-            scoreLabel.setText("Score: " + score + " out of " + calculateScore(0.0));
+            this.totalScore += score;
+            
+            //modify state of the game
             this.roundStarted = false;
+            this.roundsPlayed++;
+            
+            //modify state of in-game labels | calculateScore(0.0)*roundsPlayed is the maximum score a player can get
+            scoreLabel.setText("Current total: " + formatToTwoDecimal(this.totalScore) + " out of " + calculateScore(0.0) * this.roundsPlayed);
             startStopButton.setText("Start");
+            
+            //print out to the system for debugging
             System.out.println("Round ends!");
-            System.out.println("Your score: " + score + " out of " + calculateScore(0.0));
+            System.out.println("Current total: " + formatToTwoDecimal(this.totalScore) + " out of " + calculateScore(0.0) * this.roundsPlayed);
+            
+            //if reached the end of game, ends the game and go back to the lobby
+            if (roundsPlayed >= totalRounds) {
+                this.endGame();
+            }
         }
     }
     
-    //convert standard time format to usable time format for the scoring system
-//    public double convertToSeconds(int minutes, double seconds) {
-//        return minutes * 60 + seconds;
-//    }
+    private void endGame() {
+        // Hide all labels and buttons
+        //cardGridPane.setVisible(false);
+        startStopButton.setVisible(false);
+        colorLabel.setVisible(false);
+        difficultyLabel.setVisible(false);
+        roundDurationLabel.setVisible(false);
+        scoreLabel.setVisible(false);
+
+        // Show final result
+        finalResultLabel.setText(String.format("Game Finished!\nTotal score: %.2f", this.totalScore) + " out of " + calculateScore(0.0) * this.roundsPlayed);
+        finalResultLabel.setVisible(true);
+    }
+    
+    //convert standard time format to usable time format for displaying the scoring system
+    public String formatToTwoDecimal(double number) {
+        return String.format("%.2f", number);
+    }
     
     public double calculateScore(double usedTime) {
         double remainingTime = this.receivedRoundDuration - usedTime;
