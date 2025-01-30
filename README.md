@@ -39,11 +39,12 @@ This document outlines the development plan for creating a Windows-based Ubongo 
 - ``Images for cards and pieces is blurry. Therefore, an upscale of them is needed. Current solution: Topaz Gigapixel AI (paid), Let’s Enhance (free trial), Waifu2x (free) =>Solution: Thanh draws them himself``
 - Function naming convention issue: goBack(ActionEvent e) and QuitGame(ActionEvent e)
 - Return button's size is not standardized: The return button in DifficultyScene.fxml is bigger then the rest
-- ``Pikachu card in SinglePlayer() is magically disappeared``
+- ~~Pikachu card in SinglePlayer() is magically disappeared~~
 - Add new difficulty selection window for singleplaying: SingleConfig.fxml (via Start ->SingleConfig -> GameScreen)
-- ``Remove return button in GameScreen.fxml as requested``
-- ``Recover GameScreen.fxml to original state. However, the pikachu card is gone.``
-- Added a scoring system based on time(see details below)
+- ~~Remove return button in GameScreen.fxml as requested~~
+- ~~Recover GameScreen.fxml to original state. However, the pikachu card is gone.~~
+- Added a scoring system based on time (see details below)
+- [EXPERIMENTAL - SUCCESSFUL] Added a testing mechanic for Scoring System based on clicking button
 
 
 #### Revamped Scoring System:

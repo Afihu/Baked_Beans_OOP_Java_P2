@@ -10,15 +10,29 @@ import javafx.scene.layout.GridPane;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 public class GameScreenController implements Initializable {
 
     @FXML
     private GridPane cardGridPane; // Assuming you have a GridPane in GameScreen.fxml
-
+    @FXML
+    private Button startStopButton;
+    @FXML
+    private Label colorLabel;
+    @FXML
+    private Label difficultyLabel;
+    @FXML
+    private Label roundDurationLabel;
+    @FXML
+    private Label scoreLabel;
+    
     private String receivedColor;
     private String receivedDifficulty;
     private int receivedRoundDuration;
+    private long startTime;
+    private boolean roundStarted = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -29,11 +43,42 @@ public class GameScreenController implements Initializable {
         this.receivedColor = color;
         this.receivedDifficulty = difficulty;
         this.receivedRoundDuration = roundDuration;
-
+        
+        // Update labels with the received values
+        colorLabel.setText("Color: " + this.receivedColor);
+        difficultyLabel.setText("Difficulty: " + this.receivedDifficulty);
+        roundDurationLabel.setText("Round Duration: " + this.receivedRoundDuration + " seconds");
+        
         System.out.println("Color: " + this.receivedColor + ", Difficulty: " + this.receivedDifficulty + ", Round Duration: " + this.receivedRoundDuration);
 
         //loadCards();
     }
+    
+    @FXML
+    private void handleStartStopButtonAction() {
+        if (!this.roundStarted) {
+            // Start the round
+            startTime = System.currentTimeMillis();
+            this.roundStarted = true;
+            startStopButton.setText("Stop");
+            System.out.println("Round starts!");
+        } else {
+            // Stop the round and calculate score
+            long endTime = System.currentTimeMillis();
+            double usedTime = (endTime - startTime) / 1000.0; // Convert to seconds
+            double score = calculateScore(usedTime);
+            scoreLabel.setText("Score: " + score + " out of " + calculateScore(0.0));
+            this.roundStarted = false;
+            startStopButton.setText("Start");
+            System.out.println("Round ends!");
+            System.out.println("Your score: " + score + " out of " + calculateScore(0.0));
+        }
+    }
+    
+    //convert standard time format to usable time format for the scoring system
+//    public double convertToSeconds(int minutes, double seconds) {
+//        return minutes * 60 + seconds;
+//    }
     
     public double calculateScore(double usedTime) {
         double remainingTime = this.receivedRoundDuration - usedTime;
