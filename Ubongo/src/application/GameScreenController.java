@@ -16,19 +16,21 @@ public class GameScreenController implements Initializable {
 
     private String receivedColor;
     private String receivedDifficulty;
+    private int receivedRoundDuration;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Initialization logic if needed (e.g., setting up the gridPane)
     }
 
-    public void initializeData(String color, String difficulty) {
+    public void initializeData(String color, String difficulty, int roundDuration) {
         this.receivedColor = color;
         this.receivedDifficulty = difficulty;
+        this.receivedRoundDuration = roundDuration;
 
-        System.out.println("Color: " + receivedColor + ", Difficulty: " + receivedDifficulty);
+        System.out.println("Color: " + this.receivedColor + ", Difficulty: " + this.receivedDifficulty + ", Round Duration: " + this.receivedRoundDuration);
 
-        loadCards();
+        //loadCards();
     }
 
     private void loadCards() {
