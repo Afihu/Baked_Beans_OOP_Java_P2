@@ -38,7 +38,7 @@ public class GameScreenController implements Initializable {
     public double calculateScore(double usedTime) {
         double remainingTime = this.receivedRoundDuration - usedTime;
         double score;
-        if (usedTime > this.receivedRoundDuration) {
+        if (usedTime >= this.receivedRoundDuration) {
             score = 0;
         } else if (usedTime <= 0.25 * this.receivedRoundDuration) {
         	score = (remainingTime * 3);
