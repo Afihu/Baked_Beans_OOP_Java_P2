@@ -1,5 +1,7 @@
 package application; // Make sure this is the correct package
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -32,7 +34,26 @@ public class GameScreenController implements Initializable {
 
         //loadCards();
     }
-
+    
+    public double calculateScore(double usedTime) {
+        double remainingTime = this.receivedRoundDuration - usedTime;
+        double score;
+        if (usedTime > this.receivedRoundDuration) {
+            score = 0;
+        } else if (usedTime <= 0.25 * this.receivedRoundDuration) {
+        	score = (remainingTime * 3);
+        } else if (usedTime <= 0.5 * this.receivedRoundDuration) {
+        	score = (remainingTime * 2);
+        } else if (usedTime <= 0.75 * this.receivedRoundDuration) {
+        	score = (remainingTime * 1);
+        } else {
+        	score = remainingTime;
+        }
+        
+        BigDecimal bd = new BigDecimal(score).setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
+    
     private void loadCards() {
         if (cardGridPane == null) {
             System.err.println("cardGridPane is null. Check your FXML.");
