@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -10,7 +12,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GameScreenController">
     <children>
-        <GridPane alignment="CENTER" hgap="10" layoutX="21.0" layoutY="14.0" prefHeight="692.0" prefWidth="1252.0" vgap="10">
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../res/images/test_rainforest.jpg" />
+         </image>
+      </ImageView>
+        <GridPane alignment="CENTER" hgap="10" layoutX="798.0" layoutY="309.0" prefHeight="166.0" prefWidth="458.0" vgap="10">
          <columnConstraints>
             <ColumnConstraints />
             <ColumnConstraints />
@@ -31,18 +38,16 @@
             <RowConstraints />
             <RowConstraints />
             <RowConstraints />
-         </rowConstraints>
-         <children>
-            <Label fx:id="finalResultLabel" text="Game over" textFill="#06e715" GridPane.rowIndex="1">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <Button fx:id="startStopButton" mnemonicParsing="false" onAction="#handleStartStopButtonAction" prefHeight="46.0" prefWidth="104.0" text="Press me!" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Label fx:id="colorLabel" text="Color:" GridPane.rowIndex="5" />
-            <Label fx:id="difficultyLabel" text="Difficulty: " GridPane.rowIndex="4" />
-            <Label fx:id="roundDurationLabel" text="Round Duration:" GridPane.rowIndex="3" />
-            <Label fx:id="scoreLabel" text="Score:" GridPane.rowIndex="2" />
-         </children></GridPane>
+         </rowConstraints></GridPane>
+      <Label fx:id="finalResultLabel" layoutX="331.0" layoutY="250.0" prefHeight="88.0" prefWidth="439.0" text="Game over" textFill="#c603ff">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="startStopButton" layoutX="476.0" layoutY="419.0" mnemonicParsing="false" onAction="#handleStartStopButtonAction" prefHeight="46.0" prefWidth="104.0" text="Press me!" />
+      <Label fx:id="difficultyLabel" layoutX="37.0" layoutY="27.0" text="Difficulty: " />
+      <Label fx:id="colorLabel" layoutX="36.0" layoutY="60.0" text="Color:" />
+      <Label fx:id="roundDurationLabel" layoutX="37.0" layoutY="95.0" text="Round Duration:" />
+      <Label fx:id="scoreLabel" layoutX="31.0" layoutY="300.0" text="Score:" />
     </children>
 </AnchorPane>
