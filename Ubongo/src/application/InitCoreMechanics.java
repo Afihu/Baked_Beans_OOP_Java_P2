@@ -2,6 +2,7 @@ package application;
 
 
 import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 
 import javafx.geometry.Bounds;
@@ -30,8 +31,15 @@ public class InitCoreMechanics {
 	
 	public static Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
 	    for (Node node : gridPane.getChildren()) {
-//	    	System.out.println(gridPane.getColumnIndex(node));
-	        if (gridPane.getColumnIndex(node) == col && gridPane.getRowIndex(node) == row) {
+	    	int nodeRow, nodeCol;
+	    	
+	    	//account for when these return null upon seeing 0
+	    	if(gridPane.getColumnIndex(node) == null) nodeCol = 0;
+	    	else nodeCol = gridPane.getColumnIndex(node); 
+	    	if(gridPane.getRowIndex(node) == null) nodeRow = 0;
+	    	else nodeRow = gridPane.getRowIndex(node); 
+	    	
+	        if (nodeCol == col && nodeRow == row) {
 	            return node;
 	        }
 	    }
@@ -39,8 +47,9 @@ public class InitCoreMechanics {
 	}
 	
 	public static boolean isWithinGridBounds(double pieceX, double pieceY, GridPane cardGrid) {
-	    double gridMinX = cardGrid.getLayoutX();
-	    double gridMinY = cardGrid.getLayoutY();
+		Bounds bounds = cardGrid.localToScene(cardGrid.getBoundsInLocal());
+	    double gridMinX = bounds.getMinX();
+	    double gridMinY = bounds.getMinY();
 	    double gridMaxX = gridMinX + cardGrid.getWidth();
 	    double gridMaxY = gridMinY + cardGrid.getHeight();
 
@@ -48,55 +57,70 @@ public class InitCoreMechanics {
 	           pieceY >= gridMinY && pieceY <= gridMaxY;
 	}
 	
-	public static boolean isOverlapping(Rectangle gridCell, double pieceX, double pieceY, int[][] cellHitbox) {
-		int cellWidth = (int)gridCell.getWidth();
-		int cellHeight = (int)gridCell.getHeight();
+	public static Rectangle isWithinCellBounds(Coords pieceCoordinate, Coords[][] gridCellCoordinates, GridPane cardGrid, Rectangle cell) {
+		Rectangle currentCell;
 		
-		//Convert grid cells
-		Bounds bounds = gridCell.localToScene(gridCell.getBoundsInLocal());
-	    double gridCellX = bounds.getMinX();
-	    double gridCellY = bounds.getMinY();
+		double cellWidth = cell.getWidth();
+	    double cellHeight = cell.getHeight();
 		
-	    for (int row = 0; row < cellHitbox.length; row++) {
-	        for (int col = 0; col < cellHitbox[row].length; col++) {
-	            if (cellHitbox[row][col] == 1) { // Check occupied cells
-	                double pieceCellX = pieceX + col * cellWidth;
-	                double pieceCellY = pieceY + row * cellHeight;
-
-	                if (pieceCellX < gridCellX + cellWidth &&
-	                    pieceCellX + cellWidth > gridCellX &&
-	                    pieceCellY < gridCellY + cellHeight &&
-	                    pieceCellY + cellHeight > gridCellY) {
-	                    return true;
-	                }
-	            }
-	        }
-	    }
-	    return false;
+		int gridColCount = cardGrid.getColumnCount();
+		int gridRowCount = cardGrid.getRowCount();
+		
+		for(int i = 0; i < gridRowCount; i++) {
+			for(int j = 0; j < gridColCount; j++) {
+				Coords currentCellCoords = gridCellCoordinates[i][j];
+				
+				Coords gridCellUpperLeftCorner = new Coords(currentCellCoords.x, currentCellCoords.y); 
+			    Coords gridCellUpperRightCorner = new Coords(currentCellCoords.x + cellWidth, currentCellCoords.y);
+			    double gridCellLowerLeftCornerX = currentCellCoords.x;
+			    double gridCellLowerLeftCornerY = currentCellCoords.y + cellHeight;    	
+			    Coords gridCellLowerLeftCorner = new Coords(gridCellLowerLeftCornerX, gridCellLowerLeftCornerY);
+			    double gridCellLowerRightCornerX = gridCellUpperRightCorner.x;
+			    double gridCellLowerRightCornerY = gridCellLowerLeftCornerY; 
+			    Coords gridCellLowerRightCorner = new Coords(gridCellLowerRightCornerX, gridCellLowerRightCornerY);
+				
+			    if ((pieceCoordinate.x > currentCellCoords.x && pieceCoordinate.y > gridCellUpperLeftCorner.y)
+				&& (pieceCoordinate.x > gridCellLowerLeftCorner.x && pieceCoordinate.y < gridCellLowerLeftCorner.y)
+				&& (pieceCoordinate.x > gridCellUpperRightCorner.x && pieceCoordinate.y > gridCellUpperRightCorner.y)
+				&& (pieceCoordinate.x < gridCellLowerRightCorner.x && pieceCoordinate.y < gridCellUpperRightCorner.y)){
+			    	currentCell = (Rectangle)InitCoreMechanics.getNodeFromGridPane(cardGrid, j, i);
+			    	return currentCell;
+			    }
+			}
+		}
+		
+		return null;
 	}
 	
 	
-	public static List<Rectangle> getHoveredCells(GridPane cardGridPane, double pieceX, double pieceY, int[][] hitbox) {
-	    List<Rectangle> hoveredCells = new ArrayList<>();
- 
-	    int gridRow = cardGridPane.getRowCount();
-	    int gridCol = cardGridPane.getColumnCount();	    
+	public static List<Rectangle> getHoveredCells(Coords currentCellCoords, Coords currentPieceCoords, Rectangle gridCell, GridPane cardGrid) {
+	    List<Rectangle> hoveredRectangles = new ArrayList<Rectangle>();
 	    
-	    for(int row = 0; row < gridRow; row++) {
-	    	for(int col = 0; col < gridCol; col++) {
-	    		if(getNodeFromGridPane(cardGridPane, col, row) != null) {
-	    			Node currentNode = getNodeFromGridPane(cardGridPane, col, row);  
-		    		if(currentNode instanceof Rectangle) {
-		    			Rectangle currentCell = (Rectangle)currentNode;
-		    			if(isOverlapping(currentCell, pieceX, pieceY, hitbox)) {
-		    				hoveredCells.add(currentCell);
-		    			}
-		    		}
-	    		}
-	    	}
-	    }
-
-	    return hoveredCells;
+	    double cellWidth = gridCell.getWidth();
+	    double cellHeight = gridCell.getHeight();
+	    
+	    Coords gridCellUpperLeftCorner = new Coords(currentCellCoords.x, currentCellCoords.y); 
+	    
+	    Coords gridCellUpperRightCorner = new Coords(currentCellCoords.x + cellWidth, currentCellCoords.y);
+	    
+	    double gridCellLowerLeftCornerX = currentCellCoords.x;
+	    double gridCellLowerLeftCornerY = currentCellCoords.y + cellHeight;    	
+	    Coords gridCellLowerLeftCorner = new Coords(gridCellLowerLeftCornerX, gridCellLowerLeftCornerY);
+	    
+	    double gridCellLowerRightCornerX = gridCellUpperRightCorner.x;
+	    double gridCellLowerRightCornerY = gridCellLowerLeftCornerY; 
+	    Coords gridCellLowerRightCorner = new Coords(gridCellLowerRightCornerX, gridCellLowerRightCornerY);
+	    
+	    if(isWithinGridBounds(gridCellUpperLeftCorner.x, gridCellUpperLeftCorner.y, cardGrid))
+	    	
+		    if ((currentPieceCoords.x > gridCellUpperLeftCorner.x && currentPieceCoords.y > gridCellUpperLeftCorner.y)
+		    && (currentPieceCoords.x > gridCellLowerLeftCorner.x && currentPieceCoords.y < gridCellLowerLeftCorner.y)
+		    && (currentPieceCoords.x > gridCellUpperRightCorner.x && currentPieceCoords.y > gridCellUpperRightCorner.y)
+		    && (currentPieceCoords.x < gridCellLowerRightCorner.x && currentPieceCoords.y < gridCellUpperRightCorner.y)){
+		    	hoveredRectangles.add(gridCell);
+		    }
+	    
+	    return hoveredRectangles;
 	}
 	
 	

@@ -4,8 +4,10 @@
 
 package application;
 
+import javafx.scene.paint.Color;
 import java.util.List;
 
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,7 +17,7 @@ import javafx.scene.shape.Rectangle;
 public class DraggableMaker {
 
     private double mouseAnchorX;
-    private double mouseAnchorY;
+    private double mouseAnchorY; 
 
     public void makeDraggable(Node node){
 
@@ -30,7 +32,8 @@ public class DraggableMaker {
         });
     }
     
-    public void makeHoverable(ImageView pieceView, Image pieceImage, GridPane cardGrid, int[][] gridMask) {
+    public void makeHoverable(ImageView pieceView, Image pieceImage, GridPane cardGrid, Rectangle gridCell, boolean[][] gridMask) {
+    	
     	pieceView.setOnMousePressed(mouseEvent -> {
             mouseAnchorX = mouseEvent.getX();
             mouseAnchorY = mouseEvent.getY();
@@ -41,17 +44,33 @@ public class DraggableMaker {
     		pieceView.setLayoutX(mouseEvent.getSceneX() - mouseAnchorX);
     		pieceView.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY);
     		
-    		double pieceX = mouseEvent.getSceneX() - pieceImage.getWidth() / 2;
-    	    double pieceY = mouseEvent.getSceneY() - pieceImage.getHeight() / 2;
-		    List<Rectangle> lastHoveredCells;
-		    
-		    if(!InitCoreMechanics.isWithinGridBounds(pieceX, pieceY, cardGrid)) return;
-
-		 // Get new hovered cells
-		    lastHoveredCells = InitCoreMechanics.getHoveredCells(cardGrid, pieceX, pieceY, gridMask);			    			 
-
-		    // Apply hover effect
-		    InitCoreMechanics.highlightCells(lastHoveredCells);
+    		double pieceX = pieceView.getLayoutX();
+    	    double pieceY = pieceView.getLayoutY();
+    	    Coords pieceCoords = new Coords(pieceX, pieceY);
+    	    
+    	    System.out.print("Position: " + pieceX + ", " + pieceY + " ");
+    	    
+    	    Bounds bounds = gridCell.localToScene(gridCell.getBoundsInLocal());
+    	    double gridCellX = bounds.getMinX();
+    	    double gridCellY = bounds.getMinY();
+    	    System.out.println("Cell position: " + gridCellX + ", " + gridCellY);
+    	    
+    	    ////////////////////////Test out isWithinCellBounds(unfinished)/////////////////////////////////////////////////////////////////////////////////
+    	    System.out.println("current cell =" + InitCoreMechanics.isWithinCellBounds(pieceCoords, null, cardGrid, gridCell));
+    	    
+    	    //test movement:
+    	    double pieceULSectionX = pieceX + gridCell.getWidth() / 2;
+    	    double pieceULSectionY = pieceY + gridCell.getHeight() / 2;
+    	    
+    	    double gridCellWidth = gridCell.getWidth();
+    	    double gridCellHeight = gridCell.getHeight();
+		   
+    	    
+    	    if((pieceULSectionX > gridCellX && pieceULSectionY > gridCellY)) {
+    	    	gridCell.setOpacity(0.5);
+    	    	gridCell.setFill(Color.rgb(255, 165, 0));
+    	    } else gridCell.setOpacity(0);
+		   
 		    
 		 // Clear previous highlights
 //		    InitCoreMechanics.clearHighlights(lastHoveredCells);
