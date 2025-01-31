@@ -148,7 +148,7 @@ public class SingleConfigController implements Initializable {
 	@FXML private Rectangle testCell;
 	@FXML private GridPane cardGrid;
 	DraggableMaker draggableMaker = new DraggableMaker();
-	private boolean[][] pieceMask;
+	private Coords[][] pieceMask;
 	private boolean[][] gridMask;
 	private Coords[][] gridCellCoords;
 	
@@ -161,52 +161,26 @@ public class SingleConfigController implements Initializable {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/GameScreen.fxml"));
 		loader.setController(this);		//Must be done so that the current instance of FXMLLoader can be used, otherwise the varible under the @FXML tag won't be recognized
 		Parent root = loader.load();	//**Extremely important** Everything related to @FXML injected fields must be written below this line
-    	
-    	Rectangle testNode = (Rectangle)InitCoreMechanics.getNodeFromGridPane(cardGrid, 0, 0);
-    	System.out.println("rectangle width: " + testNode.getWidth());
-    	System.out.println("rectangle height: " + testNode.getHeight());
-    	System.out.println("actual rectangle width + height: " + testCell.getWidth() + " + " + testCell.getHeight());
 		
 		if(pieceImage != null && testCell != null && cardGrid != null) {
 			
 			//Generate piece mask and grid mask
 			pieceMask = InitCoreMechanics.generatePieceHitBox(pieceImage, testCell);
+			gridMask = InitCoreMechanics.generateCardHitbox(cardGrid); //beta
 			
-			//Take the map of the gridPane to find cell positions
-			gridMask = GridHandler.makeGridPaneMap(cardGrid);
 			
-			//Use gridMask to find cell coordinates
-			gridCellCoords = GridHandler.takeGridCoords(cardGrid, gridMask);
 			
-//			//debug gridMap
-//			for(int i = 0; i < cardGrid.getRowCount(); i++) {
-//				System.out.println();
-//				for(int j = 0; j < cardGrid.getColumnCount(); j++) {
-//					System.out.print(gridMask[i][j] + " ");
-//				}
-//			}
-			
-			//debug gridCellCoordinates
-			System.out.println();
-			System.out.println("debug gridCellCoords: ");
-			System.out.println("grid cells' coordinates: ");
-			for(int i = 0; i < cardGrid.getRowCount(); i++) {
-				System.out.println();
-				for(int j = 0; j < cardGrid.getColumnCount(); j++) {
-					System.out.print(" (" + gridCellCoords[i][j].x + ", " + gridCellCoords[i][j].y + ") ");
-				}
-			}
-		
-			
-			testPiece.setFitHeight(pieceImage.getHeight() - 20); testPiece.setFitWidth(pieceImage.getWidth() - 20); //account for image size and imageView size inconsistency
-			testPiece.setPreserveRatio(true);
-			testPiece.setOpacity(1.0);
 			testPiece.setImage(pieceImage);
 			
+			for(int i = 0; i < 2; i++) {
+				System.out.println();
+				for(int j = 0; j < 3; j++) {
+					System.out.print(pieceMask[i][j].x + " " + pieceMask[i][j].y + " ");
+				}
+			}
+			
 			//apply hover effect (incomplete)
-			draggableMaker.makeHoverable(testPiece, pieceImage, cardGrid, testCell, gridMask);
-			
-			
+			draggableMaker.makeHoverable(testPiece, pieceImage, cardGrid, gridMask);
 			
 		} else System.out.println("Error: pieceImage, gridpane or Cell can't load");
 		
