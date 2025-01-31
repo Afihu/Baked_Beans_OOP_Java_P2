@@ -56,7 +56,8 @@ public class DraggableMaker {
     	    System.out.println("Cell position: " + gridCellX + ", " + gridCellY);
     	    
     	    ////////////////////////Test out isWithinCellBounds(unfinished)/////////////////////////////////////////////////////////////////////////////////
-    	    System.out.println("current cell =" + InitCoreMechanics.isWithinCellBounds(pieceCoords, null, cardGrid, gridCell));
+    	    ///null error, will fix later
+//    	    System.out.println("current cell =" + InitCoreMechanics.isWithinCellBounds(pieceCoords, null, cardGrid, gridCell));
     	    
     	    //test movement:
     	    double pieceULSectionX = pieceX + gridCell.getWidth() / 2;

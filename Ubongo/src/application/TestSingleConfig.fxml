@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -70,5 +71,27 @@
       </Label>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="27.0" prefWidth="43.0" text="&lt;&lt;" />
       <Button layoutX="319.0" layoutY="41.0" mnemonicParsing="false" onAction="#testDragDrop" prefHeight="42.0" prefWidth="241.0" text="To testing drag-and-drop" />
+      <Spinner fx:id="timeSpinner" layoutX="519.0" layoutY="451.0" />
+      <Label layoutX="460.0" layoutY="320.0" prefHeight="132.0" prefWidth="446.0" text="Set your timer">
+         <font>
+            <Font size="44.0" />
+         </font>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.0725146234035492" green="0.9789473414421082" blue="0.11783625930547714" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Label>
    </children>
 </AnchorPane>

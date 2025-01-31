@@ -36,10 +36,23 @@ This document outlines the development plan for creating a Windows-based Ubongo 
 - Screens should be henceforth named "scene" in the sourcecode, for IDE consistency 
 - There will be more consistency to the screen background image and button dimensions, the current screen size is 1280x720, button dimensions are presumably 43x27. These will be standardized
 - Transition animation between scenes will be worked upon  
-- Images for cards and pieces is blurry. Therefore, an upscale of them is needed. Current solution: Topaz Gigapixel AI (paid), Let’s Enhance (free trial), Waifu2x (free) =>Solution: Thanh draws them himself
+- ``Images for cards and pieces is blurry. Therefore, an upscale of them is needed. Current solution: Topaz Gigapixel AI (paid), Let’s Enhance (free trial), Waifu2x (free) =>Solution: Thanh draws them himself``
 - Function naming convention issue: goBack(ActionEvent e) and QuitGame(ActionEvent e)
 - Return button's size is not standardized: The return button in DifficultyScene.fxml is bigger then the rest
-- Pikachu card in SinglePlayer() is magically disappeared
+- ~~Pikachu card in SinglePlayer() is magically disappeared~~
 - Add new difficulty selection window for singleplaying: SingleConfig.fxml (via Start ->SingleConfig -> GameScreen)
-- Remove return button in GameScreen.fxml as requested
-- Recover GameScreen.fxml to original state. However, the pikachu card is gone.
+- ~~Remove return button in GameScreen.fxml as requested~~
+- ~~Recover GameScreen.fxml to original state. However, the pikachu card is gone.~~
+- Added a scoring system based on time (see details below)
+- [EXPERIMENTAL - SUCCESSFUL] Added a testing mechanic for Scoring System based on clicking button
+
+
+#### Revamped Scoring System:
+- Score are calculated by time used to solve a card (per second, accurate to 2 decimal)
+- To make use of the gems (in some variants), we change it into multipliers (x3,x2,x1)
+- Let RemainingTime = RoundDuration - UsedTime
+- We have the following:
+1. UsedTime <= 25% * RoundDuration => Score = RemainingTime * 3
+2. UsedTime <= 50% * RoundDuration => Score = RemainingTime * 2
+3. UsedTime <= 75% * RoundDuration => Score = RemainingTime * 1
+4. UsedTime >=RoundDuration => Score = 0
