@@ -124,15 +124,13 @@ public class InitCoreMechanics {
 	}
 	
 	
-	public static Coords[][] generatePieceHitBox(Image piece, Rectangle cell) {
+	public static boolean[][] generatePieceHitBox(Image piece, Rectangle cell) {
 		int pieceHeight = (int)piece.getHeight();
 		int pieceWidth = (int)piece.getWidth() - 10; // account for tiny inconsistencies in image sizes
 		int cellWidth = (int)cell.getWidth();
 		int cellHeight = (int)cell.getHeight();
 		
-		Coords[][] hitBoxCoordinates = new Coords[pieceHeight / cellHeight][pieceWidth / cellWidth];
-		Coords.InitCoordsArray2d(hitBoxCoordinates,(int) pieceHeight / cellHeight, (int) pieceWidth / cellWidth);
-		//boolean[][] mask = new boolean[pieceHeight/cellHeight][pieceWidth/cellWidth];
+		boolean[][] mask = new boolean[pieceHeight/cellHeight][pieceWidth/cellWidth];
 //		System.out.println("Piece hit box size: (" + pieceHeight/cellHeight+ ", " + pieceWidth/cellWidth + ")"); 
 		
 		PixelReader pReader = piece.getPixelReader();
@@ -141,21 +139,13 @@ public class InitCoreMechanics {
 //			System.out.println();
 			for (int width = cellWidth / 2; width < pieceWidth; width = width + cellWidth) {
 				if(pReader.getColor(width, height).getOpacity() > 0.1) 
-					hitBoxCoordinates[height/cellHeight][width/cellWidth] = new Coords(width, height);
-			}
-		}
-		
-		//printing fucntion
-		for(int i = 0; i < 2; i++) {
-			System.out.println();
-			for(int j = 0; j < 3; j++) {
-				System.out.print(hitBoxCoordinates[i][j].x + " " + hitBoxCoordinates[i][j].y + " ");
+					mask[height/cellHeight][width/cellWidth] = true;
 			}
 		}
 		
 		System.out.println("Piece hitbox ready");
 		
-		return hitBoxCoordinates;
+		return mask;
 	}
 	
 	

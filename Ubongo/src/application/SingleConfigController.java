@@ -1,19 +1,6 @@
 //author: Huynh Thien Bao
 package application;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.fxml.FXMLLoader;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,27 +27,18 @@ import java.time.chrono.IsoChronology;
 public class SingleConfigController implements Initializable {
 	public static String currentScreen;
 	
-	@FXML
-    private Spinner<Integer> timeSpinner; // Spinner for setting the timer
     @FXML
     public ComboBox<String> colorComboBox; // Make sure it's public or has a getter
     @FXML
     public ComboBox<String> difficultyComboBox; // Make sure it's public or has a getter
     @FXML
     private Button beginButton;
-    
-    private int selectedRoundDuration;
+
     private String selectedColor;
     private String selectedDifficulty;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	// Initialize the Spinner with a range from 10 to 600 seconds and a default value of 10
-        SpinnerValueFactory<Integer> valueFactory = 
-            new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 600, 60);
-        timeSpinner.setValueFactory(valueFactory);
-        timeSpinner.setEditable(true);
-        
         // Color ComboBox
         ObservableList<String> colorOptions = FXCollections.observableArrayList(
             "blue",
@@ -81,7 +59,7 @@ public class SingleConfigController implements Initializable {
         //difficultyComboBox.setValue("easy"); // set default value
     }
     
-    //original by DVTB - modified by HTB
+    //original bt DVTB - mod by HTB
     @FXML
     public void goBack(ActionEvent e) throws IOException {
 		if (!Controller.screenHistory.isEmpty()) {
@@ -108,9 +86,8 @@ public class SingleConfigController implements Initializable {
     
     @FXML
     private void handleBeginButtonAction(ActionEvent event) {
-        this.selectedColor = colorComboBox.getValue();
-        this.selectedDifficulty = difficultyComboBox.getValue();
-        this.selectedRoundDuration = timeSpinner.getValue();
+        selectedColor = colorComboBox.getValue();
+        selectedDifficulty = difficultyComboBox.getValue();
 
         if (selectedColor == null || selectedDifficulty == null) {
             // Handle case where user didn't select both
@@ -126,8 +103,8 @@ public class SingleConfigController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/SPGameScreen.fxml")); // Correct path
             Parent root = loader.load();
 
-            GameScreenController gameScreenController = loader.getController();
-            gameScreenController.initializeData(this.selectedColor, this.selectedDifficulty,this.selectedRoundDuration);
+            //GameScreenController gameScreenController = loader.getController();
+            //gameScreenController.initializeData(selectedColor, selectedDifficulty);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -148,7 +125,7 @@ public class SingleConfigController implements Initializable {
 	@FXML private Rectangle testCell;
 	@FXML private GridPane cardGrid;
 	DraggableMaker draggableMaker = new DraggableMaker();
-	private Coords[][] pieceMask;
+	private boolean[][] pieceMask;
 	private boolean[][] gridMask;
 	private Coords[][] gridCellCoords;
 	
@@ -161,26 +138,52 @@ public class SingleConfigController implements Initializable {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/GameScreen.fxml"));
 		loader.setController(this);		//Must be done so that the current instance of FXMLLoader can be used, otherwise the varible under the @FXML tag won't be recognized
 		Parent root = loader.load();	//**Extremely important** Everything related to @FXML injected fields must be written below this line
+    	
+    	Rectangle testNode = (Rectangle)InitCoreMechanics.getNodeFromGridPane(cardGrid, 0, 0);
+    	System.out.println("rectangle width: " + testNode.getWidth());
+    	System.out.println("rectangle height: " + testNode.getHeight());
+    	System.out.println("actual rectangle width + height: " + testCell.getWidth() + " + " + testCell.getHeight());
 		
 		if(pieceImage != null && testCell != null && cardGrid != null) {
 			
 			//Generate piece mask and grid mask
 			pieceMask = InitCoreMechanics.generatePieceHitBox(pieceImage, testCell);
-			gridMask = InitCoreMechanics.generateCardHitbox(cardGrid); //beta
 			
+			//Take the map of the gridPane to find cell positions
+			gridMask = GridHandler.makeGridPaneMap(cardGrid);
 			
+			//Use gridMask to find cell coordinates
+			gridCellCoords = GridHandler.takeGridCoords(cardGrid, gridMask);
 			
-			testPiece.setImage(pieceImage);
+//			//debug gridMap
+//			for(int i = 0; i < cardGrid.getRowCount(); i++) {
+//				System.out.println();
+//				for(int j = 0; j < cardGrid.getColumnCount(); j++) {
+//					System.out.print(gridMask[i][j] + " ");
+//				}
+//			}
 			
-			for(int i = 0; i < 2; i++) {
+			//debug gridCellCoordinates
+			System.out.println();
+			System.out.println("debug gridCellCoords: ");
+			System.out.println("grid cells' coordinates: ");
+			for(int i = 0; i < cardGrid.getRowCount(); i++) {
 				System.out.println();
-				for(int j = 0; j < 3; j++) {
-					System.out.print(pieceMask[i][j].x + " " + pieceMask[i][j].y + " ");
+				for(int j = 0; j < cardGrid.getColumnCount(); j++) {
+					System.out.print(" (" + gridCellCoords[i][j].x + ", " + gridCellCoords[i][j].y + ") ");
 				}
 			}
+		
+			
+			testPiece.setFitHeight(pieceImage.getHeight() - 20); testPiece.setFitWidth(pieceImage.getWidth() - 20); //account for image size and imageView size inconsistency
+			testPiece.setPreserveRatio(true);
+			testPiece.setOpacity(1.0);
+			testPiece.setImage(pieceImage);
 			
 			//apply hover effect (incomplete)
-			draggableMaker.makeHoverable(testPiece, pieceImage, cardGrid, gridMask);
+			draggableMaker.makeHoverable(testPiece, pieceImage, cardGrid, testCell, gridMask);
+			
+			
 			
 		} else System.out.println("Error: pieceImage, gridpane or Cell can't load");
 		
