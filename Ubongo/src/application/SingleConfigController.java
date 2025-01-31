@@ -125,7 +125,7 @@ public class SingleConfigController implements Initializable {
 	@FXML private Rectangle testCell;
 	@FXML private GridPane cardGrid;
 	DraggableMaker draggableMaker = new DraggableMaker();
-	private boolean[][] pieceMask;
+	private Coords[][] pieceMask;
 	private boolean[][] gridMask;
 	private Coords[][] gridCellCoords;
 	
@@ -162,6 +162,13 @@ public class SingleConfigController implements Initializable {
 //					System.out.print(gridMask[i][j] + " ");
 //				}
 //			}
+			
+			for(int i = 0; i < 2; i++) {
+				System.out.println();
+				for(int j = 0; j < 3; j++) {
+					System.out.print(pieceMask[i][j].x + " " + pieceMask[i][j].y + " ");
+				}
+			}
 			
 			//debug gridCellCoordinates
 			System.out.println();
