@@ -15,6 +15,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,18 +29,26 @@ import java.time.chrono.IsoChronology;
 public class SingleConfigController implements Initializable {
 	public static String currentScreen;
 	
+	@FXML
+    private Spinner<Integer> timeSpinner; // Spinner for setting the timer
     @FXML
-    public ComboBox<String> colorComboBox; // Make sure it's public or has a getter
+    public ComboBox<String> colorComboBox;
     @FXML
-    public ComboBox<String> difficultyComboBox; // Make sure it's public or has a getter
+    public ComboBox<String> difficultyComboBox;
     @FXML
     private Button beginButton;
-
+    
+    private int selectedRoundDuration;
     private String selectedColor;
     private String selectedDifficulty;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	// Initialize the Spinner with a range from 10 to 600 seconds and a default value of 10
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 600, 60);
+        timeSpinner.setValueFactory(valueFactory);
+        timeSpinner.setEditable(true);
+        
         // Color ComboBox
         ObservableList<String> colorOptions = FXCollections.observableArrayList(
             "blue",
@@ -86,9 +96,10 @@ public class SingleConfigController implements Initializable {
     
     @FXML
     private void handleBeginButtonAction(ActionEvent event) {
-        selectedColor = colorComboBox.getValue();
-        selectedDifficulty = difficultyComboBox.getValue();
-
+        this.selectedColor = colorComboBox.getValue();
+        this.selectedDifficulty = difficultyComboBox.getValue();
+        this.selectedRoundDuration = timeSpinner.getValue();
+        
         if (selectedColor == null || selectedDifficulty == null) {
             // Handle case where user didn't select both
             System.out.println("Please select both color and difficulty.");
@@ -103,8 +114,8 @@ public class SingleConfigController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/SPGameScreen.fxml")); // Correct path
             Parent root = loader.load();
 
-            //GameScreenController gameScreenController = loader.getController();
-            //gameScreenController.initializeData(selectedColor, selectedDifficulty);
+            GameScreenController gameScreenController = loader.getController();
+            gameScreenController.initializeData(this.selectedColor, this.selectedDifficulty,this.selectedRoundDuration);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);

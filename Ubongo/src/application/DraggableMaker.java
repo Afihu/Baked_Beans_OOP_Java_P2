@@ -32,11 +32,24 @@ public class DraggableMaker {
         });
     }
     
+//    // Method to rotate the piece by 90 degrees
+//    private void rotatePiece(ImageView pieceView) {
+//        pieceView.setRotate(pieceView.getRotate() + 90);
+//    }
+    
     public void makeHoverable(ImageView pieceView, Image pieceImage, GridPane cardGrid, Rectangle gridCell, boolean[][] gridMask) {
     	
     	pieceView.setOnMousePressed(mouseEvent -> {
             mouseAnchorX = mouseEvent.getX();
             mouseAnchorY = mouseEvent.getY();
+        });
+    	
+    	//double-click-to-spin method
+    	pieceView.setOnMouseClicked(mouseEvent -> {
+            if(mouseEvent.getClickCount() == 2) {
+            	pieceView.setRotate(pieceView.getRotate() + 90);
+            }
+            Coords[][] pieceMask = InitCoreMechanics.generatePieceHitBoxLive(pieceView, gridCell, pieceView.getLayoutX(), pieceView.getLayoutY());
         });
     	
     	pieceView.setOnMouseDragged(mouseEvent -> {
@@ -49,8 +62,9 @@ public class DraggableMaker {
     	    Coords pieceCoords = new Coords(pieceX, pieceY);
     	    
     	    System.out.print("Position: " + pieceX + ", " + pieceY + " ");
-    	    Coords[][] pieceMask = InitCoreMechanics.generatePieceHitBoxLive(pieceImage, gridCell,pieceX,pieceY);
     	    
+    	    //print for testing coordinate of pieces live
+    	    Coords[][] pieceMask = InitCoreMechanics.generatePieceHitBoxLive(pieceView, gridCell, pieceX, pieceY);
     	    for(int i = 0; i < 2; i++) {
 				System.out.println();
 				for(int j = 0; j < 3; j++) {
