@@ -49,6 +49,14 @@ public class DraggableMaker {
     	    Coords pieceCoords = new Coords(pieceX, pieceY);
     	    
     	    System.out.print("Position: " + pieceX + ", " + pieceY + " ");
+    	    Coords[][] pieceMask = InitCoreMechanics.generatePieceHitBoxLive(pieceImage, gridCell,pieceX,pieceY);
+    	    
+    	    for(int i = 0; i < 2; i++) {
+				System.out.println();
+				for(int j = 0; j < 3; j++) {
+					System.out.print(pieceMask[i][j].x + " " + pieceMask[i][j].y + " ");
+				}
+			}
     	    
     	    Bounds bounds = gridCell.localToScene(gridCell.getBoundsInLocal());
     	    double gridCellX = bounds.getMinX();

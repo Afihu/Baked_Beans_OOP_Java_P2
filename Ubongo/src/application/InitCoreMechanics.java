@@ -153,6 +153,31 @@ public class InitCoreMechanics {
 		return hitBoxCoordinates; //mask;
 	}
 	
+	public static Coords[][] generatePieceHitBoxLive(Image piece, Rectangle cell, double pieceXLive, double pieceYLive) {
+        int pieceHeight = (int)piece.getHeight();
+        int pieceWidth = (int)piece.getWidth() - 10; // account for tiny inconsistencies in image sizes
+        int cellWidth = (int)cell.getWidth();
+        int cellHeight = (int)cell.getHeight();
+        
+        //generate an array of hit box coordinates (of the center)
+        Coords[][] hitBoxCoordinates = new Coords[pieceHeight / cellHeight][pieceWidth / cellWidth];
+        Coords.InitCoordsArray2d(hitBoxCoordinates, (int) pieceHeight / cellHeight, (int) pieceWidth / cellWidth);
+        
+        PixelReader pReader = piece.getPixelReader();
+        
+        for(int height = cellHeight / 2; height < pieceHeight; height = height + cellHeight) {
+            for (int width = cellWidth / 2; width < pieceWidth; width = width + cellWidth) {
+                if(pReader.getColor(width, height).getOpacity() > 0.1) {
+                    hitBoxCoordinates[height / cellHeight][width / cellWidth] = new Coords(pieceXLive + width, pieceYLive + height);
+                }
+            }
+        }
+        
+        System.out.println("Piece hitbox ready");
+        
+        return hitBoxCoordinates;
+    }
+	
 	
 	
 	//Create solution matrix from card already with grid of rectangles (beta, only works with A21c)

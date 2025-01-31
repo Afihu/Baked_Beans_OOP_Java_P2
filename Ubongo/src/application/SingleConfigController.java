@@ -163,6 +163,7 @@ public class SingleConfigController implements Initializable {
 //				}
 //			}
 			
+			//print testing for debugging
 			for(int i = 0; i < 2; i++) {
 				System.out.println();
 				for(int j = 0; j < 3; j++) {
