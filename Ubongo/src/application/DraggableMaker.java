@@ -4,10 +4,20 @@
 
 package application;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import javafx.scene.paint.Color;
 
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.classfile.instruction.NewMultiArrayInstruction;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +29,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 
 public class DraggableMaker {
+	
+	private static final String CONFIGJSON = "config.json";
 
     private double mouseAnchorX;
     private double mouseAnchorY; 
@@ -45,8 +57,14 @@ public class DraggableMaker {
         });
     }
     
-    public void makeHoverable(ImageView pieceView, GridPane cardGrid) {
-    	JSONObject jsonObject = new JSONObject();
+    public void makeHoverable(ImageView pieceView, GridPane cardGrid) throws JSONException, IOException {
+    	String currentDir = new File("").getAbsolutePath();
+    	String dirString = currentDir + "\\src\\application\\config.json";
+    	System.out.println(dirString);
+    	String contentString = new String((Files.readAllBytes(Paths.get(dirString))));
+    	System.out.println(contentString);
+    	JSONObject jsonObject = new JSONObject(contentString);
+    	System.out.println("r u winning son?: " + jsonObject.getJSONObject("A1.fxml"));
     	
     	pieceView.setOnMousePressed(mouseEvent -> {
             mouseAnchorX = mouseEvent.getX();
