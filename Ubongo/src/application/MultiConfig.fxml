@@ -20,16 +20,16 @@
       </AnchorPane>
       <AnchorPane fx:id="buttonPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <Button layoutX="515.0" layoutY="279.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="2 Players" onAction="#handlePlayerCount"/>
-            <Button layoutX="519.0" layoutY="371.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="3 Players" onAction="#handlePlayerCount"/>
-            <Button layoutX="520.0" layoutY="466.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="250.0" text="4 Players" onAction="#handlePlayerCount"/>
+            <Button layoutX="515.0" layoutY="279.0" mnemonicParsing="false" onAction="#handlePlayerCount" prefHeight="70.0" prefWidth="250.0" text="2 Players" />
+            <Button layoutX="519.0" layoutY="371.0" mnemonicParsing="false" onAction="#handlePlayerCount" prefHeight="70.0" prefWidth="250.0" text="3 Players" />
+            <Button layoutX="520.0" layoutY="466.0" mnemonicParsing="false" onAction="#handlePlayerCount" prefHeight="70.0" prefWidth="250.0" text="4 Players" />
             <Label layoutX="444.0" layoutY="170.0" prefHeight="43.0" prefWidth="401.0" text="HOW MANY PLAYERS?" textFill="#00fa63">
                <font>
                   <Font name="Bell MT" size="36.0" />
                </font>
             </Label>
+            <Button layoutX="31.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="37.0" text="&lt;&lt;" />
          </children>
       </AnchorPane>
-      <Button layoutX="24.0" layoutY="21.0" mnemonicParsing="false" onAction="#goBack" prefHeight="40.0" prefWidth="68.0" text="&lt;&lt;" />
    </children>
 </AnchorPane>
