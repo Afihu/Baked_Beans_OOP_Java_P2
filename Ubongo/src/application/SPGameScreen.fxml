@@ -44,10 +44,10 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <Button fx:id="startStopButton" layoutX="476.0" layoutY="419.0" mnemonicParsing="false" onAction="#handleStartStopButtonAction" prefHeight="46.0" prefWidth="104.0" text="Press me!" />
-      <Label fx:id="difficultyLabel" layoutX="37.0" layoutY="27.0" text="Difficulty: " />
-      <Label fx:id="colorLabel" layoutX="36.0" layoutY="60.0" text="Color:" />
-      <Label fx:id="roundDurationLabel" layoutX="37.0" layoutY="95.0" text="Round Duration:" />
-      <Label fx:id="scoreLabel" layoutX="31.0" layoutY="300.0" text="Score:" />
+      <Button fx:id="startStopButton" layoutX="499.0" layoutY="428.0" mnemonicParsing="false" onAction="#handleStartStopButtonAction" prefHeight="46.0" prefWidth="104.0" text="Press me!" />
+      <Label fx:id="difficultyLabel" layoutX="37.0" layoutY="27.0" text="Difficulty: " textFill="#1a00ff" />
+      <Label fx:id="colorLabel" layoutX="36.0" layoutY="60.0" text="Color:" textFill="#1a00ff" />
+      <Label fx:id="roundDurationLabel" layoutX="37.0" layoutY="95.0" text="Round Duration:" textFill="#1a00ff" />
+      <Label fx:id="scoreLabel" layoutX="31.0" layoutY="300.0" text="Score:" textFill="#1a00ff" />
     </children>
 </AnchorPane>

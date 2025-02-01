@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Group fx:id="asset" layoutX="378.0" layoutY="324.0" AnchorPane.leftAnchor="310.0" AnchorPane.topAnchor="14.0">
+            <children>
+            <ImageView fitHeight="684.0" fitWidth="452.0" layoutX="-68.0" layoutY="-310.0" preserveRatio="true">
+                        <image>
+                            <Image url="@../../cards/A/A19c.png" />
+                        </image>
+                    </ImageView>
+                    <GridPane fx:id="cardGridPane" gridLinesVisible="true" layoutX="38.0" layoutY="-212.0">
+                        <children>
+                            
+                            <!-- <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="0" GridPane.rowIndex="0" /> -->
+                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                            <!-- <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="2" GridPane.rowIndex="0" /> -->
+                            <!-- <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="3" GridPane.rowIndex="0" /> -->
+
+                            <!-- <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="0" GridPane.rowIndex="1" /> -->
+                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                            <!-- <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="2" GridPane.rowIndex="1" /> -->
+                            <!-- <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="3" GridPane.rowIndex="1" /> -->
+
+                            <!-- <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="0" GridPane.rowIndex="2" /> -->
+                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="1" GridPane.rowIndex="2" />                            
+                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                            <!-- <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="3" GridPane.rowIndex="2" /> -->
+
+                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                            <!-- <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="3" GridPane.rowIndex="3" /> -->
+
+                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        </children>
+                    <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                  <RowConstraints />
+                    </rowConstraints>
+                    </GridPane>
+            <ImageView fitHeight="260.0" fitWidth="130.0" layoutX="449.0" layoutY="-285.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../../pieces/green/G_Giraffee.png" />
+                    </image>
+                </ImageView>
+            <ImageView fitHeight="260.0" fitWidth="130.0" layoutX="449.0" layoutY="-14.0" preserveRatio="true">
+                        <image>
+                            <Image url="@../../pieces/green/G_Monkey.png" />
+                        </image>
+                    </ImageView>
+            </children>
+        </Group>
+    </children>
+</AnchorPane>

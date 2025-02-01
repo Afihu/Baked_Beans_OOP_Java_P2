@@ -128,7 +128,8 @@ public class InitCoreMechanics {
 		return hitBoxCoordinates; //mask;
 	}
 	
-	public static Coords[][] generatePieceHitBoxLive(Image piece, Rectangle cell, double pieceXLive, double pieceYLive) {
+	public static Coords[][] generatePieceHitBoxLive(ImageView pieceView, Rectangle cell, double pieceXLive, double pieceYLive) {
+		Image piece = pieceView.getImage();
         int pieceHeight = (int)piece.getHeight();
         int pieceWidth = (int)piece.getWidth() - 10; // account for tiny inconsistencies in image sizes
         int cellWidth = (int)cell.getWidth();

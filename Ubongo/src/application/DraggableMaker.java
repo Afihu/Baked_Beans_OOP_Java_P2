@@ -55,6 +55,15 @@ public class DraggableMaker {
     	
     	
     	
+    	//double-click-to-spin method
+    	pieceView.setOnMouseClicked(mouseEvent -> {
+    		Rectangle gridCell = (Rectangle)InitCoreMechanics.getNodeFromGridPane(cardGrid, 0, 0);
+            if(mouseEvent.getClickCount() == 2) {
+            	pieceView.setRotate(pieceView.getRotate() + 90);
+            }
+            Coords[][] pieceMask = InitCoreMechanics.generatePieceHitBoxLive(pieceView, gridCell, pieceView.getLayoutX(), pieceView.getLayoutY());
+        });
+    	
     	pieceView.setOnMouseDragged(mouseEvent -> {
     		
 //    		pieceView.setLayoutX(mouseEvent.getSceneX() - mouseAnchorX);
@@ -80,7 +89,7 @@ public class DraggableMaker {
     	    System.out.println("Position: " + pieceCoords.x + ", " + pieceCoords.y + " "); //for debugging
 			
     	    //Generate piece segment coordinates
-			Coords[][] pieceMask = InitCoreMechanics.generatePieceHitBoxLive(pieceImage, sampleCell, pieceX, pieceY);
+			Coords[][] pieceMask = InitCoreMechanics.generatePieceHitBoxLive(pieceView, sampleCell, pieceX, pieceY);
 //			System.out.println("Piece Mask: ");
 //			for(int i = 0; i < (int)pieceImage.getHeight()/sampleCell.getHeight(); i++) {
 //				System.out.println();
