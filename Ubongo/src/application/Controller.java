@@ -235,18 +235,18 @@ public class Controller implements Initializable{
 	}
 	
 	public void SingleConfigScreen(ActionEvent e) throws IOException{
-	currentScreen = "TestSingleConfig.fxml";
-	storeCurrentScreen(currentScreen);
-	System.out.println("Navigating to TestSingleConfig.fxml");
-	Parent root = FXMLLoader.load(getClass().getResource("/application/TestSingleConfig.fxml"));
-	stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-	scene = new Scene(root);
-	scene.getStylesheets().add(cssString);
-	stage.setScene(scene);
-	stage.setResizable(false);
-	stage.show();
-	System.out.println("TestSingleplayer Configurations Opened");
-}
+		currentScreen = "TestSingleConfig.fxml";
+		storeCurrentScreen(currentScreen);
+		System.out.println("Navigating to TestSingleConfig.fxml");
+		Parent root = FXMLLoader.load(getClass().getResource("/application/TestSingleConfig.fxml"));
+		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		scene.getStylesheets().add(cssString);
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
+		System.out.println("TestSingleplayer Configurations Opened");
+	}
 
 
 	public void DifficultySetting(ActionEvent e) throws IOException{
