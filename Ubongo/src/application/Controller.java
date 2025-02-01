@@ -193,9 +193,9 @@ public class Controller implements Initializable{
 	}
 	
 	public void StartGame(ActionEvent e) throws IOException {
-		currentScreen = "GameSetup.fxml";
+		currentScreen = "GameModeSelection.fxml";
 		storeCurrentScreen(currentScreen);
-		Parent root = FXMLLoader.load(getClass().getResource("/application/GameSetup.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/application/GameModeSelection.fxml"));
 		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		scene.getStylesheets().add(cssString);
