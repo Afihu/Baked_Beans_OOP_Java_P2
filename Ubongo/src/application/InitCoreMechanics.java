@@ -16,19 +16,6 @@ import javafx.scene.shape.Rectangle;
 
 public class InitCoreMechanics {
 	
-	public static void highlightCells(List<Rectangle> hoveredCells) {
-	    for (Rectangle cell : hoveredCells) {
-	    	cell.setOpacity(6);
-	        cell.setFill(Color.YELLOW);
-	    }
-	}
-	
-	public static void clearHighlights(List<Rectangle> lastHoveredCells) {
-	    for (Rectangle cell : lastHoveredCells) {
-	        cell.setFill(Color.TRANSPARENT); // Reset to original color
-	    }
-	}
-	
 	public static Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
 	    for (Node node : gridPane.getChildren()) {
 	    	int nodeRow, nodeCol;
@@ -46,50 +33,38 @@ public class InitCoreMechanics {
 	    return null;
 	}
 	
-	public static boolean isWithinGridBounds(double pieceX, double pieceY, GridPane cardGrid) {
+	public static boolean isWithinGridBounds(Coords pieceCoords, GridPane cardGrid) {
 		Bounds bounds = cardGrid.localToScene(cardGrid.getBoundsInLocal());
 	    double gridMinX = bounds.getMinX();
 	    double gridMinY = bounds.getMinY();
 	    double gridMaxX = gridMinX + cardGrid.getWidth();
 	    double gridMaxY = gridMinY + cardGrid.getHeight();
+	    
+	    System.out.println("pieceCoords: " + "( " + pieceCoords.x + ", " + pieceCoords.y + ") ");
+	    System.out.println("gridCoords: " + "( " + gridMinX + ", " + gridMinY + ") ");
 
-	    return pieceX >= gridMinX && pieceX <= gridMaxX &&
-	           pieceY >= gridMinY && pieceY <= gridMaxY;
+	    return pieceCoords.x >= gridMinX && pieceCoords.x <= gridMaxX &&
+	           pieceCoords.y >= gridMinY && pieceCoords.y <= gridMaxY;
 	}
 	
-	public static Rectangle isWithinCellBounds(Coords pieceCoordinate, Coords[][] gridCellCoordinates, GridPane cardGrid, Rectangle cell) {
-		Rectangle currentCell;
-		
+	//test if a piece segment coordinate is within cell bounds
+	public static boolean isWithinCellBounds(Coords pieceCoordinate, Coords currentCellCoords, Rectangle cell) {
 		double cellWidth = cell.getWidth();
 	    double cellHeight = cell.getHeight();
 		
-		int gridColCount = cardGrid.getColumnCount();
-		int gridRowCount = cardGrid.getRowCount();
+	    Coords gridCellUpperLeftCorner = new Coords(currentCellCoords.x, currentCellCoords.y); 
+	    Coords gridCellUpperRightCorner = new Coords(currentCellCoords.x + cellWidth, currentCellCoords.y);   	
+	    Coords gridCellLowerLeftCorner = new Coords(currentCellCoords.x, currentCellCoords.y + cellHeight);
+	    Coords gridCellLowerRightCorner = new Coords(gridCellUpperRightCorner.x, gridCellLowerLeftCorner.y);
 		
-		for(int i = 0; i < gridRowCount; i++) {
-			for(int j = 0; j < gridColCount; j++) {
-				Coords currentCellCoords = gridCellCoordinates[i][j];
-				
-				Coords gridCellUpperLeftCorner = new Coords(currentCellCoords.x, currentCellCoords.y); 
-			    Coords gridCellUpperRightCorner = new Coords(currentCellCoords.x + cellWidth, currentCellCoords.y);
-			    double gridCellLowerLeftCornerX = currentCellCoords.x;
-			    double gridCellLowerLeftCornerY = currentCellCoords.y + cellHeight;    	
-			    Coords gridCellLowerLeftCorner = new Coords(gridCellLowerLeftCornerX, gridCellLowerLeftCornerY);
-			    double gridCellLowerRightCornerX = gridCellUpperRightCorner.x;
-			    double gridCellLowerRightCornerY = gridCellLowerLeftCornerY; 
-			    Coords gridCellLowerRightCorner = new Coords(gridCellLowerRightCornerX, gridCellLowerRightCornerY);
-				
-			    if ((pieceCoordinate.x > currentCellCoords.x && pieceCoordinate.y > gridCellUpperLeftCorner.y)
-				&& (pieceCoordinate.x > gridCellLowerLeftCorner.x && pieceCoordinate.y < gridCellLowerLeftCorner.y)
-				&& (pieceCoordinate.x > gridCellUpperRightCorner.x && pieceCoordinate.y > gridCellUpperRightCorner.y)
-				&& (pieceCoordinate.x < gridCellLowerRightCorner.x && pieceCoordinate.y < gridCellUpperRightCorner.y)){
-			    	currentCell = (Rectangle)InitCoreMechanics.getNodeFromGridPane(cardGrid, j, i);
-			    	return currentCell;
-			    }
-			}
-		}
+	    if (pieceCoordinate.x >= gridCellUpperLeftCorner.x &&
+	    	pieceCoordinate.x <= gridCellLowerRightCorner.x &&
+	    	pieceCoordinate.y >= gridCellUpperLeftCorner.y &&
+	    	pieceCoordinate.y <= gridCellLowerRightCorner.y){
+	    		return true;
+	    }
 		
-		return null;
+		return false;
 	}
 	
 	
@@ -111,7 +86,7 @@ public class InitCoreMechanics {
 	    double gridCellLowerRightCornerY = gridCellLowerLeftCornerY; 
 	    Coords gridCellLowerRightCorner = new Coords(gridCellLowerRightCornerX, gridCellLowerRightCornerY);
 	    
-	    if(isWithinGridBounds(gridCellUpperLeftCorner.x, gridCellUpperLeftCorner.y, cardGrid))
+	    if(isWithinGridBounds(gridCellUpperLeftCorner, cardGrid))
 	    	
 		    if ((currentPieceCoords.x > gridCellUpperLeftCorner.x && currentPieceCoords.y > gridCellUpperLeftCorner.y)
 		    && (currentPieceCoords.x > gridCellLowerLeftCorner.x && currentPieceCoords.y < gridCellLowerLeftCorner.y)
@@ -160,15 +135,26 @@ public class InitCoreMechanics {
         int cellHeight = (int)cell.getHeight();
         
         //generate an array of hit box coordinates (of the center)
-        Coords[][] hitBoxCoordinates = new Coords[pieceHeight / cellHeight][pieceWidth / cellWidth];
-        Coords.InitCoordsArray2d(hitBoxCoordinates, (int) pieceHeight / cellHeight, (int) pieceWidth / cellWidth);
+        Coords[][] hitBoxCoordinates = new Coords[pieceWidth / cellWidth][pieceHeight / cellHeight];
+        Coords.InitCoordsArray2d(hitBoxCoordinates, (int) pieceWidth / cellWidth, (int) pieceHeight / cellHeight);
+
+//        System.out.println("array width: " + pieceWidth/cellWidth);
+//        System.out.println("array height: " + pieceHeight/cellHeight);
         
         PixelReader pReader = piece.getPixelReader();
         
+        System.out.println("pieceMask altered: ");
         for(int height = cellHeight / 2; height < pieceHeight; height = height + cellHeight) {
-            for (int width = cellWidth / 2; width < pieceWidth; width = width + cellWidth) {
+        	System.out.println();
+        	for (int width = cellWidth / 2; width < pieceWidth; width = width + cellWidth) {
                 if(pReader.getColor(width, height).getOpacity() > 0.1) {
-                    hitBoxCoordinates[height / cellHeight][width / cellWidth] = new Coords(pieceXLive + width, pieceYLive + height);
+                    hitBoxCoordinates[width / cellWidth][height / cellHeight] = new Coords(pieceXLive + width, pieceYLive + height);
+//                    System.out.println("width index: " + width/cellWidth);
+//                    System.out.println("height index: " + height/cellHeight);
+                    System.out.print(" (" + hitBoxCoordinates[width/cellWidth][height/cellHeight].x + ", " + hitBoxCoordinates[width/cellWidth][height/cellHeight].y+ ") ");
+                } else {
+//                	System.out.print(-1.0);
+//                	System.out.println();
                 }
             }
         }

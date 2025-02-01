@@ -4,7 +4,11 @@
 
 package application;
 
+import org.json.JSONObject;
 import javafx.scene.paint.Color;
+
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.geometry.Bounds;
@@ -18,12 +22,21 @@ public class DraggableMaker {
 
     private double mouseAnchorX;
     private double mouseAnchorY; 
+    
+    public List<Rectangle> highlightedRectangles;
 
     public void makeDraggable(Node node){
 
         node.setOnMousePressed(mouseEvent -> {
             mouseAnchorX = mouseEvent.getX();
             mouseAnchorY = mouseEvent.getY();
+            
+//            Coords mousePressCoords = new Coords(mouseEvent.getSceneX(), mouseEvent.getSceneY());
+//            System.out.println("Mouse: " + mousePressCoords.x + " " + mousePressCoords.y);
+//            Bounds bounds = node.localToScene(node.getBoundsInLocal());
+//            Coords cellCoords = new Coords(bounds.getMinX(), bounds.getMinY());
+//            System.out.println("Cell: " + cellCoords.x + " " + cellCoords.y);
+//            System.out.println(InitCoreMechanics.isWithinCellBounds(mousePressCoords, cellCoords, (Rectangle)node));
         });
         
         node.setOnMouseDragged(mouseEvent -> {
@@ -32,57 +45,128 @@ public class DraggableMaker {
         });
     }
     
-    public void makeHoverable(ImageView pieceView, Image pieceImage, GridPane cardGrid, Rectangle gridCell, boolean[][] gridMask) {
+    public void makeHoverable(ImageView pieceView, GridPane cardGrid) {
+    	JSONObject jsonObject = new JSONObject();
     	
     	pieceView.setOnMousePressed(mouseEvent -> {
             mouseAnchorX = mouseEvent.getX();
             mouseAnchorY = mouseEvent.getY();
         });
     	
+    	
+    	
     	pieceView.setOnMouseDragged(mouseEvent -> {
     		
-    		pieceView.setLayoutX(mouseEvent.getSceneX() - mouseAnchorX);
-    		pieceView.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY);
+//    		pieceView.setLayoutX(mouseEvent.getSceneX() - mouseAnchorX);
+//    		pieceView.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY);
     		
+    		double newX = mouseEvent.getSceneX() - mouseAnchorX;
+    		double newY = mouseEvent.getSceneY() - mouseAnchorY;
+    		
+    		newX = Math.max(0, Math.min(newX, 1280 - pieceView.getFitWidth()));
+            newY = Math.max(0, Math.min(newY, 720 - pieceView.getFitHeight()));
+            pieceView.setLayoutX(newX); 
+            pieceView.setLayoutY(newY);
+    		
+    		List<Rectangle> collidedRectangles = new ArrayList<Rectangle>(); // store rectangles collided
+    		
+    		Rectangle sampleCell = (Rectangle)InitCoreMechanics.getNodeFromGridPane(cardGrid, 0, 0);
+    		Image pieceImage = pieceView.getImage();
+    		
+    		//Take piece upper left corner coordinates
     		double pieceX = pieceView.getLayoutX();
     	    double pieceY = pieceView.getLayoutY();
     	    Coords pieceCoords = new Coords(pieceX, pieceY);
-    	    
-    	    System.out.print("Position: " + pieceX + ", " + pieceY + " ");
-    	    Coords[][] pieceMask = InitCoreMechanics.generatePieceHitBoxLive(pieceImage, gridCell,pieceX,pieceY);
-    	    
-    	    for(int i = 0; i < 2; i++) {
+    	    System.out.println("Position: " + pieceCoords.x + ", " + pieceCoords.y + " "); //for debugging
+			
+    	    //Generate piece segment coordinates
+			Coords[][] pieceMask = InitCoreMechanics.generatePieceHitBoxLive(pieceImage, sampleCell, pieceX, pieceY);
+//			System.out.println("Piece Mask: ");
+//			for(int i = 0; i < (int)pieceImage.getHeight()/sampleCell.getHeight(); i++) {
+//				System.out.println();
+//				for(int j = 0; j < (int)pieceImage.getWidth()/sampleCell.getWidth(); j++) {
+//					System.out.print(pieceMask[i][j].x + ", " + pieceMask[i][j].x);
+//				}
+//			}
+			
+			//Take the map of the gridPane to find cell positions
+			boolean[][] gridMap = GridHandler.makeGridPaneMap(cardGrid);
+			for(int i = 0; i < cardGrid.getRowCount(); i++) {
 				System.out.println();
-				for(int j = 0; j < 3; j++) {
-					System.out.print(pieceMask[i][j].x + " " + pieceMask[i][j].y + " ");
+				for(int j = 0; j < cardGrid.getColumnCount(); j++) {
+					System.out.print(gridMap[i][j] + " " + gridMap[i][j] + " !!!!!!!!!!!!!!!!!!!!");
 				}
 			}
+			
+			//Use gridMask to find cell coordinates
+			Coords[][] gridCellMask = GridHandler.takeGridCoords(cardGrid, gridMap);
+			System.out.println();
+			System.out.println("grid Mask: ");
+			for(int i = 0; i < cardGrid.getRowCount(); i++) {
+				System.out.println();
+	    		for(int j = 0; j < cardGrid.getColumnCount(); j++) {
+//	    				Rectangle currentCell = (Rectangle)InitCoreMechanics.getNodeFromGridPane(cardGridPane, j, i);
+//	    				Bounds bounds = currentCell.localToScene(currentCell.getBoundsInLocal());
+	    				
+//	    				currentCell.setOpacity(1.0);
+//	    				currentCell.setFill(Color.AQUA); 
+	    				System.out.print("( " + gridCellMask[i][j].x + ", " + gridCellMask[i][j].y + ")   ");
+	    				
+	    			
+	    		}
+	    	}
+			
+			
+			//get left-most cell coordinates
+    	    Bounds bounds = sampleCell.localToScene(sampleCell.getBoundsInLocal());
+    	    Coords sampleCellCoords = new Coords(bounds.getMinX(), bounds.getMinY());
+    	    System.out.println("Cell position: " + sampleCellCoords.x + ", " + sampleCellCoords.y);
     	    
-    	    Bounds bounds = gridCell.localToScene(gridCell.getBoundsInLocal());
-    	    double gridCellX = bounds.getMinX();
-    	    double gridCellY = bounds.getMinY();
-    	    System.out.println("Cell position: " + gridCellX + ", " + gridCellY);
+    	    //Make cells in contact with piece lighten up:
+    	    int pieceMaskHeight = (int)(pieceView.getFitHeight() / sampleCell.getHeight());
+    	    int pieceMaskWidth = (int)(pieceView.getFitWidth() / sampleCell.getWidth());
     	    
-    	    ////////////////////////Test out isWithinCellBounds(unfinished)/////////////////////////////////////////////////////////////////////////////////
-    	    ///null error, will fix later
-//    	    System.out.println("current cell =" + InitCoreMechanics.isWithinCellBounds(pieceCoords, null, cardGrid, gridCell));
+    	    for(int i = 0; i < pieceMaskWidth; i++) {
+    	    	for(int j = 0; j < pieceMaskHeight; j++) {
+    	    		if(!InitCoreMechanics.isWithinGridBounds(pieceMask[i][j], cardGrid)) {
+    	    			continue;
+    	    		}
+    	    		pieceView.toFront();
+    	    		for(int row = 0; row < cardGrid.getRowCount(); row++) {
+    	    			for(int col = 0; col < cardGrid.getColumnCount(); col++) {
+    	    				Rectangle thisRectangle = (Rectangle)InitCoreMechanics.getNodeFromGridPane(cardGrid, col, row);
+    	    				if(InitCoreMechanics.isWithinCellBounds(pieceMask[i][j], gridCellMask[row][col], sampleCell)) 
+    	    				{
+    	    					collidedRectangles.add(thisRectangle);
+    	    					highlightedRectangles = collidedRectangles;
+    	    					GridHandler.cellHighlighter(collidedRectangles, Color.AQUA);
+    	    				}
+    	    			}
+    	    		}
+    	    	}
+    	    }
     	    
-    	    //test movement:
-    	    double pieceULSectionX = pieceX + gridCell.getWidth() / 2;
-    	    double pieceULSectionY = pieceY + gridCell.getHeight() / 2;
-    	    
-    	    double gridCellWidth = gridCell.getWidth();
-    	    double gridCellHeight = gridCell.getHeight();
-		   
-    	    
-    	    if((pieceULSectionX > gridCellX && pieceULSectionY > gridCellY)) {
-    	    	gridCell.setOpacity(0.5);
-    	    	gridCell.setFill(Color.rgb(255, 165, 0));
-    	    } else gridCell.setOpacity(0);
-		   
-		    
-		 // Clear previous highlights
-//		    InitCoreMechanics.clearHighlights(lastHoveredCells);
+//    	    if(collidedRectangles.isEmpty()) {
+//    	    	System.out.println("No collision");
+//    	    } else {
+//    	    	System.out.println("Collided cells: ");
+//    	    	for (int i = 0; i < collidedRectangles.size(); i++) {
+//    	    		System.out.print(collidedRectangles.get(i) + "; ");
+////    	    		collidedRectangles.get(i).setFill(Color.AQUA);
+//    	    	}
+//    	    	System.out.println();
+//    	    }
+//		   
 		});
+    	
+    	pieceView.setOnMouseReleased(MouseEvent -> {
+    		double pieceWidth = pieceView.getFitWidth();
+    		double pieceHeight = pieceView.getFitHeight();
+    		
+    		Coords pieceCoords = new Coords(pieceView.getLayoutX() + pieceWidth/2, pieceView.getLayoutY() + pieceHeight/2);
+    		if(!InitCoreMechanics.isWithinGridBounds(pieceCoords, cardGrid)) GridHandler.clearCellHighlights(); 
+    		else GridHandler.cellHighlighter(highlightedRectangles, Color.BLACK);
+    		System.out.print(InitCoreMechanics.isWithinGridBounds(pieceCoords, cardGrid));
+    	});
     }
 }

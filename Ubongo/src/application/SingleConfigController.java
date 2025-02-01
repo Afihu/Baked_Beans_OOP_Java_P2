@@ -16,6 +16,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
+import java.awt.datatransfer.SystemFlavorMap;
 import java.io.File;
 import java.io.IOException;
 import javafx.collections.ObservableList;
@@ -126,8 +127,8 @@ public class SingleConfigController implements Initializable {
 	@FXML private GridPane cardGrid;
 	DraggableMaker draggableMaker = new DraggableMaker();
 	private Coords[][] pieceMask;
-	private boolean[][] gridMask;
-	private Coords[][] gridCellCoords;
+	private boolean[][] gridMap;
+	private Coords[][] gridCellMask;
 	
 	private Image pieceImage = new Image(new File("res/pieces/green/G_FireFly.png").toURI().toString()); //Loading image to create mask before attaching to imageView
 	
@@ -146,52 +147,15 @@ public class SingleConfigController implements Initializable {
 		
 		if(pieceImage != null && testCell != null && cardGrid != null) {
 			
-			//Generate piece mask and grid mask
-			pieceMask = InitCoreMechanics.generatePieceHitBox(pieceImage, testCell);
-			
-			//Take the map of the gridPane to find cell positions
-			gridMask = GridHandler.makeGridPaneMap(cardGrid);
-			
-			//Use gridMask to find cell coordinates
-			gridCellCoords = GridHandler.takeGridCoords(cardGrid, gridMask);
-			
-//			//debug gridMap
-//			for(int i = 0; i < cardGrid.getRowCount(); i++) {
-//				System.out.println();
-//				for(int j = 0; j < cardGrid.getColumnCount(); j++) {
-//					System.out.print(gridMask[i][j] + " ");
-//				}
-//			}
-			
-			//print testing for debugging
-			for(int i = 0; i < 2; i++) {
-				System.out.println();
-				for(int j = 0; j < 3; j++) {
-					System.out.print(pieceMask[i][j].x + " " + pieceMask[i][j].y + " ");
-				}
-			}
-			
-			//debug gridCellCoordinates
-			System.out.println();
-			System.out.println("debug gridCellCoords: ");
-			System.out.println("grid cells' coordinates: ");
-			for(int i = 0; i < cardGrid.getRowCount(); i++) {
-				System.out.println();
-				for(int j = 0; j < cardGrid.getColumnCount(); j++) {
-					System.out.print(" (" + gridCellCoords[i][j].x + ", " + gridCellCoords[i][j].y + ") ");
-				}
-			}
-		
-			
 			testPiece.setFitHeight(pieceImage.getHeight() - 20); testPiece.setFitWidth(pieceImage.getWidth() - 20); //account for image size and imageView size inconsistency
 			testPiece.setPreserveRatio(true);
 			testPiece.setOpacity(1.0);
 			testPiece.setImage(pieceImage);
 			
 			//apply hover effect (incomplete)
-			draggableMaker.makeHoverable(testPiece, pieceImage, cardGrid, testCell, gridMask);
-			
-			
+			if(testPiece != null && cardGrid != null) {
+				draggableMaker.makeHoverable(testPiece, cardGrid);
+			} else System.out.println("Error: testPiece or cardGrid null");
 			
 		} else System.out.println("Error: pieceImage, gridpane or Cell can't load");
 		

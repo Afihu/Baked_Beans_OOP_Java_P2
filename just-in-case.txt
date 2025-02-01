@@ -31,3 +31,41 @@
 		stage.show();
 		System.out.println("Singleplayer mode initiated");
 	}
+
+
+
+			//for debugging
+//			draggableMaker.makeDraggable(testCell);
+			
+//			//debug gridMap
+//			for(int i = 0; i < cardGrid.getRowCount(); i++) {
+//				System.out.println();
+//				for(int j = 0; j < cardGrid.getColumnCount(); j++) {
+//					System.out.print(gridMask[i][j] + " ");
+//				}
+//			}
+			
+//			//Debug pieceMask
+//			for(int i = 0; i < 2; i++) {
+//				System.out.println();
+//				for(int j = 0; j < 3; j++) {
+//					System.out.print(pieceMask[i][j].x + " " + pieceMask[i][j].y + " ");
+//				}
+//			}
+//			
+//			//debug gridCellCoordinates
+//			System.out.println("debug gridCellCoords: ");
+//			System.out.println("grid cells' coordinates: ");
+//			for(int i = 0; i < cardGrid.getRowCount(); i++) {
+//				System.out.println();
+//				for(int j = 0; j < cardGrid.getColumnCount(); j++) {
+//					System.out.print(" (" + gridCellMask[i][j].x + ", " + gridCellMask[i][j].y + ") ");
+//				}
+//			}
+//    	    //testing piece hit box consistency
+//    	    for(int i = 0; i < 2; i++) {
+//				System.out.println();
+//				for(int j = 0; j < 3; j++) {
+//					System.out.print(pieceMask[i][j].x + " " + pieceMask[i][j].y + " ");
+//				}
+//			}
