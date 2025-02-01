@@ -4,6 +4,7 @@ module Ubongo {
 	requires java.desktop;
 	requires javafx.graphics;
 	requires javafx.media;
+	requires json;
 	
 	opens application to javafx.graphics, javafx.fxml;
 }
