@@ -4,8 +4,8 @@
 		"B_Zebra": "res/pieces/blue/B_Zebra"
 	},
 	"A2.fxml": {
-		"B_Zebra": "res/pieces/blue/B_Zebra",
-		"B_Toucan": "res/pieces/blue/B_Toucan"
+		"B_Toucan": "res/pieces/blue/B_Toucan",
+		"B_Zebra": "res/pieces/blue/B_Zebra"		
 	},
 	"A3.fxml": {
 		"B_Crocodile": "res/pieces/blue/B_Crocodile",
@@ -33,8 +33,8 @@
 	},
 
 	"B1.fxml": {
-		"B_Crocodile": "res/pieces/blue/B_Crocodile",
 		"B_Squirrel": "res/pieces/blue/B_Squirrel",
+		"B_Crocodile": "res/pieces/blue/B_Crocodile",
 		"B_Lizard": "res/pieces/blue/B_Lizard"
 	},
 	"B2.fxml": {
@@ -48,13 +48,13 @@
 		"B_Crocodile": "res/pieces/blue/B_Crocodile"
 	},	
 	"B4.fxml": {
-		"B_Lizard": "res/pieces/blue/B_Lizard",
 		"B_Leopard": "res/pieces/blue/B_Leopard",
-		"B_Zebra": "res/pieces/blue/B_Zebra"
+		"B_Zebra": "res/pieces/blue/B_Zebra",
+		"B_Lizard": "res/pieces/blue/B_Lizard"
 	},	
 	"B5.fxml": {
-		"B_Crocodile": "res/pieces/blue/B_Crocodile",
 		"B_Squirrel": "res/pieces/blue/B_Squirrel",
+		"B_Crocodile": "res/pieces/blue/B_Crocodile",
 		"B_Zebra": "res/pieces/blue/B_Zebra"
 	},	
 	"B6.fxml": {
@@ -63,8 +63,8 @@
 		"B_Toucan": "res/pieces/blue/B_Toucan"
 	},
 	"B7.fxml": {
-		"B_Toucan": "res/pieces/blue/B_Toucan",
 		"B_Squirrel": "res/pieces/blue/B_Squirrel",
+		"B_Toucan": "res/pieces/blue/B_Toucan",
 		"B_Lizard": "res/pieces/blue/B_Lizard"
 	},	
 	"B8.fxml": {
@@ -82,8 +82,8 @@
 		"P_Snake": "res/pieces/pink/P_Snake"
 	},
 	"A11.fxml": {
-		"P_BigBird": "res/pieces/pink/P_BigBird",
-		"P_Monkey": "res/pieces/pink/P_Monkey"
+		"P_Monkey": "res/pieces/pink/P_Monkey",
+		"P_BigBird": "res/pieces/pink/P_BigBird"		
 	},
 	"A12.fxml": {
 		"P_Snake": "res/pieces/pink/P_Snake",
@@ -98,38 +98,38 @@
 		"P_Toucan": "res/pieces/pink/P_Toucan"
 	},
 	"A15.fxml": {
-		"P_Monkey": "res/pieces/pink/P_Monkey",
-		"P_Giraffee": "res/pieces/pink/P_Giraffee"
+		"P_Giraffee": "res/pieces/pink/P_Giraffee",
+		"P_Monkey": "res/pieces/pink/P_Monkey"		
 	},
 	"A16.fxml": {
-		"P_BigBird": "res/pieces/pink/P_BigBird",
-		"P_Giraffee": "res/pieces/pink/P_Giraffee"
+		"P_Giraffee": "res/pieces/pink/P_Giraffee",
+		"P_BigBird": "res/pieces/pink/P_BigBird"		
 	},
 	
 	"B9.fxml": {
+		"P_Squirrel": "res/pieces/pink/P_Squirrel",
 		"P_Giraffee": "res/pieces/pink/P_Giraffee",
-		"P_BigBird": "res/pieces/pink/P_BigBird",
-		"P_Squirrel": "res/pieces/pink/P_Squirrel"
+		"P_BigBird": "res/pieces/pink/P_BigBird"		
 	},
 	"B10.fxml": {
-		"P_BigBird": "res/pieces/pink/P_BigBird",
 		"P_Leopard": "res/pieces/pink/P_Leopard", 
-		"P_Toucan": "res/pieces/pink/P_Toucan"
+		"P_Toucan": "res/pieces/pink/P_Toucan",
+		"P_BigBird": "res/pieces/pink/P_BigBird"
 	},
 	"B11.fxml": {
+		"P_Squirrel": "res/pieces/pink/P_Squirrel",
 		"P_Giraffee": "res/pieces/pink/P_Giraffee",
-		"P_Monkey": "res/pieces/pink/P_Monkey",
-		"P_Squirrel": "res/pieces/pink/P_Squirrel"
+		"P_Monkey": "res/pieces/pink/P_Monkey"
 	},
 	"B12.fxml": {
 		"P_Snake": "res/pieces/pink/P_Snake",
-		"P_Monkey": "res/pieces/pink/P_Monkey",
-		"P_Leopard": "res/pieces/pink/P_Leopard"
+		"P_Leopard": "res/pieces/pink/P_Leopard",
+		"P_Monkey": "res/pieces/pink/P_Monkey"
 	},
 	"B13.fxml": {
 		"P_Snake": "res/pieces/pink/P_Snake",
-		"P_Toucan": "res/pieces/pink/P_Toucan",
-		"P_Leopard": "res/pieces/pink/P_Leopard"
+		"P_Leopard": "res/pieces/pink/P_Leopard",
+		"P_Toucan": "res/pieces/pink/P_Toucan"
 	},
 	"B14.fxml": {
 		"P_Monkey": "res/pieces/pink/P_Monkey",
@@ -138,8 +138,8 @@
 	},
 	"B15.fxml": {
 		"P_Monkey": "res/pieces/pink/P_Monkey",
-		"P_Toucan": "res/pieces/pink/P_Toucan",
-		"P_Squirrel": "res/pieces/pink/P_Squirrel"
+		"P_Squirrel": "res/pieces/pink/P_Squirrel",
+		"P_Toucan": "res/pieces/pink/P_Toucan"		
 	},
 	"B16.fxml": {
 		"P_Snake": "res/pieces/pink/P_Snake",
@@ -152,8 +152,8 @@
 		"G_Lion": "res/pieces/green/G_Lion"
 	},
 	"A18.fxml": {
-		"G_Lion": "res/pieces/green/G_Lion",
-		"G_Crocodile": "res/pieces/green/G_Crocodile"
+		"G_Crocodile": "res/pieces/green/G_Crocodile",
+		"G_Lion": "res/pieces/green/G_Lion"
 	},
 	"A19.fxml": {
 		"G_Giraffee": "res/pieces/green/G_Giraffee",
@@ -164,16 +164,16 @@
 		"G_Firefly": "res/pieces/green/G_Firefly"
 	},
 	"A21.fxml": {
-		"G_Firefly": "res/pieces/green/G_Firefly",
-		"G_Lion": "res/pieces/green/G_Lion"
+		"G_Lion": "res/pieces/green/G_Lion",
+		"G_Firefly": "res/pieces/green/G_Firefly"		
 	},
 	"A22.fxml": {
 		"G_Crocodile": "res/pieces/green/G_Crocodile",
 		"G_Firefly": "res/pieces/green/G_Firefly"
 	},
 	"A23.fxml": {
-		"G_Lion": "res/pieces/green/G_Lion",
-		"G_Monkey": "res/pieces/green/G_Monkey"
+		"G_Monkey": "res/pieces/green/G_Monkey",
+		"G_Lion": "res/pieces/green/G_Lion"
 	},
 	"A24.fxml": {
 		"G_Giraffee": "res/pieces/green/G_Giraffee",
@@ -187,8 +187,8 @@
 	},
 	"B18.fxml": {
 		"G_Giraffee": "res/pieces/green/G_Giraffee",
-		"G_Lion": "res/pieces/green/G_Lion",
-		"G_Leopard": "res/pieces/green/G_Leopard"
+		"G_Leopard": "res/pieces/green/G_Leopard",
+		"G_Lion": "res/pieces/green/G_Lion"
 	},
 	"B19.fxml": {
 		"G_Lion": "res/pieces/green/G_Lion",
@@ -212,12 +212,12 @@
 	},
 	"B23.fxml": {
 		"G_Firefly": "res/pieces/green/G_Firefly",
-		"G_Crocodile": "res/pieces/green/G_Crocodile",
-		"G_Squirrel": "res/pieces/green/G_Squirrel"
+		"G_Squirrel": "res/pieces/green/G_Squirrel",
+		"G_Crocodile": "res/pieces/green/G_Crocodile"		
 	},
 	"B24.fxml": {
-		"G_Monkey": "res/pieces/green/G_Monkey",
 		"G_Lion": "res/pieces/green/G_Lion",
+		"G_Monkey": "res/pieces/green/G_Monkey",
 		"G_Firefly": "res/pieces/green/G_Firefly"
 	},
 
@@ -226,8 +226,8 @@
 		"Y_Snake": "res/pieces/yellow/Y_Snake"
 	},
 	"A26.fxml": {
-		"Y_BigBird": "res/pieces/yellow/Y_BigBird",
-		"Y_Snake": "res/pieces/yellow/Y_Snake"
+		"Y_Snake": "res/pieces/yellow/Y_Snake",
+		"Y_BigBird": "res/pieces/yellow/Y_BigBird"		
 	},
 	"A27.fxml": {
 		"Y_BigBird": "res/pieces/yellow/Y_BigBird",
@@ -238,8 +238,8 @@
 		"Y_Lion": "res/pieces/yellow/Y_Lion"
 	},
 	"A29.fxml": {
-		"Y_Lion": "res/pieces/yellow/Y_Lion",
-		"Y_BigBird": "res/pieces/yellow/Y_BigBird"
+		"Y_BigBird": "res/pieces/yellow/Y_BigBird",
+		"Y_Lion": "res/pieces/yellow/Y_Lion"	
 	},
 	"A30.fxml": {
 		"Y_Snake": "res/pieces/yellow/Y_Snake",
@@ -250,14 +250,14 @@
 		"Y_BigBird": "res/pieces/yellow/Y_BigBird"
 	},
 	"A32.fxml": {
-		"Y_Lion": "res/pieces/yellow/Y_Lion",
-		"Y_Lizard": "res/pieces/yellow/Y_Lizard"
+		"Y_Lizard": "res/pieces/yellow/Y_Lizard",
+		"Y_Lion": "res/pieces/yellow/Y_Lion"
 	},
 
 	"B25.fxml": {
-		"Y_BigBird": "res/pieces/yellow/Y_BigBird",
+		"Y_Lizard": "res/pieces/yellow/Y_Lizard",
 		"Y_Squirrel": "res/pieces/yellow/Y_Squirrel",
-		"Y_Lizard": "res/pieces/yellow/Y_Lizard"
+		"Y_BigBird": "res/pieces/yellow/Y_BigBird"
 	},
 	"B26.fxml": {
 		"Y_Lion": "res/pieces/yellow/Y_Lion",
@@ -265,23 +265,23 @@
 		"Y_Zebra": "res/pieces/yellow/Y_Zebra"
 	},
 	"B27.fxml": {
-		"Y_Leopard": "res/pieces/yellow/Y_Leopard",
 		"Y_Snake": "res/pieces/yellow/Y_Snake",
+		"Y_Leopard": "res/pieces/yellow/Y_Leopard",
 		"Y_Zebra": "res/pieces/yellow/Y_Zebra"
 	},
 	"B28.fxml": {
-		"Y_BigBird": "res/pieces/yellow/Y_BigBird",
-		"Y_Lion": "res/pieces/yellow/Y_Lion",
-		"Y_Squirrel": "res/pieces/yellow/Y_Squirrel"
-	},
-	"B29.fxml": {
 		"Y_Lion": "res/pieces/yellow/Y_Lion",
 		"Y_Squirrel": "res/pieces/yellow/Y_Squirrel",
-		"Y_Lizard": "res/pieces/yellow/Y_Lizard"
+		"Y_BigBird": "res/pieces/yellow/Y_BigBird"
+	},
+	"B29.fxml": {
+		"Y_Lizard": "res/pieces/yellow/Y_Lizard",
+		"Y_Squirrel": "res/pieces/yellow/Y_Squirrel",
+		"Y_Lion": "res/pieces/yellow/Y_Lion"
 	},
 	"B30.fxml": {
-		"Y_Leopard": "res/pieces/yellow/Y_Leopard",
 		"Y_Snake": "res/pieces/yellow/Y_Snake",
+		"Y_Leopard": "res/pieces/yellow/Y_Leopard",
 		"Y_BigBird": "res/pieces/yellow/Y_BigBird"
 	},
 	"B31.fxml": {
@@ -290,8 +290,8 @@
 		"Y_Zebra": "res/pieces/yellow/Y_Zebra"
 	},
 	"B32.fxml": {
-		"Y_BigBird": "res/pieces/yellow/Y_BigBird",
 		"Y_Snake": "res/pieces/yellow/Y_Snake",
-		"Y_Lion": "res/pieces/yellow/Y_Lion"
+		"Y_Lion": "res/pieces/yellow/Y_Lion",
+		"Y_BigBird": "res/pieces/yellow/Y_BigBird"
 	}	
 }

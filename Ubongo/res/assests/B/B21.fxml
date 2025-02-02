@@ -70,9 +70,9 @@
                             <Image url="@../../pieces/green/G_Squirrel.png" />
                         </image>
                     </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="225.0" layoutX="532.0" layoutY="121.0" preserveRatio="true">
+            <ImageView fitHeight="300.0" fitWidth="150.0" layoutX="527.0" layoutY="41.0" preserveRatio="true">
                         <image>
-                            <Image url="@../../pieces/green/G_Firefly.png" />
+                            <Image url="@../../pieces/green/G_Monkey.png" />
                         </image>
                     </ImageView>
             </children>
