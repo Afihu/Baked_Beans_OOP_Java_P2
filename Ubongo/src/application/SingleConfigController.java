@@ -45,8 +45,8 @@ public class SingleConfigController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	// Initialize the Spinner with a range from 10 to 600 seconds and a default value of 10
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 600, 60);
+    	// Initialize the Spinner with a range from 1 to 600 seconds and a default value of 10
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 600, 60);
         timeSpinner.setValueFactory(valueFactory);
         timeSpinner.setEditable(true);
         
