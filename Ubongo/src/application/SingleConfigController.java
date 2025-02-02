@@ -112,6 +112,9 @@ public class SingleConfigController implements Initializable {
 
     private void loadGameScreen(ActionEvent event) {
         try {
+        	currentScreen = "GameModeSelection.fxml";
+    		Controller.storeCurrentScreen(currentScreen);
+    		
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/SPGameScreen.fxml")); // Correct path
             Parent root = loader.load();
 
