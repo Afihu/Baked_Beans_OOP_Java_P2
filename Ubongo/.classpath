@@ -17,7 +17,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/ADMIN/Documents/JavaFX dependencies/json-20131018.jar">
+	<classpathentry kind="lib" path="D:/json-20131018.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
