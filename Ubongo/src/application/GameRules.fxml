@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <ImageView fitHeight="711.0" fitWidth="1280.0" layoutX="-240.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../../res/images/SettingsForest.jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="27.0" prefWidth="43.0" text="&lt;&lt;" />
+      <TextArea layoutX="71.0" layoutY="54.0" prefHeight="221.0" prefWidth="715.0" text="Multiplayer:&#10;A game can have 2 to 4 players.&#10;Each players will have 5 cards randomly chosen from them.&#10;&#10;After deciding the number of players, they will start to choose the difficulty of the card and the set of pieces they want to use&#10;&#10;When the round begins, each players take turn to solve their card (which is chosen randomly)&#10;&#10;Press the start button to begin the round and press the &quot;Ubongo!&quot; button &#10;If the player can solve the puzzle and press &quot;Ubongo!&quot;in the desingated time interval, they can receive scores!&#10;As an improvise of gems (in the vanilla version) and enchacing the competitiveness, gems are now score multiplier!&#10;&#10;The player with the most point after 5 rounds wins!&#10;&#10;&#10;" />
+      <TextArea layoutX="727.0" layoutY="310.0" prefHeight="159.0" prefWidth="530.0" text="Singleplayer:&#10;This gamemode aims to provide a fast-paced, experience of Ubongo.&#10;&#10;Player choose the difficulty and color of pieces beforehand.&#10;&#10;In this game mode, player will try to achive the highest poiunt possible.&#10;&#10;&#10;" />
+   </children>
+</AnchorPane>

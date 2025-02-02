@@ -63,3 +63,7 @@ GameplayController.java -> Might not need to change, use the same GameScreenCont
 2. UsedTime <= 50% * RoundDuration => Score = RemainingTime * 2
 3. UsedTime <= 75% * RoundDuration => Score = RemainingTime * 1
 4. UsedTime >=RoundDuration => Score = 0
+
+#### [FOR DEVELOPMENT] Switching between SingleConfig and TestJson button in SingleConfig.fxml
+- If want to test drag-drop-json: Change Controller of SingleConfig.fxml to [the new one] and add fxid: InitSinglePlayer to "the testing button"
+- If want to test singleplayer: Change Controller of SingleConfig.fxml to SingleConfigController.java and remove fxid of "the testing button"

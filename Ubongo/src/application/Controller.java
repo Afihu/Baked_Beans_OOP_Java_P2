@@ -142,6 +142,20 @@ public class Controller implements Initializable{
         stage.show();
         System.out.println("Audio Settings Page Opened");
     }
+    
+    public void GameRulesPage(ActionEvent e) throws IOException {
+        currentScreen = "GameRules.fxml";
+        storeCurrentScreen(currentScreen);
+        System.out.println("Navigating to GameRules.fxml");
+        Parent root = FXMLLoader.load(getClass().getResource("/application/GameRules.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        scene.getStylesheets().add(cssString);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+        System.out.println("GameRules Page Opened");
+    }
 
 	public static boolean isPlaying(MediaPlayer mediaPlayer) {
         if (mediaPlayer != null) {
