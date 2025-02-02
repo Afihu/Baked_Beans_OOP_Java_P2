@@ -19,7 +19,7 @@
                             <Image url="@../../cards/A/A1c.png" />
                         </image>
                     </ImageView>
-                    <GridPane fx:id="cardGridPane" gridLinesVisible="true" layoutX="31.0" layoutY="75.0">
+                    <GridPane fx:id="cardGridPane" gridLinesVisible="true" layoutX="31.0" layoutY="82.0">
                         <children>
                             
                             <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="2" GridPane.rowIndex="0" />
@@ -51,7 +51,7 @@
                 <!-- </Group> -->
 
                 <!-- <Group> -->
-                    <ImageView fitHeight="255.0" fitWidth="237.0" layoutX="406.0" preserveRatio="true">
+                    <ImageView fitHeight="225.0" fitWidth="225.0" layoutX="406.0" preserveRatio="true">
                         <image>
                             <Image url="@../../pieces/blue/B_Crocodile.png" />
                         </image>
@@ -80,7 +80,7 @@
                 <!-- </Group> -->
 
                 <!-- <Group> -->
-                    <ImageView fitHeight="170.0" fitWidth="237.0" layoutX="400.0" layoutY="240.0" preserveRatio="true">
+                    <ImageView fitHeight="150.0" fitWidth="225.0" layoutX="406.0" layoutY="239.0" preserveRatio="true">
                         <image>
                             <Image url="@../../pieces/blue/B_Zebra.png" />
                         </image>
