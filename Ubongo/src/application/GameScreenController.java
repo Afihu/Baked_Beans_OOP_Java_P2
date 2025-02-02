@@ -1,17 +1,32 @@
+//author: Huynh Thien Bao
 package application; // Make sure this is the correct package
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 
 public class GameScreenController implements Initializable {
 
@@ -31,22 +46,43 @@ public class GameScreenController implements Initializable {
     private Label scoreLabel;
     @FXML
     private Label finalResultLabel;
+    @FXML
+    private Label roundResultLabel;
     
     private long startTime;
     private boolean roundStarted = false;
     
     //for the system
+    @FXML
+    private Button exitToMainScreenButton;
+    @FXML
+    private Button exitToSPConfigScreen;
+    @FXML
+    private Label timerLabel; 
+    @FXML
+    private Label roundCounterLabel; 
+    
     private String receivedColor;
     private String receivedDifficulty;
     private int receivedRoundDuration;
+    
     private double totalScore = 0.0;
     private int roundsPlayed = 0;
     private final int totalRounds = 8;		//Interchangeable for MP
     
+    private Timeline countdownTimer;
+    private int remainingTime;
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	finalResultLabel.setVisible(false);	// Hide the final result label initially
+    	// Hide the labels initially
+    	finalResultLabel.setVisible(false);	
+    	roundResultLabel.setVisible(false);
+    	exitToMainScreenButton.setVisible(false);
+    	timerLabel.setVisible(false);
+    	roundCounterLabel.setVisible(false);
+    	
         // Initialization logic if needed (e.g., setting up the gridPane)
     }
 
@@ -65,40 +101,94 @@ public class GameScreenController implements Initializable {
         //loadCards();
     }
     
+    private void startCountdown() {
+        timerLabel.setText("Time left: " + remainingTime + "s");
+        
+        countdownTimer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            remainingTime--;
+            timerLabel.setText("Time left: " + remainingTime + "s");
+
+            if (remainingTime <= 0) {
+                stopCountdown();
+                endRoundTimeOut();
+                timerLabel.setText("Time's up! Too bad!");
+            }
+        }));
+
+        countdownTimer.setCycleCount(receivedRoundDuration); // Run for the full duration
+        countdownTimer.play();
+    }
+    
+    private void stopCountdown() {
+        if (countdownTimer != null) {
+            countdownTimer.stop();
+        }
+    }
+    
+    private void endRoundEarly() {
+        long endTime = System.currentTimeMillis();
+        double usedTime = (endTime - startTime) / 1000.0; // Convert to seconds
+        processRoundEnd(usedTime);
+    }
+    
+    private void endRoundTimeOut() {
+        processRoundEnd(receivedRoundDuration); // Player ran out of time
+    }
+
+    private void processRoundEnd(double usedTime) {
+    	//stop the round and calculate score
+        double score = calculateBaseScore(usedTime);
+        totalScore += score;
+        
+        //modify state of the game
+        this.roundStarted = false;
+        startStopButton.setText("Start next round!");
+        
+        //modify state of in-game labels | calculateScore(0.0)*roundsPlayed is the maximum score a player can get
+        roundResultLabel.setVisible(true);
+        roundResultLabel.setText("Round ends! \n Score this round: " + score  
+        		+ "\n" + String.format("[%.2f / 100]",(score/calculateBaseScore(0.0))*100));
+        scoreLabel.setText("Score: " + formatToTwoDecimal(this.totalScore) + "/" + calculateBaseScore(0.0) * this.roundsPlayed);
+
+        //print out to the system for debugging
+        System.out.println("Round ends!");
+        System.out.println("Current total: " + formatToTwoDecimal(this.totalScore) + "/" + calculateBaseScore(0.0) * this.roundsPlayed);	
+        
+        //if reached the end of game, ends the game and go back to the lobby
+        if (roundsPlayed >= totalRounds) {
+            endGame();
+        }
+    }
+
+    
     //for testing scoring system
     @FXML
     private void handleStartStopButtonAction() {
         if (!this.roundStarted) {		//if decide to keep the button, add conditions (ex: !this.roundStarted & cardSolved == True)
             // Start the round
+        	roundResultLabel.setVisible(false);
+        	
+        	timerLabel.setVisible(true);
             startTime = System.currentTimeMillis();
+            
             this.roundStarted = true;
-            startStopButton.setText("Stop");
+            this.roundsPlayed++;
+            
+            roundCounterLabel.setVisible(true);
+        	roundCounterLabel.setText("Round " + this.roundsPlayed + "/" + this.totalRounds);
+        	
+            startStopButton.setText("Ubongo!");
+            
+            // Start count down
+            this.remainingTime = this.receivedRoundDuration;
+            startCountdown(); //If player used all the time given, the "else" path will be initiated
             
             //print out to the system for debugging
             System.out.println("Round starts!");
         } else {
-            // Stop the round and calculate score
-            long endTime = System.currentTimeMillis();
-            double usedTime = (endTime - startTime) / 1000.0; // Convert to seconds
-            double score = calculateScore(usedTime);
-            this.totalScore += score;
-            
-            //modify state of the game
-            this.roundStarted = false;
-            this.roundsPlayed++;
-            
-            //modify state of in-game labels | calculateScore(0.0)*roundsPlayed is the maximum score a player can get
-            scoreLabel.setText("Current total: " + formatToTwoDecimal(this.totalScore) + " out of " + calculateScore(0.0) * this.roundsPlayed);
-            startStopButton.setText("Start");
-            
-            //print out to the system for debugging
-            System.out.println("Round ends!");
-            System.out.println("Current total: " + formatToTwoDecimal(this.totalScore) + " out of " + calculateScore(0.0) * this.roundsPlayed);
-            
-            //if reached the end of game, ends the game and go back to the lobby
-            if (roundsPlayed >= totalRounds) {
-                this.endGame();
-            }
+        	// Player pressed the button before timeout
+            stopCountdown();
+            endRoundEarly();
         }
     }
     
@@ -110,10 +200,17 @@ public class GameScreenController implements Initializable {
         difficultyLabel.setVisible(false);
         roundDurationLabel.setVisible(false);
         scoreLabel.setVisible(false);
+        roundResultLabel.setVisible(false);
+        exitToSPConfigScreen.setVisible(false);
+        timerLabel.setVisible(false);
+    	roundCounterLabel.setVisible(false);
 
         // Show final result
-        finalResultLabel.setText(String.format("Game Finished!\nTotal score: %.2f", this.totalScore) + " out of " + calculateScore(0.0) * this.roundsPlayed);
+        finalResultLabel.setText(String.format("Game Finished!\nTotal score: %.2f", this.totalScore) + "/" + calculateBaseScore(0.0) * this.roundsPlayed
+        		+ "\n" + String.format("[%.2f / 100]",(this.totalScore/(calculateBaseScore(0.0) * this.roundsPlayed))*100));
+        	
         finalResultLabel.setVisible(true);
+        exitToMainScreenButton.setVisible(true);
     }
     
     //convert standard time format to usable time format for displaying the scoring system
@@ -121,7 +218,7 @@ public class GameScreenController implements Initializable {
         return String.format("%.2f", number);
     }
     
-    public double calculateScore(double usedTime) {
+    public double calculateBaseScore(double usedTime) {
         double remainingTime = this.receivedRoundDuration - usedTime;
         double score;
         if (usedTime >= this.receivedRoundDuration) {
@@ -139,6 +236,44 @@ public class GameScreenController implements Initializable {
         BigDecimal bd = new BigDecimal(score).setScale(2, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
+    
+    public void goBack(ActionEvent e) throws IOException {
+		if (!Controller.screenHistory.isEmpty()) {
+			Controller.screenHistory.pop();
+			String previousScreen = Controller.screenHistory.peek(); 
+			if (previousScreen == "StartScreen.fxml"){
+				Controller.screenHistory.pop();
+				Controller.storeCurrentScreen(previousScreen);
+			}
+			System.out.println("Attempting to go back to: " + previousScreen);
+			Parent root = FXMLLoader.load(getClass().getResource("/application/" + previousScreen));
+			Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
+			stage.setScene(scene);
+			stage.show();
+			System.out.println("Navigated back to: " + previousScreen);
+        } else {
+            System.out.println("Screen history is empty. Cannot go back.");
+		}
+	}
+    
+    public void goBackToMainScreen(ActionEvent e) throws IOException {
+    	Controller.screenHistory.clear();
+        
+    	Controller.storeCurrentScreen("StartScreen.fxml");
+        	
+        System.out.println("Attempting to go back to: StartScreen.fxml");
+		Parent root = FXMLLoader.load(getClass().getResource("/application/" + "StartScreen.fxml"));
+		Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
+		stage.setScene(scene);
+		stage.show();
+		System.out.println("Returned to Main Menu");
+        	
+	}
+	
     
     private void loadCards() {
         if (cardGridPane == null) {

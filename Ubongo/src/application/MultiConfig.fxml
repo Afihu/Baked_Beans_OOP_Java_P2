@@ -2,33 +2,63 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GameController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
-         <children>
-            <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../res/images/SettingsForest.jpg" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../res/images/test_rainforest.jpg" />
+         </image>
+      </ImageView>
       <AnchorPane fx:id="buttonPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <Button layoutX="515.0" layoutY="279.0" mnemonicParsing="false" onAction="#handlePlayerCount" prefHeight="70.0" prefWidth="250.0" text="2 Players" />
-            <Button layoutX="519.0" layoutY="371.0" mnemonicParsing="false" onAction="#handlePlayerCount" prefHeight="70.0" prefWidth="250.0" text="3 Players" />
-            <Button layoutX="520.0" layoutY="466.0" mnemonicParsing="false" onAction="#handlePlayerCount" prefHeight="70.0" prefWidth="250.0" text="4 Players" />
-            <Label layoutX="444.0" layoutY="170.0" prefHeight="43.0" prefWidth="401.0" text="HOW MANY PLAYERS?" textFill="#00fa63">
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="27.0" prefWidth="43.0" text="&lt;&lt;" />
+            
+            <Button layoutX="42.0" layoutY="165.0" mnemonicParsing="false" onAction="#handleColourChoice" prefHeight="70.0" prefWidth="200.0" styleClass="color-button, green-button" text="Green" />
+            
+            <Button layoutX="42.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleColourChoice" prefHeight="70.0" prefWidth="200.0" styleClass="color-button, blue-button" text="Blue" />
+            
+            <Button layoutX="242.0" layoutY="265.0" mnemonicParsing="false" onAction="#handleColourChoice" prefHeight="70.0" prefWidth="200.0" styleClass="color-button, yellow-button" text="Yellow" />
+            
+            <Button layoutX="242.0" layoutY="459.0" mnemonicParsing="false" onAction="#handleColourChoice" prefHeight="70.0" prefWidth="200.0" styleClass="color-button, pink-button" text="Pink" />
+            
+            <Button layoutX="540.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleDifficultyChoice" prefHeight="70.0" prefWidth="200.0" styleClass="difficulty-button, easy-button" text="Easy" />
+            
+            <Button layoutX="540.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleDifficultyChoice" prefHeight="70.0" prefWidth="200.0" styleClass="difficulty-button, hard-button" text="Hard" />
+
+            <TableView fx:id="choiceTable" layoutX="861.0" layoutY="224.0" prefHeight="151.0" prefWidth="300.0">
+               <columns>
+                  <TableColumn fx:id="playerColumn" prefWidth="100.0" text="Player" />
+                  <TableColumn fx:id="colourColumn" prefWidth="100.0" text="Colour" />
+                  <TableColumn fx:id="difficultyColumn" prefWidth="100.0" text="Difficulty" />
+               </columns>
+            </TableView>
+            <Label layoutX="136.0" layoutY="117.0" style="-fx-background-color: #256e0d;" text="Choose Your Colour" textFill="WHITE">
                <font>
-                  <Font name="Bell MT" size="36.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
-            <Button layoutX="31.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="37.0" text="&lt;&lt;" />
+            <Label layoutX="522.0" layoutY="117.0" style="-fx-background-color: #256e0d;" text="Choose Your Difficulty" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="565.0" layoutY="450.0" style="-fx-background-color: #256e0d;" text="Set Timer (10 - 600 Seconds)" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Spinner fx:id="timeSpinner" 
+                     layoutX="565.0" layoutY="494.0" 
+                     prefWidth="150.0" 
+                     editable="true"/>
          </children>
       </AnchorPane>
    </children>

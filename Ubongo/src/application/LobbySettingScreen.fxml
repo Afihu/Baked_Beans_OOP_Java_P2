@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MultiConfigController">
+   <children>
+      <AnchorPane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../res/images/SettingsForest.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="buttonPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <Button layoutX="515.0" layoutY="279.0" mnemonicParsing="false" onAction="#handlePlayerCount" prefHeight="70.0" prefWidth="250.0" text="2 Players" />
+            <Button layoutX="519.0" layoutY="371.0" mnemonicParsing="false" onAction="#handlePlayerCount" prefHeight="70.0" prefWidth="250.0" text="3 Players" />
+            <Button layoutX="520.0" layoutY="466.0" mnemonicParsing="false" onAction="#handlePlayerCount" prefHeight="70.0" prefWidth="250.0" text="4 Players" />
+            <Label layoutX="444.0" layoutY="170.0" prefHeight="43.0" prefWidth="401.0" text="HOW MANY PLAYERS?" textFill="#00fa63">
+               <font>
+                  <Font name="Bell MT" size="36.0" />
+               </font>
+            </Label>
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="27.0" prefWidth="43.0" text="&lt;&lt;" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

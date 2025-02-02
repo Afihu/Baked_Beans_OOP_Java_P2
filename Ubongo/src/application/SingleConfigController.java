@@ -45,8 +45,8 @@ public class SingleConfigController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	// Initialize the Spinner with a range from 10 to 600 seconds and a default value of 10
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 600, 60);
+    	// Initialize the Spinner with a range from 1 to 600 seconds and a default value of 10
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 600, 60);
         timeSpinner.setValueFactory(valueFactory);
         timeSpinner.setEditable(true);
         
@@ -58,7 +58,7 @@ public class SingleConfigController implements Initializable {
             "pink"
         );
         colorComboBox.setItems(colorOptions);
-        // Set a default value (optional but recommended)
+        //set a default value (optional but recommended)
         //colorComboBox.setValue("blue"); // Or the first item in the list
 
         // Difficulty ComboBox
@@ -112,6 +112,9 @@ public class SingleConfigController implements Initializable {
 
     private void loadGameScreen(ActionEvent event) {
         try {
+        	currentScreen = "SPGameScreen.fxml";
+    		Controller.storeCurrentScreen(currentScreen);
+    		
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/SPGameScreen.fxml")); // Correct path
             Parent root = loader.load();
 
