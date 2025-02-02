@@ -254,7 +254,7 @@ public class MultiConfigController {
             Parent root = loader.load();
 
             GameplayController gameplayController = loader.getController();
-            gameplayController.initializeData(this.playerChoicesList);
+            gameplayController.initializeData(this.playerChoicesList, this.gameDuration);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -293,7 +293,7 @@ public class MultiConfigController {
         }
     }
     @FXML
-    public void goBacktoMainMenu(ActionEvent event) throws IOException {
+    public void goBacktoMainScreen(ActionEvent event) throws IOException {
         // Clear all data
         playerColors.clear();
         playerDifficulties.clear();
