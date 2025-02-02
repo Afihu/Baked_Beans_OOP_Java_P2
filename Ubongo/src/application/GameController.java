@@ -47,6 +47,7 @@ public class GameController {
         DIFFICULTY,
         ALL
     }
+    
 
     public static class PlayerChoice {
         private final IntegerProperty playerNumber;
