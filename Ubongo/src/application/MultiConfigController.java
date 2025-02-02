@@ -1,3 +1,6 @@
+/*author: Duong Vo Thien Bao
+ Modified by Huynh Thien Bao*/
+
 package application;
 
 import javafx.scene.control.Label;
@@ -26,7 +29,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GameController {
+public class MultiConfigController {
     @FXML private AnchorPane rootPane;
     @FXML private AnchorPane buttonPane;
     @FXML private TableView<PlayerChoice> choiceTable;
@@ -103,7 +106,7 @@ public class GameController {
         Controller.screenHistory.push("MultiConfig.fxml");
         
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/DifAndColour.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/MultiConfig.fxml"));
             loader.setController(this);
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -239,7 +242,7 @@ public class GameController {
 
     private void handleContinue(ActionEvent event) {
         try {
-            Controller.screenHistory.push("DifAndColour.fxml");
+            Controller.screenHistory.push("MultiConfig.fxml");
             
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/MPGameScreen.fxml"));
             loader.setController(this);

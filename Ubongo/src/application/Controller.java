@@ -220,18 +220,18 @@ public class Controller implements Initializable{
 		System.out.println("Settings Page Opened");
 	}
 	
-	public void MultiConfigScreen(ActionEvent e) throws IOException{
-		currentScreen = "MultiConfig.fxml";
+	public void LobbySettingScreen(ActionEvent e) throws IOException{
+		currentScreen = "LobbySettingScreen.fxml";
 		storeCurrentScreen(currentScreen);
-		System.out.println("Navigating to MultiConfig.fxml");
-		Parent root = FXMLLoader.load(getClass().getResource("/application/MultiConfig.fxml"));
+		System.out.println("Navigating to LobbySettingScreen.fxml");
+		Parent root = FXMLLoader.load(getClass().getResource("/application/LobbySettingScreen.fxml"));
 		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		scene.getStylesheets().add(cssString);
 		stage.setScene(scene);
 		stage.setResizable(false);
 		stage.show();
-		System.out.println("Multiplayer Configurations Opened");
+		System.out.println("LobbySettingScreen Opened");
 	}
 	
 	public void SingleConfigScreen(ActionEvent e) throws IOException{

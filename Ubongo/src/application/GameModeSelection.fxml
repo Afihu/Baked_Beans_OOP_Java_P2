@@ -18,7 +18,7 @@
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="511.0" layoutY="504.0" mnemonicParsing="false" onAction="#MultiConfigScreen" prefHeight="70.0" prefWidth="250.0" text="Multiplayer">
+      <Button layoutX="511.0" layoutY="504.0" mnemonicParsing="false" onAction="#LobbySettingScreen" prefHeight="70.0" prefWidth="250.0" text="Multiplayer">
          <font>
             <Font size="14.0" />
          </font></Button>

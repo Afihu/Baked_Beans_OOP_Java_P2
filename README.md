@@ -41,10 +41,17 @@ This document outlines the development plan for creating a Windows-based Ubongo 
 - ``Return button's size is not standardized: The return button in DifficultyScene.fxml is bigger then the rest``
 - ``Pikachu card in SinglePlayer() is magically disappeared``
 - Add new difficulty selection window for singleplaying: SingleConfig.fxml (via Start ->SingleConfig -> GameScreen)
-- ~~Remove return button in GameScreen.fxml as requested~~
-- ~~Recover GameScreen.fxml to original state. However, the pikachu card is gone.~~
+- ``Remove return button in GameScreen.fxml as requested``
+- ``Recover GameScreen.fxml to original state. However, the pikachu card is gone.``
 - Added a scoring system based on time (see details below)
 - [EXPERIMENTAL - SUCCESSFUL] Added a testing mechanic for Scoring System based on clicking button
+- GameScreen.fxml is TEST ONLY
+- Change names for MP Path:
+MultiConfig.fxml -> LobbySettingScreen.fxml
+GameController.java -> MultiConfigController.java
+DifAndColour.fxml -> MultiConfig.fxml
+GameplayController.java -> Might not need to change, use the same GameScreenController.java as SP
+
 
 
 #### Revamped Scoring System:
