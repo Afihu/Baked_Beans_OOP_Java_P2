@@ -1,8 +1,8 @@
 {
-	"A1.fxml":{
-		"B_Crocodile": "res/pieces/blue/B_Crocodile",
-		"B_Zebra": "res/pieces/blue/B_Zebra"
-	},
+	"A1.fxml":[
+		{"B_Crocodile": "res/pieces/blue/B_Crocodile"},
+		{"B_Zebra": "res/pieces/blue/B_Zebra"}
+	],
 	"A2.fxml": {
 		"B_Toucan": "res/pieces/blue/B_Toucan",
 		"B_Zebra": "res/pieces/blue/B_Zebra"		
