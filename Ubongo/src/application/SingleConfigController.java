@@ -58,7 +58,7 @@ public class SingleConfigController implements Initializable {
             "pink"
         );
         colorComboBox.setItems(colorOptions);
-        // Set a default value (optional but recommended)
+        //set a default value (optional but recommended)
         //colorComboBox.setValue("blue"); // Or the first item in the list
 
         // Difficulty ComboBox
@@ -112,7 +112,7 @@ public class SingleConfigController implements Initializable {
 
     private void loadGameScreen(ActionEvent event) {
         try {
-        	currentScreen = "GameModeSelection.fxml";
+        	currentScreen = "SPGameScreen.fxml";
     		Controller.storeCurrentScreen(currentScreen);
     		
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/SPGameScreen.fxml")); // Correct path

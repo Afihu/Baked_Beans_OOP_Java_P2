@@ -259,22 +259,21 @@ public class GameScreenController implements Initializable {
 	}
     
     public void goBackToMainScreen(ActionEvent e) throws IOException {
-		if (!Controller.screenHistory.isEmpty()) {
-			Controller.screenHistory.pop();
-        } else {
-        	Controller.storeCurrentScreen("StartScreen.fxml");
+    	Controller.screenHistory.clear();
+        
+    	Controller.storeCurrentScreen("StartScreen.fxml");
         	
-        	System.out.println("Attempting to go back to: StartScreen.fxml");
-			Parent root = FXMLLoader.load(getClass().getResource("/application/" + "StartScreen.fxml"));
-			Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
-			stage.setScene(scene);
-			stage.show();
-			System.out.println("Navigated back to: " + "StartScreen.fxml");
+        System.out.println("Attempting to go back to: StartScreen.fxml");
+		Parent root = FXMLLoader.load(getClass().getResource("/application/" + "StartScreen.fxml"));
+		Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
+		stage.setScene(scene);
+		stage.show();
+		System.out.println("Returned to Main Menu");
         	
-		}
 	}
+	
     
     private void loadCards() {
         if (cardGridPane == null) {
