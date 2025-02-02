@@ -133,7 +133,7 @@ public class DraggableMaker {
     	    System.out.println("Position: " + pieceCoords.x + ", " + pieceCoords.y + " "); //for debugging
 			
     	    //Generate piece segment coordinates
-			Coords[][] pieceMask = InitCoreMechanics.generatePieceHitBoxLive(pieceView, sampleCell, pieceX, pieceY);
+			//Coords[][] pieceMask = InitCoreMechanics.generatePieceHitBoxLive(pieceView, sampleCell, pieceX, pieceY);
 //			System.out.println("Piece Mask: ");
 //			for(int i = 0; i < (int)pieceImage.getHeight()/sampleCell.getHeight(); i++) {
 //				System.out.println();
