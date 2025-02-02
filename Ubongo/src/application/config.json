@@ -1,6 +1,74 @@
 {
 	"A1.fxml":{
 		"B_Crocodile": "res/pieces/blue/B_Crocodile",
-		"B_Zebra": "..."
-	}
+		"B_Zebra": "res/pieces/blue/B_Zebra"
+	},
+	"A2.fxml": {
+		"B_Zebra": "res/pieces/blue/B_Zebra",
+		"B_Toucan": "res/pieces/blue/B_Toucan"
+	},
+	"A3.fxml": {
+		"B_Crocodile": "res/pieces/blue/B_Crocodile",
+		"B_Lizard": "res/pieces/blue/B_Lizard"
+	},
+	"A4.fxml": {
+		"B_Woodpecker": "res/pieces/blue/B_Woodpecker",
+		"B_Toucan": "res/pieces/blue/B_Toucan"
+	},
+	"A5.fxml": {
+		"B_Zebra": "res/pieces/blue/B_Zebra",
+		"B_Lizard": "res/pieces/blue/B_Lizard"
+	},
+	"A6.fxml": {
+		"B_Crocodile": "res/pieces/blue/B_Crocodile",
+		"B_Toucan": "res/pieces/blue/B_Toucan"
+	},
+	"A7.fxml": {
+		"B_Leopard": "res/pieces/blue/B_Leopard",
+		"B_Crocodile": "res/pieces/blue/B_Crocodile"
+	},
+	"A8.fxml": {
+		"B_Squirrel": "res/pieces/blue/B_Squirrel",
+		"B_Toucan": "res/pieces/blue/B_Toucan"
+	},
+	"B1.fxml": {
+		"B_Crocodile": "res/pieces/blue/B_Crocodile",
+		"B_Squirrel": "res/pieces/blue/B_Squirrel",
+		"B_Lizard": "res/pieces/blue/B_Lizard"
+	},
+	"B2.fxml": {
+		"B_Toucan": "res/pieces/blue/B_Toucan",
+		"B_Leopard": "res/pieces/blue/B_Leopard",
+		"B_Zebra": "res/pieces/blue/B_Zebra"
+	},	
+	"B3.fxml": {
+		"B_Toucan": "res/pieces/blue/B_Toucan",
+		"B_Leopard": "res/pieces/blue/B_Leopard",
+		"B_Crocodile": "res/pieces/blue/B_Crocodile"
+	},	
+	"B4.fxml": {
+		"B_Lizard": "res/pieces/blue/B_Lizard",
+		"B_Leopard": "res/pieces/blue/B_Leopard",
+		"B_Zebra": "res/pieces/blue/B_Zebra"
+	},	
+	"B5.fxml": {
+		"B_Crocodile": "res/pieces/blue/B_Crocodile",
+		"B_Squirrel": "res/pieces/blue/B_Squirrel",
+		"B_Zebra": "res/pieces/blue/B_Zebra"
+	},	
+	"B6.fxml": {
+		"B_Woodpecker": "res/pieces/blue/B_Woodpecker",
+		"B_Leopard": "res/pieces/blue/B_Leopard",
+		"B_Toucan": "res/pieces/blue/B_Toucan"
+	},
+	"B7.fxml": {
+		"B_Toucan": "res/pieces/blue/B_Toucan",
+		"B_Squirrel": "res/pieces/blue/B_Squirrel",
+		"B_Lizard": "res/pieces/blue/B_Lizard"
+	},	
+	"B8.fxml": {
+		"B_Woodpecker": "res/pieces/blue/B_Woodpecker",
+		"B_Zebra": "res/pieces/blue/B_Zebra",
+		"B_Toucan": "res/pieces/blue/B_Toucan"
+	},
 }
