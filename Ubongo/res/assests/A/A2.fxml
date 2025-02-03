@@ -19,7 +19,7 @@
                             <Image url="@../../cards/A/A2c.png" />
                         </image>
                     </ImageView>
-                    <GridPane fx:id="cardGridPane" gridLinesVisible="true" layoutX="67.0" layoutY="71.0">
+                    <GridPane fx:id="cardGridPane" gridLinesVisible="true" layoutX="67.0" layoutY="76.0">
                         <children>
                             
                             <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="0" GridPane.rowIndex="0" />
