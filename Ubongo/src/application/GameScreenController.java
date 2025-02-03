@@ -106,6 +106,7 @@ public class GameScreenController implements Initializable {
         //loadCards();
     }
     
+    //initialize files name for the session
     private void loadFXMLFilesName() {
         cardList.clear(); //clear previous data
 
@@ -227,6 +228,7 @@ public class GameScreenController implements Initializable {
         	
         	timerLabel.setVisible(true);
             startTime = System.currentTimeMillis();
+            //loadCards();
             
             this.roundStarted = true;
             this.roundsPlayed++;
@@ -334,35 +336,35 @@ public class GameScreenController implements Initializable {
 	}
 	
     
-    private void loadCards() {
-        if (cardGridPane == null) {
-            System.err.println("cardGridPane is null. Check your FXML.");
-            return;
-        }
-
-        cardGridPane.getChildren().clear(); // Clear existing cards
-
-        try {
-            int rows = 4; // Example
-            int cols = 5; // Example
-
-            for (int row = 0; row < rows; row++) {
-                for (int col = 0; col < cols; col++) {
-                    String cardImageName = String.format("%s_%s_card%d.png", receivedColor, receivedDifficulty, (row * cols + col + 1)); // Construct image name
-                    Image cardImage = new Image(new File("res/images/" + cardImageName).toURI().toString()); // Assumes images are in res/images
-                    ImageView cardImageView = new ImageView(cardImage);
-
-                    // Set size and other properties of the ImageView as needed
-                    cardImageView.setFitWidth(100); // Example
-                    cardImageView.setFitHeight(150); // Example
-                    cardImageView.setPreserveRatio(true);
-
-                    cardGridPane.add(cardImageView, col, row); // Add to the grid
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace(); // Handle exceptions appropriately
-        }
-    }
+//    private void loadCards() {
+//        if (cardGridPane == null) {
+//            System.err.println("cardGridPane is null. Check your FXML.");
+//            return;
+//        }
+//
+//        cardGridPane.getChildren().clear(); // Clear existing cards
+//
+//        try {
+//            int rows = 4; // Example
+//            int cols = 5; // Example
+//
+//            for (int row = 0; row < rows; row++) {
+//                for (int col = 0; col < cols; col++) {
+//                    String cardImageName = String.format("%s_%s_card%d.png", receivedColor, receivedDifficulty, (row * cols + col + 1)); // Construct image name
+//                    Image cardImage = new Image(new File("res/images/" + cardImageName).toURI().toString()); // Assumes images are in res/images
+//                    ImageView cardImageView = new ImageView(cardImage);
+//
+//                    // Set size and other properties of the ImageView as needed
+//                    cardImageView.setFitWidth(100); // Example
+//                    cardImageView.setFitHeight(150); // Example
+//                    cardImageView.setPreserveRatio(true);
+//
+//                    cardGridPane.add(cardImageView, col, row); // Add to the grid
+//                }
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace(); // Handle exceptions appropriately
+//        }
+//    }
 }
