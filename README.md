@@ -51,6 +51,7 @@ MultiConfig.fxml -> LobbySettingScreen.fxml
 GameController.java -> MultiConfigController.java
 DifAndColour.fxml -> MultiConfig.fxml
 GameplayController.java -> Might not need to change, use the same GameScreenController.java as SP
+- Remove TestSingleConfig.fxml and the old SingleConfig.fxml. The new SingleConfig.fxml is the old TestSingleConfig.fxml
 
 
 

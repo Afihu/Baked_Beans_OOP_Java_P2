@@ -232,7 +232,9 @@ public class GameScreenController implements Initializable {
         } else {
         	score = remainingTime;
         }
-        
+        if(this.receivedDifficulty == "hard") {
+        	score = 1.5 * score;
+        }
         BigDecimal bd = new BigDecimal(score).setScale(2, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }

@@ -283,11 +283,11 @@ public class Controller implements Initializable{
 	}
 	
 	public void SingleConfigScreen(ActionEvent e) throws IOException{
-		currentScreen = "TestSingleConfig.fxml";
+		currentScreen = "SingleConfig.fxml";
 		checkScreenForMusicChange(currentScreen);
 		storeCurrentScreen(currentScreen);
-		System.out.println("Navigating to TestSingleConfig.fxml");
-		Parent root = FXMLLoader.load(getClass().getResource("/application/TestSingleConfig.fxml"));
+		System.out.println("Navigating to SingleConfig.fxml");
+		Parent root = FXMLLoader.load(getClass().getResource("/application/SingleConfig.fxml"));
 		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		scene.getStylesheets().add(cssString);
