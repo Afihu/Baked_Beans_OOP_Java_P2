@@ -9,17 +9,15 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="asset" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Group fx:id="asset" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="60.0">
+        <ImageView fitHeight="600.0" fitWidth="360.0" preserveRatio="true" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="60.0">
+            <image>
+                <Image url="@../../cards/B/B22c.jpg" />
+            </image>
+        </ImageView>
+        <GridPane fx:id="cardGridPane" gridLinesVisible="true" AnchorPane.leftAnchor="351.0" AnchorPane.topAnchor="142.0">
             <children>
-            <ImageView fitHeight="600.0" fitWidth="360.0" layoutX="0.0" layoutY="0.0" preserveRatio="true">
-                        <image>
-                            <Image url="@../../cards/B/B22c.jpg" />
-                        </image>
-                    </ImageView>
-                    <GridPane fx:id="cardGridPane" gridLinesVisible="true" layoutX="31.0" layoutY="82.0">
-                        <children>
                             
                             <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                             <!-- <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="1" GridPane.rowIndex="0" /> -->
@@ -59,23 +57,21 @@
                         <RowConstraints />
                   <RowConstraints />
                     </rowConstraints>
-                    </GridPane>
-            <ImageView fitHeight="300.0" fitWidth="150.0" layoutX="383.0" layoutY="209.0" preserveRatio="true">
-                    <image>
-                        <Image url="@../../pieces/green/G_Giraffee.png" />
-                    </image>
-                </ImageView>
-            <ImageView fitHeight="75.0" fitWidth="225.0" layoutX="419.0" layoutY="38.0" preserveRatio="true">
-                        <image>
-                            <Image url="@../../pieces/green/G_Leopard.png" />
-                        </image>
-                    </ImageView>
-            <ImageView fitHeight="225.0" fitWidth="225.0" layoutX="532.0" layoutY="121.0" preserveRatio="true">
-                        <image>
-                            <Image url="@../../pieces/green/G_Crocodile.png" />
-                        </image>
-                    </ImageView>
-            </children>
-        </Group>
+        </GridPane>
+        <ImageView fitHeight="300.0" fitWidth="150.0" preserveRatio="true" AnchorPane.leftAnchor="703.0" AnchorPane.topAnchor="269.0">
+            <image>
+                <Image url="@../../pieces/green/G_Giraffee.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="75.0" fitWidth="225.0" preserveRatio="true" AnchorPane.leftAnchor="739.0" AnchorPane.topAnchor="98.0">
+            <image>
+                <Image url="@../../pieces/green/G_Leopard.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="225.0" fitWidth="225.0" preserveRatio="true" AnchorPane.leftAnchor="852.0" AnchorPane.topAnchor="181.0">
+            <image>
+                <Image url="@../../pieces/green/G_Crocodile.png" />
+            </image>
+        </ImageView>
     </children>
 </AnchorPane>
