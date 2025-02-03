@@ -1,0 +1,56 @@
+- This code is aimed for MP since SP plays all 8 cards in the combination of color and difficulty of the cards.
+- The code is chosen with repetition.
+- directoryPath must be passed into the function (ex: /res/asset/)
+
+import java.io.File;
+import java.util.Random;
+
+public class RandomFilePicker { //if put inside a function then just copy the function pickRandomFXML()
+    public static File pickRandomFXML(String directoryPath) {
+        File directory = new File(directoryPath);
+
+        if (!directory.exists() || !directory.isDirectory()) {
+            System.out.println("Directory not found!");
+            return null;
+        }
+
+        // Get all .fxml files in the directory
+        File[] fxmlFiles = directory.listFiles((dir, name) -> name.endsWith(".fxml"));
+
+        if (fxmlFiles == null || fxmlFiles.length == 0) {
+            System.out.println("No .fxml files found in the directory!");
+            return null;
+        }
+
+        // Generate a random index
+        Random random = new Random();
+        int randomIndex = random.nextInt(fxmlFiles.length);
+
+        // Return the randomly selected file
+        return fxmlFiles[randomIndex];
+    }
+
+
+    //here is an example to call the function
+    public static void main(String[] args) {
+        String directoryPath = "src/application/"; // Adjust path based on your project structure
+        File randomFile = pickRandomFXML(directoryPath);
+
+        if (randomFile != null) {
+            System.out.println("Randomly selected file: " + randomFile.getName());
+        }
+    }
+}
+
+- if want to implement chosen WITHOUT REPETITION, a solution is outside 
+the function, make another File[] usedFXML to store all the picked file from before
+- then inside the function pickRandomFXML():
+        // Get all .fxml files in the directory 
+        File[] fxmlFiles = directory.listFiles((dir, name) -> name.endsWith(".fxml"));
+
+        if (fxmlFiles == null || fxmlFiles.length == 0) {
+            System.out.println("No .fxml files found in the directory!");
+            return null;
+        }
+- run fxmlFiles[] again in a for loop, check if each element is in usedFXML[]. 
+if yes, then remove from fxmlFiles[]. then the code picks the random file as normal.
