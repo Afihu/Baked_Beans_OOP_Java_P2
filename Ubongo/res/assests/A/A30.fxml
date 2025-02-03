@@ -54,7 +54,7 @@
                         <RowConstraints />
                         <RowConstraints />
                         <RowConstraints />
-                  <RowConstraints />
+                        <RowConstraints />
                     </rowConstraints>
         </GridPane>
         <ImageView fitHeight="130.0" fitWidth="260.0" preserveRatio="true" AnchorPane.leftAnchor="730.0" AnchorPane.topAnchor="119.0">

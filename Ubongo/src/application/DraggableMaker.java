@@ -123,7 +123,11 @@ public class DraggableMaker {
     		
     		List<Rectangle> collidedRectangles = new ArrayList<Rectangle>(); // store rectangles collided
     		
-    		Rectangle sampleCell = (Rectangle)InitCoreMechanics.getNodeFromGridPane(cardGrid, 0, 0);
+    		Rectangle sampleCell = new Rectangle();
+    		for (Node node : cardGrid.getChildren()) {
+    			if (node instanceof Rectangle)  sampleCell = (Rectangle)node;
+    		}
+//    		 = (Rectangle)InitCoreMechanics.getNodeFromGridPane(cardGrid, 0, 0);
     		Image pieceImage = pieceView.getImage();
     		
     		//Take piece upper left corner coordinates

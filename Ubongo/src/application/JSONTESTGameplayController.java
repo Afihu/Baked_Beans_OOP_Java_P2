@@ -41,7 +41,7 @@ public class JSONTESTGameplayController implements Initializable{
 	public JSONObject config;
 	
 	//FXML injections
-	@FXML private Group asset;
+	// @FXML private Group asset;
 	@FXML private GridPane cardGridPane;
 	@FXML private AnchorPane container;
 	

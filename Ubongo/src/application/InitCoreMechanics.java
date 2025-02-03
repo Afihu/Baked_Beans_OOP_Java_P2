@@ -103,7 +103,7 @@ public class InitCoreMechanics {
 	
 	public static Coords[][] generatePieceHitBox(Image piece, Rectangle cell) {
 		int pieceHeight = (int)piece.getHeight();
-		int pieceWidth = (int)piece.getWidth() - 10; // account for tiny inconsistencies in image sizes
+		int pieceWidth = (int)piece.getWidth(); // account for tiny inconsistencies in image sizes
 		int cellWidth = (int)cell.getWidth();
 		int cellHeight = (int)cell.getHeight();
 		
@@ -133,7 +133,7 @@ public class InitCoreMechanics {
 	public static Coords[][] generatePieceHitBoxLive(ImageView pieceView, Rectangle cell, double pieceXLive, double pieceYLive) {
 		Image piece = pieceView.getImage();
         int pieceHeight = (int)piece.getHeight();
-        int pieceWidth = (int)piece.getWidth() - 10; // account for tiny inconsistencies in image sizes
+        int pieceWidth = (int)piece.getWidth();
         int cellWidth = (int)cell.getWidth();
         int cellHeight = (int)cell.getHeight();
         

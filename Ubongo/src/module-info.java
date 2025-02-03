@@ -6,5 +6,5 @@ module Ubongo {
 	requires javafx.media;
 	requires json;
 	
-	opens application to javafx.graphics, javafx.fxml;
+	opens application to javafx.graphics, javafx.fxml, javafx.base;
 }

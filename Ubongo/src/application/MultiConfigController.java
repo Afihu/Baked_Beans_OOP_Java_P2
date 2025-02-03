@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import application.PlayerChoice;
 
 public class MultiConfigController {
     @FXML private AnchorPane rootPane;
@@ -51,27 +52,6 @@ public class MultiConfigController {
         ALL
     }
     
-
-    public static class PlayerChoice {
-        private final IntegerProperty playerNumber;
-        private final StringProperty colour;
-        private final StringProperty difficulty;
-
-        public PlayerChoice(int playerNumber, String colour, String difficulty) {
-            this.playerNumber = new SimpleIntegerProperty(playerNumber);
-            this.colour = new SimpleStringProperty(colour);
-            this.difficulty = new SimpleStringProperty(difficulty);
-        }
-
-        public int getPlayerNumber() { return playerNumber.get(); }
-        public String getColour() { return colour.get(); }
-        public String getDifficulty() { return difficulty.get(); }
-
-        public IntegerProperty playerNumberProperty() { return playerNumber; }
-        public StringProperty colourProperty() { return colour; }
-        public StringProperty difficultyProperty() { return difficulty; }
-    }
-
     @FXML
     public void initialize() {
         if (choiceTable != null) {

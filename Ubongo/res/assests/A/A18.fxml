@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Group?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,31 +15,31 @@
                 <Image url="@../../cards/A/A18c.png" />
             </image>
         </ImageView>
-        <GridPane fx:id="cardGridPane" gridLinesVisible="true" AnchorPane.leftAnchor="306.0" AnchorPane.topAnchor="119.0">
+        <GridPane fx:id="cardGridPane" gridLinesVisible="true" layoutX="287.8" layoutY="101.6" AnchorPane.leftAnchor="287.8" AnchorPane.topAnchor="101.6">
             <children>
                             
-                            <!-- <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="0" GridPane.rowIndex="0" /> -->
-                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                            <!-- <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="2" GridPane.rowIndex="0" /> -->
-                            <!-- <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="3" GridPane.rowIndex="0" /> -->
+                            <!-- <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="0" GridPane.rowIndex="0" /> -->
+                            <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                            <!-- <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="2" GridPane.rowIndex="0" /> -->
+                            <!-- <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="3" GridPane.rowIndex="0" /> -->
 
-                            <!-- <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="0" GridPane.rowIndex="1" /> -->
-                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                            <!-- <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="0" GridPane.rowIndex="1" /> -->
+                            <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                            <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                            <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="3" GridPane.rowIndex="1" />
 
-                            <!-- <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="0" GridPane.rowIndex="2" /> -->
-                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="1" GridPane.rowIndex="2" />                            
-                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                            <!-- <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="0" GridPane.rowIndex="2" /> -->
+                            <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="1" GridPane.rowIndex="2" />                            
+                            <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                            <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="3" GridPane.rowIndex="2" />
 
-                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                            <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                            <!-- <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="3" GridPane.rowIndex="3" /> -->
+                            <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                            <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                            <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                            <!-- <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="3" GridPane.rowIndex="3" /> -->
 
-                            <!-- <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="0" GridPane.rowIndex="4" /> -->
-                            <!-- <Rectangle fill="transparent" height="65" width="65" GridPane.columnIndex="1" GridPane.rowIndex="4" /> -->
+                            <!-- <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="0" GridPane.rowIndex="4" /> -->
+                            <!-- <Rectangle fill="transparent" height="75" width="75" GridPane.columnIndex="1" GridPane.rowIndex="4" /> -->
                         </children>
                     <columnConstraints>
                         <ColumnConstraints />

@@ -1,22 +1,38 @@
 package application;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Queue;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import application.MultiConfigController.PlayerChoice;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -33,8 +49,9 @@ public class GameplayController extends Controller{
 	
 	private ObservableList<PlayerChoice> receivedPlayerChoicesList;
 	
+    @FXML private AnchorPane rootPane; // Injected from MPGameScreen.fxml
 	@FXML private ImageView testPiece;
-	
+
 //    @FXML
 //    private GridPane cardGridPane; // Assuming you have a GridPane in GameScreen.fxml
     
@@ -56,7 +73,7 @@ public class GameplayController extends Controller{
     
     private long startTime;
     private boolean roundStarted = false;
-    
+    public List<ImageView> pieceViews = new ArrayList<ImageView>();
     //for the system
     @FXML
     private Button exitToMainScreenButton;
@@ -87,6 +104,9 @@ public class GameplayController extends Controller{
     
     private Timeline countdownTimer;
     private int remainingTime;
+
+    // Replace cardContainer with a list of queues for AnchorPanes
+    private List<Queue<AnchorPane>> playerCardQueues;
     
     
     
@@ -98,8 +118,7 @@ public class GameplayController extends Controller{
     	exitToMainScreenButton.setVisible(false);
     	timerLabel.setVisible(false);
     	roundCounterLabel.setVisible(false);
-
-        // Initialization logic if needed (e.g., setting up the gridPane)
+        // ...other initialization...
     }
 
     public void initializeData(ObservableList<PlayerChoice> playerChoiceList, int gameDuration ) {
@@ -108,8 +127,20 @@ public class GameplayController extends Controller{
         this.totalPlayers = playerChoiceList.size();
         playerScores = new double[totalPlayers];
         
-        
+        // Initialize a card queue for each player.
+        playerCardQueues = new ArrayList<>();
+        for (int i = 0; i < totalPlayers; i++) {
+            playerCardQueues.add(new ArrayDeque<>());
+        }
+
         System.out.println("Initialization complete. PlayerChoiceList received.");
+
+        //  Call loadGameCards after the screen is loaded.
+         try {
+            loadGameCards();
+        } catch(IOException ex) {
+            ex.printStackTrace();
+        }
         
 //        // Update labels with the received values
 //        colorLabel.setText("Color: " + this.receivedColor);
@@ -120,6 +151,202 @@ public class GameplayController extends Controller{
 
         //loadCards();
     }
+
+    //Method to load config.json from resources.
+    private JSONObject loadConfigJson() throws IOException {
+        InputStream is = getClass().getResourceAsStream("/application/config.json");
+        if(is == null) {
+            throw new FileNotFoundException("config.json not found in /application folder.");
+        }
+        String jsonText = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+        return new JSONObject(jsonText);
+    }
+
+//     @FXML
+// private void loadTestPiece() {
+//     try {
+//         // Create ImageView for test piece
+//         ImageView pieceView = new ImageView();
+        
+//         // Load image
+//         String piecePath = "res/pieces/green/G_Giraffee/00_G_Giraffee.png";
+//         Image pieceImage = new Image(new File(piecePath).toURI().toString());
+//         pieceView.setImage(pieceImage);
+        
+//         // Set size
+//         pieceView.setFitHeight(225.0);
+//         pieceView.setFitWidth(225.0);
+//         pieceView.setPreserveRatio(true);
+        
+//         // Set position
+//         pieceView.setLayoutX(500);
+//         pieceView.setLayoutY(200);
+        
+//         // Make piece visible
+//         pieceView.setVisible(true);
+//         pieceView.setOpacity(1.0);
+        
+//         // Make draggable
+//         draggableMaker.makeDraggable(pieceView);
+        
+//         // Add to root pane
+//         rootPane.getChildren().add(pieceView);
+        
+//         System.out.println("Test piece loaded successfully");
+        
+//     } catch (Exception e) {
+//         System.out.println("Error loading test piece: " + e.getMessage());
+//         e.printStackTrace();
+//     }
+// }
+
+    // Change data structure
+    private List<List<String>> playerCardNames; // Store FXML names instead of AnchorPanes
+    
+    //Choose cards for players
+    private void loadGameCards() throws IOException {
+        // Initialize card lists
+        playerCardNames = new ArrayList<>();
+        for (int i = 0; i < totalPlayers; i++) {
+            playerCardNames.add(new ArrayList<>());
+        }
+
+        // Load config once
+        JSONObject config = DraggableMaker.loadJSON();
+        DraggableMaker.checkJsonStatus(config);
+        
+        // For each player
+        for (int playerIndex = 0; playerIndex < receivedPlayerChoicesList.size(); playerIndex++) {
+            PlayerChoice choice = receivedPlayerChoicesList.get(playerIndex);
+            List<String> playerCards = playerCardNames.get(playerIndex);
+            
+            // Determine card range
+            String folder = choice.getDifficulty().equalsIgnoreCase("easy") ? "A" : "B";
+            int startNum, endNum;
+            switch (choice.getColour().toLowerCase()) {
+                case "blue": startNum = 1; endNum = 8; break;
+                case "pink": startNum = 9; endNum = 16; break;
+                case "green": startNum = 17; endNum = 24; break;
+                case "yellow": startNum = 25; endNum = 32; break;
+                default: startNum = 1; endNum = 8;
+            }
+            
+            // Select 5 random cards
+            List<Integer> cardNumbers = new ArrayList<>();
+            for (int i = startNum; i <= endNum; i++) {
+                cardNumbers.add(i);
+            }
+            Collections.shuffle(cardNumbers);
+            
+            // Store FXML names for first 5 cards
+            for (int i = 0; i < 5; i++) {
+                String fxmlName = folder + cardNumbers.get(i) + ".fxml";
+                playerCards.add(fxmlName);
+                System.out.println("Added card " + fxmlName + " for player " + playerIndex);
+            }
+        }
+        
+        // Show first player's first card
+        showCurrentPlayerCard();
+    }
+
+private void showCurrentPlayerCard() {
+    try {
+        // Clear existing card
+        rootPane.getChildren().removeIf(node -> 
+            node instanceof AnchorPane && !node.equals(rootPane));
+            pieceViews.clear();
+
+        // Get current card name
+        String currentFxml = playerCardNames.get(currentPlayerIndex).get(0);
+        String folder = currentFxml.startsWith("A") ? "A" : "B";
+        
+        // Load FXML
+        FXMLLoader loader = new FXMLLoader(new File("res/assests/" + folder + "/" + currentFxml).toURI().toURL());
+        loader.setController(this);
+        AnchorPane cardPane = loader.load();
+        
+
+//        for(Node node : cardPane.getChildren()) {
+//            if(node instanceof ImageView) {
+//                pieceViews.add(((ImageView)node));
+//                System.out.println(node);
+//                rootPane.getChildren().add(node);
+//            }
+//        }
+//        
+        
+
+        //extract imageViews from assets
+        ArrayList<Double> sizeArrayList = new ArrayList<Double>();
+        for(Node node : cardPane.getChildren()) {
+            if(node instanceof ImageView) {
+                pieceViews.add(((ImageView)node));
+                sizeArrayList.add(((ImageView)node).getFitHeight());
+            }
+        }
+        double maxSize = Collections.max(sizeArrayList);
+        pieceViews.remove(sizeArrayList.indexOf(maxSize));
+        //		for(double i : sizeArrayList) System.out.println(i);
+
+        GridPane cardGrid = (GridPane) cardPane.lookup("#cardGridPane");
+        // Update piece images with "00_" versions
+        JSONObject config = DraggableMaker.loadJSON();
+        for (int j = 0; j < pieceViews.size(); j++) {
+            String piecePath = DraggableMaker.jsonProcessor(config, currentFxml, j);
+            File piecesDirFiles = new File(piecePath);
+            File[] files = piecesDirFiles.listFiles();
+            ImageView currentPiece = pieceViews.get(j);
+            Image currentImage = new Image(new File(files[0].getAbsolutePath()).toURI().toString());
+            currentPiece.setImage(currentImage);
+            System.out.println("Loading image from: " + files[0].getAbsolutePath());
+            draggableMaker.makeHoverable(currentPiece, cardGrid);
+            rootPane.getChildren().add(currentPiece);
+        }
+        rootPane.getChildren().add((cardPane).getChildren().getFirst()); 
+        rootPane.getChildren().add(cardGrid); 
+        
+    } catch (Exception e) {
+        System.out.println("Error loading card: " + e.getMessage());
+        e.printStackTrace();
+    }
+}    
+    // Update showNextCardForPlayer method
+    public void showNextCardForPlayer(int playerIndex) {
+        if (playerIndex < 0 || playerIndex >= playerCardQueues.size()) return;
+        
+        Queue<AnchorPane> queue = playerCardQueues.get(playerIndex);
+        if (!queue.isEmpty()) {
+            queue.poll(); // Remove current card
+            if (playerIndex == currentPlayerIndex) {
+                showCurrentPlayerCard();
+            }
+        }
+    }
+
+    private void setupPiecesForCard(AnchorPane cardPane, List<ImageView> pieceViews) throws IOException {
+        // Get the GridPane from card
+        GridPane cardGrid = (GridPane) cardPane.lookup("#cardGridPane");
+        System.out.println("Found GridPane: " + (cardGrid != null));
+
+        // Make each piece draggable and hoverable, and ensure visibility
+//        for (ImageView pieceView : pieceViews) {
+//            try {
+//                // Show piece
+//                pieceView.setVisible(true);
+//                pieceView.setOpacity(1.0);
+//                
+//                // Make interactive
+//                draggableMaker.makeHoverable(pieceView, cardGrid);
+//                
+//                System.out.println("Piece setup complete: " + pieceView);
+//            } catch (Exception e) {
+//                System.out.println("Error setting up piece: " + e.getMessage());
+//            }
+//        }
+    }
+    
+    
     
     private void startCountdown() {
         timerLabel.setText("Time left: " + remainingTime + "s");
