@@ -72,7 +72,7 @@ public class Controller implements Initializable{
 	private File[] files;
 	private Media media;
 	public static MediaPlayer mediaplayer;
-	private ArrayList<File> songs;
+	public static ArrayList<File> songs;
 	
 	//Initialize Card information
 	private Image cardImage;
@@ -85,19 +85,23 @@ public class Controller implements Initializable{
 //		buttonClickSound = new Media(new File("res/sounds/button-click-sound.mp3").toURI().toString());
 //		buttonMediaPlayer = new MediaPlayer(buttonClickSound);
 		
+		//play music
 		if(!isPlaying(mediaplayer)) {
 			songs = new ArrayList<File>();
 			directory = new File("res/music");
 			files = directory.listFiles();
 			
-			if(files != null) {
-					System.out.println("Music ready");
-					for(File file : files) songs.add(file);
-			} else System.out.println("null music");
+			for(File file : files) {
+//				System.out.println(file);
+				songs.add(file);
+			}
 			
-			media = new Media(songs.get(0).toURI().toString());
-			mediaplayer = new MediaPlayer(media);
+			if(files != null) {
+				System.out.println("Music ready");
+			} else System.out.println("null music");
+			playMusic(songs.get(0));
 		}
+		
 		if (volumeSlider != null) {
             volumeSlider.setValue(mediaplayer.getVolume() * 100); // Set initial value in percentage
             volumeLabel.setText(String.format("%.0f%%", volumeSlider.getValue())); // Set initial label text
@@ -120,6 +124,31 @@ public class Controller implements Initializable{
 			System.out.println("MediaPlayer is not initialized.");
 		}
 	}
+	
+	public static void playMusic(File filename) {
+		if(isPlaying(mediaplayer)) mediaplayer.stop();
+		
+		String songDir = filename.toURI().toString();
+		Media media = new Media(songDir);
+		mediaplayer = new MediaPlayer(media);
+		
+		mediaplayer.setOnEndOfMedia(() -> {
+			mediaplayer.seek(javafx.util.Duration.ZERO);
+			mediaplayer.play();
+		});
+		
+		mediaplayer.play();
+	}
+	
+	public static void checkScreenForMusicChange(String currentScreen) {
+		File choiceSong = songs.get(0);
+		if(currentScreen.equals("MPGameScreen.fxml") || currentScreen.equals("SPGameScreen.fxml")) {
+			choiceSong = songs.get(1);
+			playMusic(choiceSong);
+		} else {
+			if(isPlaying(mediaplayer) && choiceSong != songs.get(0)) playMusic(songs.get(0));
+		}
+	}
 
 	@FXML
 	public void handleVolumeChange() {
@@ -131,6 +160,7 @@ public class Controller implements Initializable{
 
     public void AudioSettingsPage(ActionEvent e) throws IOException {
         currentScreen = "AudioSettings.fxml";
+        checkScreenForMusicChange(currentScreen);
         storeCurrentScreen(currentScreen);
         System.out.println("Navigating to AudioSettings.fxml");
         Parent root = FXMLLoader.load(getClass().getResource("/application/AudioSettings.fxml"));
@@ -141,6 +171,21 @@ public class Controller implements Initializable{
         stage.setResizable(false);
         stage.show();
         System.out.println("Audio Settings Page Opened");
+    }
+    
+    public void GameRulesPage(ActionEvent e) throws IOException {
+        currentScreen = "GameRules.fxml";
+        checkScreenForMusicChange(currentScreen);
+        storeCurrentScreen(currentScreen);
+        System.out.println("Navigating to GameRules.fxml");
+        Parent root = FXMLLoader.load(getClass().getResource("/application/GameRules.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        scene.getStylesheets().add(cssString);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+        System.out.println("GameRules Page Opened");
     }
 
 	public static boolean isPlaying(MediaPlayer mediaPlayer) {
@@ -194,6 +239,7 @@ public class Controller implements Initializable{
 	
 	public void StartGame(ActionEvent e) throws IOException {
 		currentScreen = "GameModeSelection.fxml";
+		checkScreenForMusicChange(currentScreen);
 		storeCurrentScreen(currentScreen);
 		Parent root = FXMLLoader.load(getClass().getResource("/application/GameModeSelection.fxml"));
 		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -208,6 +254,7 @@ public class Controller implements Initializable{
 
 	public void SettingsPage(ActionEvent e) throws IOException {
 		currentScreen = "Settings.fxml";
+		checkScreenForMusicChange(currentScreen);
 		storeCurrentScreen(currentScreen);
 		System.out.println("Navigating to Settings.fxml");
 		Parent root = FXMLLoader.load(getClass().getResource("/application/Settings.fxml"));
@@ -222,6 +269,7 @@ public class Controller implements Initializable{
 	
 	public void LobbySettingScreen(ActionEvent e) throws IOException{
 		currentScreen = "LobbySettingScreen.fxml";
+		checkScreenForMusicChange(currentScreen);
 		storeCurrentScreen(currentScreen);
 		System.out.println("Navigating to LobbySettingScreen.fxml");
 		Parent root = FXMLLoader.load(getClass().getResource("/application/LobbySettingScreen.fxml"));
@@ -236,6 +284,7 @@ public class Controller implements Initializable{
 	
 	public void SingleConfigScreen(ActionEvent e) throws IOException{
 		currentScreen = "TestSingleConfig.fxml";
+		checkScreenForMusicChange(currentScreen);
 		storeCurrentScreen(currentScreen);
 		System.out.println("Navigating to TestSingleConfig.fxml");
 		Parent root = FXMLLoader.load(getClass().getResource("/application/TestSingleConfig.fxml"));
@@ -251,6 +300,7 @@ public class Controller implements Initializable{
 
 	public void DifficultySetting(ActionEvent e) throws IOException{
 		currentScreen = "DifficultyScene.fxml";
+		checkScreenForMusicChange(currentScreen);
 		storeCurrentScreen(currentScreen);
 		System.out.println("Navigating to DifficultyScene.fxml");
 		Parent root = FXMLLoader.load(getClass().getResource("/application/DifficultyScene.fxml"));

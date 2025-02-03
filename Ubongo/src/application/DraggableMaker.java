@@ -4,6 +4,7 @@
 
 package application;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import javafx.scene.paint.Color;
@@ -19,6 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javafx.geometry.Bounds;
@@ -30,7 +32,40 @@ import javafx.scene.shape.Rectangle;
 
 public class DraggableMaker {
 	
-	private static final String CONFIGJSON = "config.json";
+	public static JSONObject loadJSON() throws IOException {
+		JSONObject jsonObject;
+		String currentDir = new File("").getAbsolutePath();
+    	String dirString = currentDir + "\\src\\application\\config.json";
+    	System.out.println("json directory: "+ dirString);
+    	
+    	String contentString = new String((Files.readAllBytes(Paths.get(dirString))));
+    	jsonObject = new JSONObject(contentString);
+    	return jsonObject;
+	}
+	
+	public static void checkJsonStatus(JSONObject json) {
+		if(json == null) System.out.println("JSON not working");
+		else System.out.println("JSON ready");
+	}
+	
+	//JSON file processing:
+	//pass in the jsonObject, the current asset file name and the index of the piece in the piece's ImageView array
+	public static String jsonProcessor(JSONObject jsonObject, String currentFXMLFile, int index) {
+		JSONArray jsonFxmlArray = jsonObject.getJSONArray(currentFXMLFile);
+		String key;
+		Iterator<String> iterator;
+//		System.out.println("index during json processing: " + index);
+		
+		JSONObject jsonObjectItem = jsonFxmlArray.getJSONObject(index);
+		iterator = jsonObjectItem.keys();
+		
+		key = iterator.next();
+		System.out.println(key);
+		
+		String assetDir = jsonObjectItem.getString(key);
+//		System.out.println("corresponding item: " + assetDir);
+		return assetDir;
+	}
 
     private double mouseAnchorX;
     private double mouseAnchorY; 
@@ -58,20 +93,11 @@ public class DraggableMaker {
     }
     
     public void makeHoverable(ImageView pieceView, GridPane cardGrid) throws JSONException, IOException {
-    	String currentDir = new File("").getAbsolutePath();
-    	String dirString = currentDir + "\\src\\application\\config.json";
-    	System.out.println(dirString);
-    	String contentString = new String((Files.readAllBytes(Paths.get(dirString))));
-    	System.out.println(contentString);
-    	JSONObject jsonObject = new JSONObject(contentString);
-    	System.out.println("r u winning son?: " + jsonObject.getJSONObject("A1.fxml"));
     	
     	pieceView.setOnMousePressed(mouseEvent -> {
             mouseAnchorX = mouseEvent.getX();
             mouseAnchorY = mouseEvent.getY();
         });
-    	
-    	
     	
     	//double-click-to-spin method
     	pieceView.setOnMouseClicked(mouseEvent -> {

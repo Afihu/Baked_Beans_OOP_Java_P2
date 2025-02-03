@@ -58,7 +58,7 @@ public class SingleConfigController implements Initializable {
             "pink"
         );
         colorComboBox.setItems(colorOptions);
-        // Set a default value (optional but recommended)
+        //set a default value (optional but recommended)
         //colorComboBox.setValue("blue"); // Or the first item in the list
 
         // Difficulty ComboBox
@@ -112,7 +112,7 @@ public class SingleConfigController implements Initializable {
 
     private void loadGameScreen(ActionEvent event) {
         try {
-        	currentScreen = "GameModeSelection.fxml";
+        	currentScreen = "SPGameScreen.fxml";
     		Controller.storeCurrentScreen(currentScreen);
     		
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/SPGameScreen.fxml")); // Correct path
@@ -135,50 +135,50 @@ public class SingleConfigController implements Initializable {
     }
     
     
-	//For drag and drop functionality
-	@FXML private ImageView testPiece;
-	@FXML private Rectangle testCell;
-	@FXML private GridPane cardGrid;
-	DraggableMaker draggableMaker = new DraggableMaker();
-	private Coords[][] pieceMask;
-	private boolean[][] gridMap;
-	private Coords[][] gridCellMask;
-	
-	private Image pieceImage = new Image(new File("res/pieces/green/G_FireFly.png").toURI().toString()); //Loading image to create mask before attaching to imageView
-	
-	
-	public void testDragDrop(ActionEvent event) throws IOException{
-		//Since gameplay has already started, there will not be a return button readily available
-		System.out.println("Game Started");
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/GameScreen.fxml"));
-		loader.setController(this);		//Must be done so that the current instance of FXMLLoader can be used, otherwise the varible under the @FXML tag won't be recognized
-		Parent root = loader.load();	//**Extremely important** Everything related to @FXML injected fields must be written below this line
-    	
-    	Rectangle testNode = (Rectangle)InitCoreMechanics.getNodeFromGridPane(cardGrid, 0, 0);
-    	System.out.println("rectangle width: " + testNode.getWidth());
-    	System.out.println("rectangle height: " + testNode.getHeight());
-    	System.out.println("actual rectangle width + height: " + testCell.getWidth() + " + " + testCell.getHeight());
-		
-		if(pieceImage != null && testCell != null && cardGrid != null) {
-			
-			testPiece.setFitHeight(pieceImage.getHeight() - 20); testPiece.setFitWidth(pieceImage.getWidth() - 20); //account for image size and imageView size inconsistency
-			testPiece.setPreserveRatio(true);
-			testPiece.setOpacity(1.0);
-			testPiece.setImage(pieceImage);
-			
-			//apply hover effect (incomplete)
-			if(testPiece != null && cardGrid != null) {
-				draggableMaker.makeHoverable(testPiece, cardGrid);
-			} else System.out.println("Error: testPiece or cardGrid null");
-			
-		} else System.out.println("Error: pieceImage, gridpane or Cell can't load");
-		
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.show();
-		System.out.println("Singleplayer mode initiated");
-	}
+//	//For drag and drop functionality
+//	@FXML private ImageView testPiece;
+//	@FXML private Rectangle testCell;
+//	@FXML private GridPane cardGrid;
+//	DraggableMaker draggableMaker = new DraggableMaker();
+//	private Coords[][] pieceMask;
+//	private boolean[][] gridMap;
+//	private Coords[][] gridCellMask;
+//	
+//	private Image pieceImage = new Image(new File("res/pieces/green/G_FireFly.png").toURI().toString()); //Loading image to create mask before attaching to imageView
+//	
+//	
+//	public void testDragDrop(ActionEvent event) throws IOException{
+//		//Since gameplay has already started, there will not be a return button readily available
+//		System.out.println("Game Started");
+//		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/GameScreen.fxml"));
+//		loader.setController(this);		//Must be done so that the current instance of FXMLLoader can be used, otherwise the varible under the @FXML tag won't be recognized
+//		Parent root = loader.load();	//**Extremely important** Everything related to @FXML injected fields must be written below this line
+//    	
+//    	Rectangle testNode = (Rectangle)InitCoreMechanics.getNodeFromGridPane(cardGrid, 0, 0);
+//    	System.out.println("rectangle width: " + testNode.getWidth());
+//    	System.out.println("rectangle height: " + testNode.getHeight());
+//    	System.out.println("actual rectangle width + height: " + testCell.getWidth() + " + " + testCell.getHeight());
+//		
+//		if(pieceImage != null && testCell != null && cardGrid != null) {
+//			
+//			testPiece.setFitHeight(pieceImage.getHeight() - 20); testPiece.setFitWidth(pieceImage.getWidth() - 20); //account for image size and imageView size inconsistency
+//			testPiece.setPreserveRatio(true);
+//			testPiece.setOpacity(1.0);
+//			testPiece.setImage(pieceImage);
+//			
+//			//apply hover effect (incomplete)
+//			if(testPiece != null && cardGrid != null) {
+//				draggableMaker.makeHoverable(testPiece, cardGrid);
+//			} else System.out.println("Error: testPiece or cardGrid null");
+//			
+//		} else System.out.println("Error: pieceImage, gridpane or Cell can't load");
+//		
+//		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+//		Scene scene = new Scene(root);
+//		scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
+//		stage.setScene(scene);
+//		stage.setResizable(false);
+//		stage.show();
+//		System.out.println("Singleplayer mode initiated");
+//	}
 }

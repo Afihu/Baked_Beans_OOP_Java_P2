@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SingleConfigController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.JSONTESTGameplayController">
    <children>
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -43,7 +43,7 @@
             </RadialGradient>
          </textFill>
       </Label>
-      <Button fx:id="beginButton" layoutX="483.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleBeginButtonAction" prefHeight="71.0" prefWidth="222.0" text="Begin">
+      <Button fx:id="beginButton" layoutX="483.0" layoutY="550.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="222.0" text="Begin">
          <font>
             <Font size="25.0" />
          </font>
@@ -70,7 +70,7 @@
          </textFill>
       </Label>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="27.0" prefWidth="43.0" text="&lt;&lt;" />
-      <Button layoutX="319.0" layoutY="41.0" mnemonicParsing="false" onAction="#testDragDrop" prefHeight="42.0" prefWidth="241.0" text="To testing drag-and-drop" />
+      <Button layoutX="319.0" layoutY="41.0" mnemonicParsing="false" onAction="#initSinglePlayer" prefHeight="42.0" prefWidth="241.0" text="To testing drag-and-drop" />
       <Spinner fx:id="timeSpinner" layoutX="519.0" layoutY="451.0" />
       <Label layoutX="460.0" layoutY="320.0" prefHeight="132.0" prefWidth="446.0" text="Set your timer">
          <font>

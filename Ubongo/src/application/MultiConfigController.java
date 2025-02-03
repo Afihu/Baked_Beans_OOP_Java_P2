@@ -50,6 +50,7 @@ public class MultiConfigController {
         DIFFICULTY,
         ALL
     }
+    
 
     public static class PlayerChoice {
         private final IntegerProperty playerNumber;
@@ -241,23 +242,34 @@ public class MultiConfigController {
     }
 
     private void handleContinue(ActionEvent event) {
+        System.out.println("MultiConfig successful. Initiating the lobby.");
+        loadGameScreen(event);
+    }
+
+    private void loadGameScreen(ActionEvent event) {
         try {
-            Controller.screenHistory.push("MultiConfig.fxml");
-            
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/MPGameScreen.fxml"));
-            loader.setController(this);
+        	String currentScreen = "MPGameScreen.fxml";
+    		Controller.storeCurrentScreen(currentScreen);
+    		
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/MPGameScreen.fxml")); // Correct path
             Parent root = loader.load();
+
+            GameplayController gameplayController = loader.getController();
+            gameplayController.initializeData(this.playerChoicesList, this.gameDuration);
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
             stage.setScene(scene);
             stage.setResizable(false);
             stage.show();
+            System.out.println("MPGameScreen Opened");
+
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }  	
     }
-
+    
     @FXML
     public void goBack(ActionEvent event) throws IOException {
         if (!Controller.screenHistory.isEmpty()) {
@@ -282,7 +294,7 @@ public class MultiConfigController {
         }
     }
     @FXML
-    public void goBacktoMainMenu(ActionEvent event) throws IOException {
+    public void goBacktoMainScreen(ActionEvent event) throws IOException {
         // Clear all data
         playerColors.clear();
         playerDifficulties.clear();
