@@ -28,6 +28,9 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameScreenController implements Initializable {
 
     @FXML
@@ -73,7 +76,8 @@ public class GameScreenController implements Initializable {
     private Timeline countdownTimer;
     private int remainingTime;
     
-
+    private static List<String> cardList = new ArrayList<>(); // Stores FXML file names
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	// Hide the labels initially
@@ -97,10 +101,64 @@ public class GameScreenController implements Initializable {
         roundDurationLabel.setText("Round Duration: " + this.receivedRoundDuration + " seconds");
         
         System.out.println("Color: " + this.receivedColor + ", Difficulty: " + this.receivedDifficulty + ", Round Duration: " + this.receivedRoundDuration);
-
+        
+        loadFXMLFilesName();
         //loadCards();
     }
     
+    //initialize files name for the session
+    private void loadFXMLFilesName() {
+        cardList.clear(); //clear previous data
+
+        if (receivedColor == null || receivedDifficulty == null) {
+            System.out.println("Color or difficulty not set yet!");
+            return;
+        }
+
+        String prefix = "";
+        int startIndex = 0;
+        int endIndex = 0;
+
+        //determine prefix and index range based on color and difficulty
+        if (receivedDifficulty.equalsIgnoreCase("easy")) {
+            prefix = "A";
+        } else if (receivedDifficulty.equalsIgnoreCase("hard")) {
+            prefix = "B";
+        } else {
+            System.out.println("Invalid difficulty!");
+            return;
+        }
+
+        switch (receivedColor.toLowerCase()) {
+            case "blue":
+                startIndex = 1;
+                endIndex = 8;
+                break;
+            case "pink":
+                startIndex = 9;
+                endIndex = 16;
+                break;
+            case "green":
+                startIndex = 17;
+                endIndex = 24;
+                break;
+            case "yellow":
+                startIndex = 25;
+                endIndex = 32;
+                break;
+            default:
+                System.out.println("Invalid color!");
+                return;
+        }
+
+        //populate the list with file names
+        for (int i = startIndex; i <= endIndex; i++) {
+            cardList.add(prefix + i + ".fxml");
+        }
+
+        System.out.println("Loaded FXML files: " + cardList);
+    }
+
     private void startCountdown() {
         timerLabel.setText("Time left: " + remainingTime + "s");
         
@@ -170,6 +228,7 @@ public class GameScreenController implements Initializable {
         	
         	timerLabel.setVisible(true);
             startTime = System.currentTimeMillis();
+            //loadCards();
             
             this.roundStarted = true;
             this.roundsPlayed++;
@@ -277,35 +336,35 @@ public class GameScreenController implements Initializable {
 	}
 	
     
-    private void loadCards() {
-        if (cardGridPane == null) {
-            System.err.println("cardGridPane is null. Check your FXML.");
-            return;
-        }
-
-        cardGridPane.getChildren().clear(); // Clear existing cards
-
-        try {
-            int rows = 4; // Example
-            int cols = 5; // Example
-
-            for (int row = 0; row < rows; row++) {
-                for (int col = 0; col < cols; col++) {
-                    String cardImageName = String.format("%s_%s_card%d.png", receivedColor, receivedDifficulty, (row * cols + col + 1)); // Construct image name
-                    Image cardImage = new Image(new File("res/images/" + cardImageName).toURI().toString()); // Assumes images are in res/images
-                    ImageView cardImageView = new ImageView(cardImage);
-
-                    // Set size and other properties of the ImageView as needed
-                    cardImageView.setFitWidth(100); // Example
-                    cardImageView.setFitHeight(150); // Example
-                    cardImageView.setPreserveRatio(true);
-
-                    cardGridPane.add(cardImageView, col, row); // Add to the grid
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace(); // Handle exceptions appropriately
-        }
-    }
+//    private void loadCards() {
+//        if (cardGridPane == null) {
+//            System.err.println("cardGridPane is null. Check your FXML.");
+//            return;
+//        }
+//
+//        cardGridPane.getChildren().clear(); // Clear existing cards
+//
+//        try {
+//            int rows = 4; // Example
+//            int cols = 5; // Example
+//
+//            for (int row = 0; row < rows; row++) {
+//                for (int col = 0; col < cols; col++) {
+//                    String cardImageName = String.format("%s_%s_card%d.png", receivedColor, receivedDifficulty, (row * cols + col + 1)); // Construct image name
+//                    Image cardImage = new Image(new File("res/images/" + cardImageName).toURI().toString()); // Assumes images are in res/images
+//                    ImageView cardImageView = new ImageView(cardImage);
+//
+//                    // Set size and other properties of the ImageView as needed
+//                    cardImageView.setFitWidth(100); // Example
+//                    cardImageView.setFitHeight(150); // Example
+//                    cardImageView.setPreserveRatio(true);
+//
+//                    cardGridPane.add(cardImageView, col, row); // Add to the grid
+//                }
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace(); // Handle exceptions appropriately
+//        }
+//    }
 }
