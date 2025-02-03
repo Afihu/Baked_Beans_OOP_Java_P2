@@ -70,17 +70,17 @@
             <Font name="Eras Bold ITC" size="12.0" />
          </font></Label>
       <Button fx:id="exitToSPConfigScreen" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#goBack" prefHeight="27.0" prefWidth="43.0" text="&lt;&lt;" />
-      <Label fx:id="roundResultLabel" alignment="CENTER" layoutX="234.0" layoutY="150.0" prefHeight="220.0" prefWidth="823.0" text="Round score!" textAlignment="CENTER" textFill="#00b5ff">
+      <Label fx:id="roundResultLabel" alignment="CENTER" layoutX="822.0" layoutY="113.0" prefHeight="193.0" prefWidth="465.0" text="Round score!" textAlignment="CENTER" textFill="#00b5ff">
          <font>
             <Font name="Eras Bold ITC" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="TOP" layoutX="417.0" layoutY="38.0" prefHeight="66.0" prefWidth="458.0" text="Timer" textFill="#05facd">
+      <Label fx:id="timerLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="751.0" layoutY="73.0" prefHeight="46.0" prefWidth="528.0" text="Timer" textFill="#05facd">
          <font>
-            <Font name="Eras Bold ITC" size="30.0" />
+            <Font name="Eras Bold ITC" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="roundCounterLabel" alignment="CENTER" contentDisplay="TOP" layoutX="947.0" layoutY="16.0" prefHeight="66.0" prefWidth="318.0" text="Round Counter" textFill="#05facd">
+      <Label fx:id="roundCounterLabel" alignment="CENTER_RIGHT" contentDisplay="TOP" layoutX="947.0" layoutY="16.0" prefHeight="66.0" prefWidth="318.0" text="Round Counter" textFill="#05facd">
          <font>
             <Font name="Eras Bold ITC" size="20.0" />
          </font>
