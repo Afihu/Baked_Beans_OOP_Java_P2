@@ -22,7 +22,7 @@
             <Font name="Eras Bold ITC" size="12.0" />
          </font>
       </Button>
-        <GridPane alignment="CENTER" hgap="10" layoutX="798.0" layoutY="309.0" prefHeight="166.0" prefWidth="458.0" vgap="10">
+        <GridPane alignment="CENTER" hgap="10" layoutX="821.0" layoutY="533.0" prefHeight="166.0" prefWidth="458.0" vgap="10">
          <columnConstraints>
             <ColumnConstraints />
             <ColumnConstraints />
@@ -49,7 +49,7 @@
             <Font name="Eras Bold ITC" size="30.0" />
          </font>
       </Label>
-      <Button fx:id="startStopButton" layoutX="565.0" layoutY="428.0" mnemonicParsing="false" onAction="#handleStartStopButtonAction" prefHeight="46.0" prefWidth="161.0" text="Press me!">
+      <Button fx:id="startStopButton" layoutX="1106.0" layoutY="313.0" mnemonicParsing="false" onAction="#handleStartStopButtonAction" prefHeight="46.0" prefWidth="161.0" text="Press me!">
          <font>
             <Font name="Eras Bold ITC" size="12.0" />
          </font></Button>

@@ -40,7 +40,7 @@
             <Font name="Eras Bold ITC" size="30.0" />
          </font>
       </Label>
-      <Button fx:id="startStopButton" layoutX="575.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleStartStopButtonAction" prefHeight="46.0" prefWidth="161.0" text="Press me!">
+      <Button fx:id="startStopButton" layoutX="1104.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleStartStopButtonAction" prefHeight="46.0" prefWidth="161.0" text="Press me!">
          <font>
             <Font name="Eras Bold ITC" size="12.0" />
          </font>
@@ -50,17 +50,17 @@
             <Font name="Eras Bold ITC" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="player2ScoreLabel" layoutX="21.0" layoutY="287.0" prefHeight="27.0" prefWidth="248.0" text="Player2" textFill="#ef0404">
+      <Label fx:id="player2ScoreLabel" layoutX="21.0" layoutY="287.0" prefHeight="27.0" prefWidth="248.0" text="Player2" textFill="#e2f201">
          <font>
             <Font name="Eras Bold ITC" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="player3ScoreLabel" layoutX="21.0" layoutY="332.0" prefHeight="27.0" prefWidth="248.0" text="Player3" textFill="#ef0404">
+      <Label fx:id="player3ScoreLabel" layoutX="21.0" layoutY="332.0" prefHeight="27.0" prefWidth="248.0" text="Player3" textFill="#0511ff">
          <font>
             <Font name="Eras Bold ITC" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="player4ScoreLabel" layoutX="21.0" layoutY="380.0" prefHeight="27.0" prefWidth="248.0" text="Player4" textFill="#ef0404">
+      <Label fx:id="player4ScoreLabel" layoutX="21.0" layoutY="380.0" prefHeight="27.0" prefWidth="248.0" text="Player4" textFill="#ed05c9">
          <font>
             <Font name="Eras Bold ITC" size="15.0" />
          </font>
